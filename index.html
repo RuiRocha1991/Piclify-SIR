@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Teste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="form" method="POST">
+        <label>Name: <input type="text" name="name"></label><br>
+        <label>Email: <input type="Email" name="email"></label><br>
+        <label>Password: <input type="password" name="password"></label><br>
+        <label>Genre: <input type="text" name="genre"></label><br>
+        <label>Locality: <input type="text" name="locality"></label><br>
+        <label>Country: <input type="text" name="country"></label><br>
+        <label>Birth_date: <input type="date" name="birth_date"></label><br>
+        <label>Profile_photo: <input type="text" name="profile_photo"></label><br>
+    </form>
+    <input  id="button" type="submit" value="Enviar">
+  
+<script>
+    var totUser=0;
+
+    $("#button").click(function() {
+
+    var data = getFormData($("#form"));
+        $.ajax({
+            url:'http://localhost:3000/user',
+            type: "get",
+            data: data ,
+            dataType:'json',
+            success: function (res) {
+                console.log(res);
+                res.length==0?createNewUser():null;
+            },
+            error: function (errorMessage) {
+                alert(errorMessage);
+            }
+        });
+    });
+
+    function getFormData(form){
+        var unindexed_array = form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
+
+
+    function createNewUser(){
+        var data=getFormData($("#form"));
+        console.log('vai criar');
+        console.log(data);
+        $.ajax({
+            url:'http://localhost:3000/user',
+            type: "POST",
+            data: data,
+            dataType:'json',
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (errorMessage) {
+                alert(errorMessage);
+            }
+        });
+    }
+
+      
+</script>
+
+</body>
+</html>
