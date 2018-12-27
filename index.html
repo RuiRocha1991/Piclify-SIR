@@ -5,13 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Teste</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <form id="form" method="POST">
+    <form id="form" method="POST" enctype="multipart/form-data"  >
         <label>Name: <input type="text" name="name"></label><br>
         <label>Email: <input type="Email" name="email"></label><br>
         <label>Password: <input type="password" name="password"></label><br>
@@ -19,17 +16,43 @@
         <label>Locality: <input type="text" name="locality"></label><br>
         <label>Country: <input type="text" name="country"></label><br>
         <label>Birth_date: <input type="date" name="birth_date"></label><br>
-        <label>Profile_photo: <input type="text" name="profile_photo"></label><br>
     </form>
     <input  id="button" type="submit" value="Enviar">
   
+<br><br><br>
+
+
+    <form action="php/upload-files/upload-profile.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="profile"><br>
+        <label>Email: <input type="number" name="number"></label><br>
+        <input type="submit">
+        <input type="reset" >
+    </form>
+
+    <br><br><br>
+    <br><br><br>
+    <form id="form2" method="POST" enctype="multipart/form-data"  >
+        <label>Email: <input type="Email" name="email"></label><br>
+    </form>    
+    <input  id="button2" type="submit" value="Enviar"> 
+
+        <label>Name: <label id="name"> </label></label><br>
+        <label>Password: <label id="pass"> </label></label><br>
+        <label>Genre: <label id="genre"> </label></label><br>
+        <label>Locality: <label id="locality"> </label></label><br>
+        <label>Country: <label id="contry"> </label></label><br>
+        <label>Birth_date: <label id="date"> </label></label><br>
+        <label>Photo: <img id="photo"></label><br>
+    
+   
+
 <script>
+
     var totUser=0;
 
     $("#button").click(function() {
-
-    var data = getFormData($("#form"));
-        $.ajax({
+       var data = getFormData($("#form"));
+       $.ajax({
             url:'http://localhost:3000/user',
             type: "get",
             data: data ,
@@ -55,12 +78,9 @@
         return indexed_array;
     }
 
-
-
     function createNewUser(){
-        var data=getFormData($("#form"));
         console.log('vai criar');
-        console.log(data);
+        var data=getFormData($("#form"));
         $.ajax({
             url:'http://localhost:3000/user',
             type: "POST",
@@ -75,6 +95,35 @@
         });
     }
 
+    $("#button2").click(function() {
+       var data = getFormData($("#form2"));
+       var value ;
+       $.ajax({
+            url:'http://localhost:3000/user',
+            type: "get",
+            data: data ,
+            dataType:'json',
+            success: function (res) {
+               fill(res);
+            },
+            error: function (errorMessage) {
+                alert(errorMessage);
+            }
+        });
+    });
+
+    function fill(data){
+        console.log(data);
+        $('#name').text(data[0].name);
+        $('#pass').text(data[0].password);
+        $('#genre').text(data[0].genre);
+        $('#locality').text(data[0].locality);
+        $('#contry').text(data[0].country);
+        $('#date').text(data[0].birth_date);
+        var img ='upload/profile/'+data[0].profile_photo;
+        console.log(img);
+        $('#photo').attr('src','./upload/profile/'+data[0].profile_photo+'.png');
+    }
       
 </script>
 

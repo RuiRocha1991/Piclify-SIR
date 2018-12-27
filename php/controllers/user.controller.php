@@ -8,7 +8,6 @@
     
     $action = isset($_GET['action']) ? $_GET['action']: null;
 	if($action == 'create' ) {
-
 		$user = new User();
         $user->__set('name', $_POST['name']);
         $user->__set('email', $_POST['email']);
@@ -17,8 +16,8 @@
         $user->__set('locality', $_POST['locality']);
         $user->__set('country', $_POST['country']);
         $user->__set('birth_date', $_POST['birth_date']);
-        $user->__set('profile_photo', $_POST['profile_photo']);
         $user->__set('is_validate', false);
+        $user->__set('is_active', true);
 		$connection = new Connection();
 		$userService = new UserService($connection, $user);
         $userService->create();

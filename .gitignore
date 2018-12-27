@@ -29,3 +29,7 @@ benchmarks/graphs
 
 #folders 
 upload
+
+#config
+/node/src/config.js
+

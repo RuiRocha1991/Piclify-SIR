@@ -19,7 +19,7 @@ exports.post= async (req, res, next) => {
         return;
     }*/
     try{
-        fetch('http://localhost/01-Escola/SIR/Trabalhos%20Praticos/TrabalhoPratico2/php/controllers/user.controller.php?action=create',
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=create',
         {
             headers: {
                 'Accept': 'application/json',
@@ -30,7 +30,7 @@ exports.post= async (req, res, next) => {
         }
         )
         .then(data => data.json())
-        .then(d => res.send(d));
+        .then(data => res.send(data));
     }catch(e){
         res.status(500).send({
             message:'Falha ao processar requisição'
@@ -39,9 +39,8 @@ exports.post= async (req, res, next) => {
 };
 
 exports.get= async (req, res, next)=>{
-    
     try{
-        fetch('http://localhost/01-Escola/SIR/Trabalhos%20Praticos/TrabalhoPratico2/php/controllers/user.controller.php?action=getUserByEmail',
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=getUserByEmail',
         {
             headers: {
                 'Accept': 'application/json',
