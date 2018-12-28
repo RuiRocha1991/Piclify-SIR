@@ -60,6 +60,28 @@ exports.get= async (req, res, next)=>{
        
 }
 
+exports.getNumberFollowers= async (req, res, next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=getNumberFollowers',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d => res.send(d)  );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+       
+}
+
 /*exports.authenticate= async (req, res, next) => {
         try{
             const customer = await repository.authenticate({

@@ -6,6 +6,7 @@ const controller = require('../controllers/user-controller');
 //const authService = require('../services/auth-service');
 
 router.get("/", controller.get);
+router.get("/getFollowers", controller.getNumberFollowers);
 
 router.post("/", controller.post);
 //router.post('/authenticate', controller.authenticate);

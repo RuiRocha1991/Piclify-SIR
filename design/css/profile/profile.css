@@ -1,0 +1,11 @@
+#profile-photo{
+    display: block;
+    border-radius: 150px;
+    margin: 0 auto;
+}
+
+.details-profile{
+    margin-top: 8px;
+    font-weight: 600;
+}
+

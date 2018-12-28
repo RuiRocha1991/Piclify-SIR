@@ -30,6 +30,13 @@
         $userService = new UserService($connection, $user);
         $user=$userService->getNewUser();
         echo json_encode($user);
+    }else if($action=='getNumberFollowers'){
+        $user = new User();
+        $user->__set('id_user', $_POST['id_user']);
+        $connection = new Connection();
+        $userService = new UserService($connection, $user);
+        $user=$userService->getNumberFollowers();
+        echo json_encode($user);
     }
     
 ?>

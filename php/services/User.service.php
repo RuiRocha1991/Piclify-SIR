@@ -39,7 +39,7 @@
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
 
-		public function upload_photo_profile($target) { //update
+		public function upload_photo_profile($target) { 
 			$query = "update user set profile_photo = :photo where id_user = :id";
 			$stmt = $this->connection->prepare($query);
 			$stmt->bindValue(':photo', $target);
@@ -47,12 +47,12 @@
 			$stmt->execute(); 
 		}
 
-		public function remover() { //delete
-
-			/*$query = 'delete from tb_tarefas where id = :id';
+		public function getNumberFollowers() { 
+			$query = 'select COUNT(id_user)  AS followers from followers where id_user=:id';
 			$stmt = $this->connection->prepare($query);
-			$stmt->bindValue(':id', $this->tarefa->__get('id'));
-			$stmt->execute();*/
+			$stmt->bindValue(':id', $this->user->__get('id_user'));
+			$stmt->execute();
+			return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
 		}
 
 		public function marcarRealizada() { //update
