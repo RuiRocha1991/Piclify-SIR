@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     var data = {email:'ruirocha1991@gmail.com'};
 

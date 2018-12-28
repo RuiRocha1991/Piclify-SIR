@@ -1,0 +1,12 @@
+body{
+    background-attachment: fixed;
+}
+
+#container-login{
+    visibility: hidden;
+}
+
+#container-register{
+    visibility: hidden;
+}
+
