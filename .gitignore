@@ -31,5 +31,5 @@ benchmarks/graphs
 upload
 
 #config
-/node/src/config.js
+/node/src/conn.js
 

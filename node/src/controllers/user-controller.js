@@ -1,15 +1,14 @@
 "use strict";
 const fetch = require('node-fetch');
+const ValidationContract=require('../validators/fluent-validator');
 const request  = require('request-promise');
-/*const ValidationContract=require('../validators/fluent-validator');
-const repository = require('../repositories/customer-repository')
 const md5 = require('md5');
 const authService = require('../services/auth-service');
-const emailService = require('../services/email-service');*/
+const emailService = require('../services/email-service');
 
 
 exports.post= async (req, res, next) => {
-/*let contract = new ValidationContract();
+    /*let contract = new ValidationContract();
     contract.hasMinLen(req.body.name,3,'o nome esta pequeno');
     contract.isEmail(req.body.email,'o email invalido');
     contract.hasMinLen(req.body.password,6,'a senha esta pequena');
@@ -19,7 +18,7 @@ exports.post= async (req, res, next) => {
         return;
     }*/
     try{
-        fetch(global.URL_CONTROLLERS+'user.controller.php?action=create',
+        fetch(conn.URL_CONTROLLERS+'user.controller.php?action=create',
         {
             headers: {
                 'Accept': 'application/json',
