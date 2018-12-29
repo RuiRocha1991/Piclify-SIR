@@ -9,6 +9,7 @@ const config = require('./config');
 // Carregar as rotas
 const indexRoute= require('./routes/index-route');
 const userRoute= require('./routes/user-route');
+const validatorRoute= require('./routes/validator-route');
 /*const customerRoute= require('./routes/customer-route');
 const orderRoute= require('./routes/order-routes');*/
 
@@ -24,6 +25,7 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoute);
 app.use("/user", userRoute);
+app.use("/validator", validatorRoute);
 /*app.use('/customers', customerRoute);
 app.use('/orders', orderRoute);*/
 

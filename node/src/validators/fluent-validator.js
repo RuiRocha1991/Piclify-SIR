@@ -32,8 +32,8 @@ ValidationContract.prototype.isEmail = (value, message) => {
         errors.push({ message: message });
 }
 
-ValidationContract.prototype.validatePassword = (value, message) => {
-    var reg = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+ValidationContract.prototype.isPassword = (value, message) => {
+    var reg = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_!@#\$%\^&\*])(?=.{8,})");
     if (!reg.test(value))
         errors.push({ message: message });
 }
