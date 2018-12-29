@@ -37,6 +37,14 @@
         $userService = new UserService($connection, $user);
         $user=$userService->getNumberFollowers();
         echo json_encode($user);
+    }else if($action=='login'){
+        $user = new User();
+        $user->__set('email', $_POST['email']);
+        $user->__set('password', $_POST['password']);
+        $connection = new Connection();
+        $userService = new UserService($connection, $user);
+        $user=$userService->login();
+        echo json_encode($user);
     }
     
 ?>

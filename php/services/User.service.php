@@ -55,13 +55,13 @@
 			return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
 		}
 
-		public function marcarRealizada() { //update
-
-			/*$query = "update tb_tarefas set id_status = ? where id = ?";
+		public function login() { //login
+			$query = 'select *from user where email=:email and password =:password';
 			$stmt = $this->connection->prepare($query);
-			$stmt->bindValue(1, $this->tarefa->__get('id_status'));
-			$stmt->bindValue(2, $this->tarefa->__get('id'));
-			return $stmt->execute(); */
+			$stmt->bindValue(':email', $this->user->__get('email'));
+			$stmt->bindValue(':password', $this->user->__get('password'));
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
 
 		public function recuperarTarefasPendentes() {

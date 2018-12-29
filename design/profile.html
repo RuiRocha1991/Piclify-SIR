@@ -59,8 +59,14 @@
     <section class="container-fluid">
         <div class="row justify-content-center">
             <div class="m-3 col-xl-2 col-lg-2 col-md-5 col-sm-12 shadow-sm p-3 mb-5 rounded border bg-light">
-                <div id="container-profile-photo" class="mb-3" >
-                    <img id="profile-photo"  width="198" height="195"  class="justify-content-center"/>
+                <div class="mb-3">
+                    <div id="container-profile-photo" >
+                        <img id="profile-photo"  width="198" height="195"  class="justify-content-center"/>
+                        <div id="container-img-edit">
+                            <img id="img-edit" src="img/editIcon.png" width="30" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        </div>
+
+                    </div>
                 </div>
                 <div id="container-info-user" class="p-3 border-top ">
                     <h5 id="lb-name" class="m-2 "></h5>
@@ -251,7 +257,26 @@
         </div>
 
     </section>
-
+<!-- Modal area-->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <form id="form-upload-profile " class="border m-3 p-4" action="../php/upload-files/upload-profile.php" method="POST" enctype="multipart/form-data">
+                <div class="custom-file m-2">
+                    <input class="custom-file-input" type="file" id="input-photo-profile" name="profile">
+                    <label class="custom-file-label">Selecione arquivo</label>
+                </div>
+                <input id="input-id_user" type="text" name="number" >
+                <input class="btn btn-success" type="submit">
+                <input class="btn btn-danger" type="reset">
+            </form>
+            <div class="modal-footer mt-2">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+<!-- End Modal area -->
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

@@ -1,73 +1,85 @@
-<form id="form-register" class="col-sm-12 col-md-9 col-lg-7 col-xl-7 text-center border border-black rounded bg-light" >
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <script>
+        window.onload=function(){
+            if(document.cookie.length <=0){
+                document.location.href = 'login.html';
+            }
+        }
+    </script> -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title >Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"  href="css/normalize.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"  href="../design/css/nav-bar/nav-bar.css" />
+    <link rel="stylesheet" type="text/css"  href="../design/css/profile/profile.css" />
+
+</head>
+<body>
+ 
+    <div id="form-register" class="form col-sm-12 col-md-9 col-lg-7 col-xl-7 text-center border border-black rounded" style="background:rgba(158, 158, 158,0.9);" >
         <p class="h4 m-3">Sign up</p>
         <hr>
         <div class=" pl-5 pr-5">
             <div id="form-name" class="form-row mb-4">
                 <div class="col">
-                   
                     <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
                 </div>
                 <div class="col">
-                   
                     <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
                 </div>
             </div>
-            
-            
-           
             <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-        
-           
-            <input type="password" id="defaultRegisterFormPassword" class=" form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-2">
-                At least 8 characters and 1 digit
-            </small>
-            <input type="password" id="defaultRegisterFormPassword2" class=" form-control mb-4" placeholder="Password">
-        
-            
+            <small id="defaultRegisterFormEmailHelpBlock" class="form-text mb-2 text-danger"> </small>
+            <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text  mb-2">At least 8 characters and 1 digit</small>
+            <input type="password" id="defaultRegisterFormPassword2" class=" form-control mb-4" placeholder="Repeat Password">
+            <small id="defaultRegisterFormPassword2HelpBlock" class="form-text mb-2 text-danger"> </small>
             <input type="text" id="defaultRegisterLocality" class=" form-control mb-4" placeholder="Locality">
-
             <input type="text" id="defaultRegisterCountry" class=" form-control mb-4" placeholder="Country">
-
-            <div class="text-left  mb-4 ">
+            <div id="radios" class="text-left  mb-4 " style="background:rgb(49, 55, 131); border-radius: 5px; width: 135px">
                 <div class="btn-group btn-group-toggle"  data-toggle="buttons">
-                    <label class="btn btn-outline-info active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked>Male
-                    </label>
-                    <label class="btn btn-outline-info">
-                        <input type="radio" name="options" id="option2" autocomplete="off">Female
-                    </label>
+                    <label class="btn btn-outline-primary text-light ">
+                        <input type="radio" name="options" id="option1" value="M" autocomplete="off">Male</label>
+                    <label class="btn btn-outline-primary text-light">
+                        <input type="radio" name="options" id="option2" value="F" autocomplete="off">Female</label>
+                    </div>
                 </div>
-            </div>
-        
-            <input type="date" id="defaultRegisterBirthDate" class=" form-control mb-4" placeholder="Birth Date">
-            
-        
-           
-            <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
-        </div>
-
-     
-        <p>or sign up with:</p>
+                <input type="date" id="defaultRegisterBirthDate" class=" form-control mb-4" placeholder="Birth Date">
+                <div style="background:rgb(49, 55, 131); border-radius: 5px;" id="buttonSubmit" class="my-4">
+                    <button  class="btn btn-outline-primary text-light  btn-block" onclick="createAccountVerifyEmail()">Sign up</button>
+                </div>
+                    <small id="defaultRegisterFormButtonHelpBlock" class="form-text mb-2 text-danger"> </small>
+                    </div>
+                    <p>or sign up with:</p>
+                    <a type="button" class="light-blue-text mx-2">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a type="button" class="light-blue-text mx-2">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a type="button" class="light-blue-text mx-2">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a type="button" class="light-blue-text mx-2">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <hr>
+                    <p>By clicking <em>Sign up</em> you agree to our<a href="" target="_blank"> terms of service</a></p>
+                </div>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/logout.js"></script>
     
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fab fa-github"></i>
-        </a>
-    
-        <hr>
-    
-       
-        <p>By clicking
-            <em>Sign up</em> you agree to our
-            <a href="" target="_blank">terms of service</a></p>
-    
-    </form>
+</body>
+</html>
+   

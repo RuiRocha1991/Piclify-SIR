@@ -3,10 +3,6 @@ $(document).ready(function(){
     var email =document.cookie.replace('email=', '');
     var data = {email:email};
 
-    $('#profile-photo').click(function(){
-        console.log('click');
-    });
-
     $.ajax({
         url:'http://localhost:3000/user',
         type: "get",
@@ -23,10 +19,11 @@ $(document).ready(function(){
 });
 
 function fillProfileDetails(data){
-    var photo =data.profile_photo =='' ? 'no-photo.png': data.profile_photo+'.png';
+    var photo =data.profile_photo =='' ? 'no-photo.png': data.profile_photo;
     $('#profile-photo').attr('src','../upload/profile/'+photo);
     $('#lb-name').text(data.name);
     $('#lb-email').text(data.email);
+    $('#input-id_user').val(data.id_user);
    
 }
 

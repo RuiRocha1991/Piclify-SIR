@@ -6,7 +6,7 @@ const authService = require('../services/auth-service');
 const emailService = require('../services/email-service');
 
 
-exports.post= async (req, res, next) => {
+exports.post= (req, res, next) => {
     req.body.password=md5(req.body.password + global.SALT_KEY);  
     try{
         fetch(global.URL_CONTROLLERS+'user.controller.php?action=create',
@@ -30,6 +30,28 @@ exports.post= async (req, res, next) => {
         });
     }
 };
+
+exports.login= async (req, res, next)=>{
+    req.query.password=md5(req.query.password + global.SALT_KEY); 
+    try{
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=login',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d => res.send(d)  );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+}
 
 exports.get= async (req, res, next)=>{
     try{

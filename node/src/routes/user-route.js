@@ -7,8 +7,10 @@ const controller = require('../controllers/user-controller');
 
 router.get("/", controller.get);
 router.get("/getFollowers", controller.getNumberFollowers);
+router.get("/login", controller.login);
 
 router.post("/", controller.post);
+
 //router.post('/authenticate', controller.authenticate);
 //router.post('/refresh-token',authService.authorize, controller.refreshToken);
 
