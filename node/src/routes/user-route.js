@@ -8,6 +8,7 @@ const controller = require('../controllers/user-controller');
 router.get("/", controller.get);
 router.get("/getFollowers", controller.getNumberFollowers);
 router.get("/login", controller.login);
+router.get("/isLogged", controller.isLogged);
 
 router.post("/", controller.post);
 

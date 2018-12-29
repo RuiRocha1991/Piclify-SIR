@@ -2,8 +2,11 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require('express-session');
+var cookieParser = require('cookie-parser');
 const conn = require('./conn');
 const config = require('./config');
+
 
 
 // Carregar as rotas
@@ -15,6 +18,15 @@ const orderRoute= require('./routes/order-routes');*/
 
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'Ghsis6Aq32Eocu4wlUALiwBK5VSHPN2B',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }));
 
 app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');

@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
     <script>
-      window.onload=function(){
-          if(document.cookie.length <=0){
-              document.location.href = 'login.html';
-          }
-      }
+         /* $.ajax({
+              url:'http://localhost:3000/user/isLogged',
+              type: "get",
+              success: function (res) {
+                  if(!res.isLogged){
+                    console.log(res.isLogged);
+                    //document.location.href = 'login.html';
+                  }
+              },
+              error: function (errorMessage) {
+                  console.log(errorMessage);
+              }
+          });*/
+          
+            if(document.cookie.length <=0){
+                document.location.href = 'login.html';
+            }
+        
     </script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +68,7 @@
                           <a href="" class="nav-link nav-click">Groups</a>
                         </li>
                         <li class="nav-item ml-2">
-                            <button class="btn btn-outline-light" id="logoutBtn" >Logout</button>
+                            <button class="btn btn-outline-light" id="logoutBtn" onclick="logout()" >Logout</button>
                         </li>
                       </ul>
                     </div>

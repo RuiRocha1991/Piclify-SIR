@@ -5,6 +5,17 @@ const md5 = require('md5');
 const authService = require('../services/auth-service');
 const emailService = require('../services/email-service');
 
+exports.isLogged=(req,res,next) =>{
+    var a = req.session.user? 'existe':'nao existe';
+    console.log(a); 
+    //console.log(req.session.user);
+    /*if(req.session.user){
+        res.send({isLogged: true});
+        return;
+    }*/
+    res.send({isLogged: false});
+   
+};
 
 exports.post= (req, res, next) => {
     req.body.password=md5(req.body.password + global.SALT_KEY);  
@@ -45,7 +56,11 @@ exports.login= async (req, res, next)=>{
         }
         )
         .then(data => data.json())
-        .then(d => res.send(d)  );
+        .then(function(data){
+            //req.session.user=data
+            //console.log(req.session.user);
+            res.send(data);
+        });
     }catch(e){
         res.status(500).send({
             message:'Falha ao processar requisição'
