@@ -7,7 +7,16 @@ var cookieParser = require('cookie-parser');
 const conn = require('./conn');
 const config = require('./config');
 
+const TWO_HOURS = 1000*60*60*2;
 
+const {
+    SESSION_LIFETIME = TWO_HOURS,
+    SESSION_NAME = 'sid',
+    NODE_ENV = 'development',
+    SESSION_SECRET = 'AgB34KyRIH7MKBj1FxV2fhZcMdq6Yk6P'
+} = process.env;
+
+const IN_PROD = NODE_ENV === 'production';
 
 // Carregar as rotas
 const indexRoute= require('./routes/index-route');
@@ -20,13 +29,19 @@ app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.use(cookieParser());
 app.use(session({
-    secret: 'Ghsis6Aq32Eocu4wlUALiwBK5VSHPN2B',
+    name: SESSION_NAME,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }));
+    saveUninitialized: false,
+    secret: SESSION_SECRET,
+    cookie: {
+        maxAge: SESSION_LIFETIME,
+        sameSite: true,
+        secure:IN_PROD
+    }
+}));
+
+
 
 app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');

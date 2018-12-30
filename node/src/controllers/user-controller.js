@@ -7,13 +7,13 @@ const emailService = require('../services/email-service');
 
 exports.isLogged=(req,res,next) =>{
     var a = req.session.user? 'existe':'nao existe';
-    /*console.log(a); 
-    //console.log(req.session.user);
-    /*if(req.session.user){
+    /* console.log(a); 
+    console.log(req.session.user);
+    if(req.session.user){
         res.send({isLogged: true});
         return;
-    }*/
-    //res.send({isLogged: false});
+    }
+    res.send({isLogged: false}); */
     return;
    
 };
@@ -44,7 +44,7 @@ exports.post= (req, res, next) => {
 };
 
 exports.login= async (req, res, next)=>{
-    req.query.password=md5(req.query.password + global.SALT_KEY); 
+    req.body.password=md5(req.body.password + global.SALT_KEY); 
     try{
         fetch(global.URL_CONTROLLERS+'user.controller.php?action=login',
         {
@@ -53,12 +53,11 @@ exports.login= async (req, res, next)=>{
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(req.query) 
+            body: JSON.stringify(req.body) 
         }
         )
         .then(data => data.json())
         .then(async function (data){
-            console.log(data);
             if(data.length>0){
                 const token = await authService.generateToken({id_user: data[0].id_user, email: data[0].email,name:data[0].name})
                 req.session.userId=token
@@ -81,10 +80,10 @@ exports.login= async (req, res, next)=>{
 }
 
 exports.get= async (req, res, next)=>{
-    //const token = req.body.token || req.query.token || req.headers['x-access-token'];
-    //const data = await authService.decodeToken(token);
-    //console.log(data[0]); 
-   try{
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    console.log(data);
+    try{
         fetch(global.URL_CONTROLLERS+'user.controller.php?action=getUserByEmail',
         {
             headers: {
@@ -92,7 +91,7 @@ exports.get= async (req, res, next)=>{
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(req.query) 
+            body: JSON.stringify(data)
         }
         )
         .then(data => data.json())
@@ -125,6 +124,11 @@ exports.getNumberFollowers= async (req, res, next)=>{
         });
     }
        
+}
+
+exports.logout= async (req, res, next)=>{
+    
+    
 }
 
 /*exports.authenticate= async (req, res, next) => {
