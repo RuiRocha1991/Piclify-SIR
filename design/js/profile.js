@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
-    var email =document.cookie.replace('email=', '');
-    var data = {email:email};
+    var token =document.cookie.replace('token=', '');
+    var data = {token:token};
 
     $.ajax({
         url:'http://localhost:3000/user',

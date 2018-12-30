@@ -156,9 +156,8 @@ function createAccountRegister(data){
 }
 
 function login(data){
-    var date = new Date();
-    document.cookie="email = "+data.email +" ; expires="+ date.getDate()+1+";";
-    document.location.href = 'profile.html'; 
+    document.cookie="token = "+data.token +" ;";
+    document.location.href = 'profile.html';
 }
 
 function getDataFromFormLogin(){
@@ -183,8 +182,8 @@ function createLogin(){
             data: {email: data.email, password: data.password} ,
             dataType:'json',
             success: function (result) {
-                if(result.length==1){
-                    login(result[0]);
+                if(result.token){
+                    login(result);
                 }else{
                     $('#defaultLoginFormSubmitHelpBlock').text('Envalid Email or Password ');
                     $('#buttonSubmit').removeClass('my-4');

@@ -7,13 +7,14 @@ const emailService = require('../services/email-service');
 
 exports.isLogged=(req,res,next) =>{
     var a = req.session.user? 'existe':'nao existe';
-    console.log(a); 
+    /*console.log(a); 
     //console.log(req.session.user);
     /*if(req.session.user){
         res.send({isLogged: true});
         return;
     }*/
-    res.send({isLogged: false});
+    //res.send({isLogged: false});
+    return;
    
 };
 
@@ -56,10 +57,21 @@ exports.login= async (req, res, next)=>{
         }
         )
         .then(data => data.json())
-        .then(function(data){
-            //req.session.user=data
-            //console.log(req.session.user);
-            res.send(data);
+        .then(async function (data){
+            console.log(data);
+            if(data.length>0){
+                const token = await authService.generateToken({id_user: data[0].id_user, email: data[0].email,name:data[0].name})
+                req.session.userId=token
+                res.send({
+                    token :token,
+                    data: {
+                        email:data[0].email,
+                        name:data[0].name
+                    }
+                });
+                return;
+            }
+            res.send({message: 'Login invalido'});
         });
     }catch(e){
         res.status(500).send({
@@ -69,7 +81,10 @@ exports.login= async (req, res, next)=>{
 }
 
 exports.get= async (req, res, next)=>{
-    try{
+    //const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    //const data = await authService.decodeToken(token);
+    //console.log(data[0]); 
+   try{
         fetch(global.URL_CONTROLLERS+'user.controller.php?action=getUserByEmail',
         {
             headers: {
