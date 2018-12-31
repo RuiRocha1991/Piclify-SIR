@@ -3,11 +3,11 @@
 const express = require("express");
 const router = express.Router();
 const controller = require('../controllers/user-controller');
-//const authService = require('../services/auth-service');
+const authService = require('../services/auth-service');
 
-router.get("/", controller.get);
+router.get("/", authService.authorize, controller.get);
 router.get("/getUserByEmail", controller.getUserByEmail);
-router.get("/getFollowers", controller.getNumberFollowers);
+router.get("/getFollowers", authService.authorize, controller.getNumberFollowers);
 router.get("/isLogged", controller.isLogged);
 
 

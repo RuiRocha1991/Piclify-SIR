@@ -1,7 +1,7 @@
 <?php 
 
-    class Albums{
-        public $id_albums;
+    class Album{
+        public $id_album;
         public $description;
         public $create_date;
         public $user;

@@ -43,11 +43,7 @@
 .card:hover{
     transition: 0.4s ease;
     cursor: pointer;
-    transform:scale(1.001);
 }
 
-.card-footer p{
-    font-size: 0.85em;
-}
 
 
