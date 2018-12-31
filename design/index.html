@@ -6,25 +6,10 @@
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
     <script>
-          $.ajax({
-              url:'http://localhost:3000/user/isLogged',
-              type: "get",
-              success: function (res) {
-                  if(!res.isLogged){
-                    console.log(res.isLogged);
-                    //document.location.href = 'login.html';
-                  }
-              },
-              error: function (errorMessage) {
-                  console.log(errorMessage);
-              }
-          });
-          
-            /*if(document.cookie.length <=0){
-                document.location.href = 'login.html';
-            }*/
-        
-    </script>
+      if(document.cookie.length <=0){
+          document.location.href = 'login.html';
+      }
+  </script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>

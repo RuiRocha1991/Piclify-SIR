@@ -1,6 +1,7 @@
 body{
     background : url(https://picsum.photos/1920/1080/?random);
     background-attachment: fixed;
+    background-size: cover; 
 }
 
 #container-login{
