@@ -1,9 +1,12 @@
 <?php 
-    require "../models/User.model.php";
-    require "../services/User.service.php";
+    require "../models/Photo.model.php";
+    require "../services/Photo.service.php";
     require "../connector/Connection.php";
 
-    if($_FILES['profile']['error'] !=0){
+    var_dump($_FILES);
+    var_dump($_POST);
+
+   /* if($_FILES['profile']['error'] !=0){
         //exit('');
         header('Location: ../../design/profile.html?error=Error to upload image');
     }
@@ -33,5 +36,5 @@
     $connection = new Connection();
     $userService = new UserService($connection, $user);
     $userService->upload_new_photo($filePath);
-    header('Location: ../../design/profile.html');
+    header('Location: ../../design/profile.html');*/
 ?>

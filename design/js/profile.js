@@ -22,11 +22,52 @@ $(document).ready(function(){
         $(this).removeClass('shadow');
     }); 
 
-    $('.card').click(function(){
+    $('.btn-edit-name').click(function(){
+        let parent= $(this).parent().parent();
+        let input= parent[0].children[0];
+
+        if(parent[0].children[0].disabled == true){
+            $(input).prop('disabled', false);
+            $(input).select();
+            $(this).find('i').removeClass('fa-edit');
+            $(this).find('i').addClass('fa-save');
+            console.log($(input).data('id'));
+        }else{
+            $(input).prop('disabled', true);
+            $(this).find('i').addClass('fa-edit');
+            $(this).find('i').removeClass('fa-save');
+            console.log($(input).val());
+            //create function to save new name
+        }
+    });
+    $('.btn-edit-description').click(function(){
+        let parent= $(this).parent().parent();
+        let input= parent[0].children[0];
+        if(input.disabled == true){
+            $(input).prop('disabled', false);
+            $(input).select();
+            $(this).find('i').removeClass('fa-edit');
+            $(this).find('i').addClass('fa-save');
+            console.log($(input).data('id'));
+        }else{
+            $(input).prop('disabled', true);
+            $(this).find('i').addClass('fa-edit');
+            $(this).find('i').removeClass('fa-save');
+            console.log($(input).val());
+            //create a function to save descrition
+        }
+    })
+
+    $('.albums').click(function(){
+        $('#modal-edit-albums').modal('show');
         console.log($(this).data('id'));
     })
 
 });
+
+function showModalEditAlbums(data){
+    console.log(data);
+}
 
 function fillProfileDetails(data){
     var photo =data.profile_photo =='' ? 'no-photo.png': data.profile_photo;
@@ -51,4 +92,8 @@ function getNumberFollowers(id){
             alert(errorMessage);
         }
     });
+}
+
+function saveAlbunsOfPhoto(){
+    console.log('chegou');
 }

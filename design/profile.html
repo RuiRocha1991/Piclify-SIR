@@ -74,8 +74,39 @@
                         <button class="btn btn-outline-light btn-block m-0" data-toggle="modal" data-target=".modal-upload-photo">Upload Photos</button>
                     </div>
 
-                    <label class="m-2 details-profile">Albums</label><br>
-                    <label class="m-2 details-profile">Groups</label><br>
+                    <label class="mx-2 my-3 details-profile">Albums <br>
+                        <ul class="list-group list-group-flush mt-2">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Morbi leo risus</li>
+                            <li class="list-group-item">Porta ac consectetur ac</li>
+                            <li class="list-group-item p-0">
+                                <div class="input-group border-bottom">
+                                    <input data-id="1-photo" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Album">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-0" type="button"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </label><br>
+                    
+                    <label class="mx-2 my-3 details-profile">Groups <br>
+                        <ul class="list-group list-group-flush mt-2">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Morbi leo risus</li>
+                            <li class="list-group-item">Porta ac consectetur ac</li>
+                            <li class="list-group-item p-0">
+                                <div class="input-group border-bottom">
+                                    <input data-id="" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-0" type="button"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </label><br>
                 </div>
             </div>
             
@@ -84,27 +115,31 @@
 
                     <div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="1"> <!--Start Card-->
                         <div class="card-header bg-white">
-                            
-                           <div class="border-bottom pb-1 mb-0">
-                                <h5 class="text-center mb-0">Title of image</h5>
-                           </div>
+                            <div class="input-group mt-1 border-bottom">
+                                <input data-id="1-photo" type="text" class="name-photo form-control border-0 bg-white text-center" value="Name Photo" disabled="disabled">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-0 btn-edit-name" type="button"><i class="fa fa-edit"></i></button>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <img class="img-fluid m-0" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg" alt="Image">
                         </div>
                         <div class="card-footer bg-white m-0 p-0">
-                            <div>
-                                <label class="h6 mt-1">Desciption: <br>
-                                    <p class="font-weight-normal m-0 border-bottom mt-1 pb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </label>
-                            </div>
+                                <div class="input-group mt-1 border-bottom">
+                                        <input data-id="1-description" type="text" class="description form-control border-0 bg-white text-center" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit" disabled="disabled">
+                                        <div class="input-group-append">
+                                            <button class="btn-edit-description btn btn-outline-secondary border-0" type="button"><i class="fa fa-edit"></i></button>
+                                        </div>
+                                    </div>
+                            
                             <ul class="list-inline m-0">
                                 <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> 242 Likes</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> 12</span></a></li>
                             </ul>
                             <ul class="list-inline mb-3">
-                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"></i><span> 3 Albums</span></a></li>
-                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i><span> 6 Groups</span></a></li>
+                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-book"></i><span> 3 Albums</span></a></li>
+                                <li class="list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-users"></i><span> 6 Groups</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2" type="checkbox" value="" id="defaultCheck1"><span>Is private</span></a></li>
                             </ul>
                             <span></span>
@@ -178,6 +213,33 @@
         </div>
     </div>
 <!-- End Modal area -->
+
+
+<button id="lixo" type="button" class="btn btn-primary">
+        Launch demo modal
+      </button>
+
+<!-- Modal edit albums-->
+<div class="modal fade" id="modal-edit-albums" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Albums of Photo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="saveAlbunsOfPhoto()">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- End Modal edit albuns -->
 
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"

@@ -19,6 +19,8 @@
             $stmt->bindValue(':is_private', $this->photo->__get('is_private'));
 			$stmt->bindValue(':id', $this->photo->__get('user'));
 			$stmt->execute(); 
-		}
+        }
+        
+    }
 
 ?>
