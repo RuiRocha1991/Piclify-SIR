@@ -64,6 +64,14 @@
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
 
+		public function upload_new_photo($target) { 
+			$query = "update user set profile_photo = :photo where id_user = :id";
+			$stmt = $this->connection->prepare($query);
+			$stmt->bindValue(':photo', $target);
+			$stmt->bindValue(':id', $this->user->__get('id_user'));
+			$stmt->execute(); 
+		}
+
 		public function recuperarTarefasPendentes() {
 			/*$query = '
 				select 

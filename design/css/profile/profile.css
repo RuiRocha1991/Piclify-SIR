@@ -27,4 +27,27 @@
     display: none;
 }
 
+#form-id_user{
+    display: none;
+}
+
+#container-btn_upload{
+    background: rgba(26,35,126, 0.9);
+    border-radius: 5px;
+}
+
+.card{
+    transition: 0.4s ease;
+}
+
+.card:hover{
+    transition: 0.4s ease;
+    cursor: pointer;
+    transform:scale(1.001);
+}
+
+.card-footer p{
+    font-size: 0.85em;
+}
+
 

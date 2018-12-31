@@ -15,6 +15,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="../design/css/nav-bar/nav-bar.css" />
     <link rel="stylesheet" type="text/css"  href="../design/css/profile/profile.css" />
+    <link rel="stylesheet" type="text/css"  href="../design/css/index/card.css" />
 
 </head>
 <body>
@@ -56,26 +57,61 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            <div class="m-3 col-xl-2 col-lg-2 col-md-5 col-sm-12 shadow-sm p-3 mb-5 rounded border bg-light">
+            <div class="m-3 col-xl-2 col-lg-2 col-md-5 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
                 <div class="mb-3">
                     <div id="container-profile-photo" >
-                        <img id="profile-photo"  width="198" height="195"  class="justify-content-center"/>
+                        <img id="profile-photo"  width="198" height="195"  class="justify-content-center img-fluid"/>
                         <div id="container-img-edit">
                             <img id="img-edit" src="img/editIcon.png" width="30" data-toggle="modal" data-target=".bd-example-modal-lg">
                         </div>
-
                     </div>
                 </div>
                 <div id="container-info-user" class="p-3 border-top ">
                     <h5 id="lb-name" class="m-2 "></h5>
                     <h6 id="lb-email" class="m-2"></h6>
                     <label id="lb-followers" class="m-2 details-profile"></label><br>
+                    <div id="container-btn_upload" class="p-1">
+                        <button class="btn btn-outline-light btn-block m-0" data-toggle="modal" data-target=".modal-upload-photo">Upload Photos</button>
+                    </div>
+
                     <label class="m-2 details-profile">Albums</label><br>
                     <label class="m-2 details-profile">Groups</label><br>
                 </div>
             </div>
-            <div class="m-3 col-xl-9 col-lg-9 col-md-6 col-sm-12 shadow-sm p-2 mb-5 bg-light rounded border" >
-                
+            
+            <div class="mx-3 col-xl-9 col-lg-9 col-md-11 col-sm-11" >
+                <div class="row justify-content-center">
+
+                    <div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="1"> <!--Start Card-->
+                        <div class="card-header bg-white">
+                            
+                           <div class="border-bottom pb-1 mb-0">
+                                <h5 class="text-center mb-0">Title of image</h5>
+                           </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <img class="img-fluid m-0" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg" alt="Image">
+                        </div>
+                        <div class="card-footer bg-white m-0 p-0">
+                            <div>
+                                <label class="h6 mt-1">Desciption: <br>
+                                    <p class="font-weight-normal m-0 border-bottom mt-1 pb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </label>
+                            </div>
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> 242 Likes</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> 12</span></a></li>
+                            </ul>
+                            <ul class="list-inline mb-3">
+                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"></i><span> 3 Albums</span></a></li>
+                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i><span> 6 Groups</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2" type="checkbox" value="" id="defaultCheck1"><span>Is private</span></a></li>
+                            </ul>
+                            <span></span>
+                        </div>
+                    </div> <!--End Card-->
+                              
+                </div> <!--End Row-->
             </div>
         </div>
 
@@ -87,7 +123,7 @@
             <form id="form-upload-profile " class="border m-3 p-4" action="../php/upload-files/upload-profile.php" method="POST" enctype="multipart/form-data">
                 <div class="custom-file m-2">
                     <input class="custom-file-input" type="file" id="input-photo-profile" name="profile">
-                    <label class="custom-file-label">Selecione arquivo</label>
+                    <label class="custom-file-label">Select photo</label>
                 </div>
                 <input id="input-id_user" type="text" name="number" >
                 <input class="btn btn-success" type="submit">
@@ -100,6 +136,49 @@
         </div>
     </div>
 <!-- End Modal area -->
+
+<!-- Modal area-->
+    <div class="modal-upload-photo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <form id="form-upload-photos " class="border m-3 p-4" action="../php/upload-files/upload-photos.php" method="POST" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="name_photo" name="name">Name</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Name Photo" >
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="description-photo" name="description">Description</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Description">
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="isPrivate" name="isPrivate">
+                    <label class="custom-control-label" for="isPrivate">Is private</label>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="input-photos" name="photos" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="input-photos">Choose file</label>
+                    </div>
+                </div>
+                <input id="form-id_user" type="text" name="number" >
+                <input class="btn btn-success" type="submit">
+                <input class="btn btn-danger" type="reset">
+            </form>
+            <div class="modal-footer mt-2">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+    </div>
+<!-- End Modal area -->
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

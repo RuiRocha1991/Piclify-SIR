@@ -4,18 +4,18 @@
     require "../connector/Connection.php";
 
     if($_FILES['profile']['error'] !=0){
-        //exit('Error to upload image');
-        header('Location: ../../design/profile.html');
+        //exit('');
+        header('Location: ../../design/profile.html?error=Error to upload image');
     }
 
     if($_FILES['profile']['size'] > 24000000){
-        //exit('The file is too large');
-        header('Location: ../../design/profile.html');
+        //exit('');
+        header('Location: ../../design/profile.html?error=The file is too large');
     }
 
     if(mime_content_type($_FILES['profile']['tmp_name']) !== 'image/jpeg' && mime_content_type($_FILES['profile']['tmp_name']) !== 'image/png' ){
-        //exit('It is not image');
-        header('Location: ../../design/profile.html');
+        //exit('');
+        header('Location: ../../design/profile.html?error=It is not image');
     }       
 
     $basePath = '../../upload/profile/';
@@ -26,8 +26,7 @@
     }
     $targetPath=$basePath.$filePath;
     if(!move_uploaded_file($_FILES['profile']['tmp_name'],$targetPath )){
-        //exit('Error to upload image');
-        header('Location: ../../design/profile.html');
+        header('Location: ../../design/profile.html?error=Error to move image');
     }
     $user=new User();
     $user->__set('id_user', $_POST['number']);

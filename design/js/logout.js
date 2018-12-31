@@ -1,6 +1,18 @@
 function logout(){
-    deleteAllCookies();
-    document.location.href = 'index.html';
+    $.ajax({
+        url:'http://localhost:3000/user/logout',
+        type: "POST",
+        dataType:'json',
+        success: function (res) {
+            if(res.message==='ok'){
+                deleteAllCookies();
+                document.location.href = 'index.html';
+            }
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
 }
 
 function deleteAllCookies() {

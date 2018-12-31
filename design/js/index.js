@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+    $('.card').hover(function(){
+        $(this).addClass('shadow');
+    },function(){
+        $(this).removeClass('shadow');
+    }); 
     
     $('.publishCard').hover(function(){
         $(this).removeClass('shadow');

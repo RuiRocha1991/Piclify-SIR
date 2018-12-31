@@ -2,7 +2,6 @@
 $(document).ready(function(){
     var token =document.cookie.replace('token=', '');
     var data = {token:token};
-
     $.ajax({
         url:'http://localhost:3000/user',
         type: "get",
@@ -16,6 +15,17 @@ $(document).ready(function(){
             alert(errorMessage);
         }
     });
+
+    $('.card').hover(function(){
+        $(this).addClass('shadow');
+    },function(){
+        $(this).removeClass('shadow');
+    }); 
+
+    $('.card').click(function(){
+        console.log($(this).data('id'));
+    })
+
 });
 
 function fillProfileDetails(data){
@@ -24,6 +34,7 @@ function fillProfileDetails(data){
     $('#lb-name').text(data.name);
     $('#lb-email').text(data.email);
     $('#input-id_user').val(data.id_user);
+    $('#form-id_user').val(data.id_user);
    
 }
 
