@@ -11,6 +11,7 @@ $(document).ready(function(){
             fillProfileDetails(res[0]);
             getNumberFollowers(res[0].id_user);
             getListAlbums(res[0].id_user);
+            getListGroups(res[0].id_user);
         },
         error: function (errorMessage) {
             logout();
@@ -163,7 +164,7 @@ function createNewGroup(){
             data: {title: title,description: description, token:token} ,
             dataType:'json',
             success: function (res) {
-                console.log(res);
+                addGroupToFollower(res);
             },
             error: function (errorMessage) {
                 alert(errorMessage);
@@ -174,15 +175,53 @@ function createNewGroup(){
 
 function addGroupToFollower(res){
     $.ajax({
-        url:'http://localhost:3000/groupUser/addUserToGrupo',
+        url:'http://localhost:3000/groupUser/addUserToGroup',
         type: "post",
         data: {group: res[0].id_group, token:token} ,
         dataType:'json',
         success: function (res) {
-            console.log(res);
+            getGroupsDetailsByUser(res);
         },
         error: function (errorMessage) {
             alert(errorMessage);
         }
     });
+}
+
+function getListGroups(id){
+    $.ajax({
+        url:'http://localhost:3000/groupUser/getListGroupsByUser',
+        type: "get",
+        data: {user: id,token:token} ,
+        dataType:'json',
+        success: function (res) {
+            getGroupsDetailsByUser(res);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+}
+
+async function getGroupsDetailsByUser(res){
+    $('#listGroups li').remove();
+    var list= new Array();
+    for(var i=0; i<res.length;i++){
+       await $.ajax({
+            url:'http://localhost:3000/group/getListGroupOfUser',
+            type: "get",
+            data: {id_group: res[i].idGroup, token:token} ,
+            dataType:'json',
+            success: function (res) {
+                list.push(res[0]);
+            },
+            error: function (errorMessage) {
+                alert(errorMessage);
+            }
+        });
+    }
+    for(var x=0; x<list.length;x++){
+        $('#listGroups').append(`<li class="list-group-item" data-id="${list[x].id_group}">${list[x].title}</li>`);
+    }
+    $('#listGroups').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" onclick="createNewGroup()"><i class="fa fa-plus"></i></button></div></div></li>');
 }

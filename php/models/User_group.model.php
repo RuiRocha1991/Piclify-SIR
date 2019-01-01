@@ -1,6 +1,6 @@
 <?php 
 
-    class Group_user{
+    class User_group{
         public $user;
         public $group;
 

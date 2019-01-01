@@ -4,21 +4,21 @@
         private $connection;
 	    public $groupUser;
 
-        public function __construct(Connection $connection, Group_user $groupUser) {
+        public function __construct(Connection $connection, User_group $groupUser) {
             $this->connection = $connection->createConnection();
             $this->groupUser = $groupUser;
         }
 
         public function create() { 
-			$query = "insert into group_user(group,user) values  (:group, :user)";
-			$stmt = $this->connection->prepare($query);;
+			$query = "insert into user_group(idGroup, idUser) values (:group, :user)";
+			$stmt = $this->connection->prepare($query);
             $stmt->bindValue(':group', $this->groupUser->__get('group'));
             $stmt->bindValue(':user', $this->groupUser->__get('user'));
 			$stmt->execute(); 
         }
 
-        public function getGroupByUser() { 
-			$query = "select * from group_user where user =:user";
+        public function getGroupsByUser() { 
+			$query = "select * from user_group where idUser =:user";
 			$stmt = $this->connection->prepare($query);
             $stmt->bindValue(':user', $this->groupUser->__get('user'));
             $stmt->execute(); 

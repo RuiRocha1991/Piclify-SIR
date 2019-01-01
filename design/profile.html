@@ -57,7 +57,7 @@
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            <div class="m-3 col-xl-2 col-lg-2 col-md-5 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
+            <div class="m-3 col-xl-2 col-lg-3 col-md-11 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
                 <div class="mb-3">
                     <div id="container-profile-photo" >
                         <img id="profile-photo"  width="198" height="195"  class="justify-content-center img-fluid"/>
@@ -75,16 +75,20 @@
                     </div>
 
                     <label class="mx-2 my-3 details-profile">Albums <br>
-                        <ul id="listAlbuns" class="list-group list-group-flush mt-2">                            
+                        <ul id="listAlbuns" class="list-group list-group-flush mt-2">
+                            <li class="list-group-item p-0">
+                                <div class="input-group border-bottom">
+                                    <input id="newAlbum" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Album">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-0" type="button" onclick="createNewAlbum()"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </li>                            
                         </ul>
                     </label><br>
                     
                     <label class="mx-2 my-3 details-profile">Groups <br>
-                        <ul class="list-group list-group-flush mt-2">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
+                        <ul id="listGroups" class="list-group list-group-flush mt-2">
                             <li class="list-group-item p-0">
                                 <div class="input-group border-bottom">
                                     <input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group">
@@ -98,7 +102,7 @@
                 </div>
             </div>
             
-            <div class="mx-3 col-xl-9 col-lg-9 col-md-11 col-sm-11" >
+            <div class="mx-3 col-xl-9 col-lg-8 col-md-11 col-sm-11" >
                 <div class="row justify-content-center">
 
                     <div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="1"> <!--Start Card-->

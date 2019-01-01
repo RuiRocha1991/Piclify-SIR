@@ -17,5 +17,12 @@
         $service->create();
         $group=$service->getGroupByOwnerTitleDescription();
         echo json_encode($group);
-    }  
+    } elseif($action=='getListGroupOfUser'){
+        $group= new Group_photo();
+        $group->__set('id_group', $_POST['id_group']);
+		$connection = new Connection();
+		$service = new GroupService($connection, $group);
+        $group=$service->getGroupByID();
+        echo json_encode($group);
+    }
 ?>

@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const authService = require('../services/auth-service');
 
 
-exports.addUserToGrupo= async (req, res, next) => {
+exports.addUserToGroup= async (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
     const data = await authService.decodeToken(token);  
     req.body.user=data.id_user;
@@ -29,9 +29,9 @@ exports.addUserToGrupo= async (req, res, next) => {
     }
 };
 
-exports.getListGroupByUser= async (req, res, next)=>{
+exports.getListGroupsByUser= async (req, res, next)=>{
     try{
-        fetch(global.URL_CONTROLLERS+'album.controller.php?action=getListGroupByUser',
+        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=getListGroupsByUser',
         {
             headers: {
                 'Accept': 'application/json',

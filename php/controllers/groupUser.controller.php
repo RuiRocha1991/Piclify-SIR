@@ -1,5 +1,5 @@
 <?php
-    require "../models/Group_user.model.php";
+    require "../models/User_group.model.php";
     require "../services/GroupUser.service.php";
     require "../connector/Connection.php";
     
@@ -8,13 +8,20 @@
     
     $action = isset($_GET['action']) ? $_GET['action']: null;
 	if($action=='create'){
-        $group= new Group_user();
-        $group->__set('user', $_POST['id_user']);
-        $group->__set('group', $_POST['group']);
+        $groupUser= new User_group();
+        $groupUser->__set('user',$_POST['user']);
+        $groupUser->__set('group', $_POST['group']);
 		$connection = new Connection();
-		$service = new GroupService($connection, $group);
+		$service = new GroupUserService($connection, $groupUser);
         $service->create();
-        $group=$service-> getGroupByUser();
-        echo json_encode($group);
+        $groupUser=$service-> getGroupsByUser();
+        echo json_encode($groupUser);
+    }elseif($action=='getListGroupsByUser'){
+        $groupUser= new User_group();
+        $groupUser->__set('user',$_POST['user']);
+		$connection = new Connection();
+		$service = new GroupUserService($connection, $groupUser);
+        $groupUser=$service-> getGroupsByUser();
+        echo json_encode($groupUser);
     }  
 ?>

@@ -29,9 +29,9 @@ exports.createGroup= async (req, res, next) => {
     }
 };
 
-exports.getListGroupByUser= async (req, res, next)=>{
+exports.getListGroupOfUser= async (req, res, next)=>{
     try{
-        fetch(global.URL_CONTROLLERS+'album.controller.php?action=getListGroupByUser',
+        fetch(global.URL_CONTROLLERS+'group.controller.php?action=getListGroupOfUser',
         {
             headers: {
                 'Accept': 'application/json',
