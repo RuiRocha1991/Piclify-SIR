@@ -8,5 +8,6 @@ const authService = require('../services/auth-service');
 router.post("/addUserToGroup", authService.authorize, controller.addUserToGroup);
 
 router.get('/getListGroupsByUser',  authService.authorize, controller.getListGroupsByUser);
+router.get('/getListUsersByGroup',  authService.authorize, controller.getListUsersByGroup);
 
 module.exports = router;

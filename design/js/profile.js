@@ -1,4 +1,6 @@
 var token =document.cookie.replace('token=', '');
+var ListAlbums;
+var ListGroups= new Array();
 
 $(document).ready(function(){
     var data = {token:token};
@@ -64,13 +66,17 @@ $(document).ready(function(){
 
     $('.albums').click(function(){
         $('#modal-edit-albums').modal('show');
-        $('#modal-body-albums').append(`<h1>${$(this).data('id')}</h1>`);
+        $('#modal-body-albums').attr("data-id",$(this).data('id'));
+        fillModalToSelectAlbums(ListAlbums);
     })
 
     $('.groups').click(function(){
         $('#modal-edit-groups').modal('show');
-        console.log($(this).data('id'));
-    })
+        $('#modal-body-groups').attr("data-id",$(this).data('id'));
+        fillModalToSelectGroups(ListGroups);
+    });
+
+    
 
 });
 
@@ -107,9 +113,10 @@ function getListAlbums(id){
     $.ajax({
         url:'http://localhost:3000/album/getListAlbums',
         type: "get",
-        data: {id_user: id, token:token} ,
+        data: {id_user: id, token:token},
         dataType:'json',
         success: function (res) {
+            ListAlbums=res;
             fillListAlbums(res);
         },
         error: function (errorMessage) {
@@ -122,10 +129,9 @@ function fillListAlbums(data){
     $('#listAlbuns li').remove();
 
     for(var i=0; i<data.length; i++){
-        $('#listAlbuns').append(`<li class="list-group-item">${data[i].description}</li>`)
+        $('#listAlbuns').append(`<li class="list-group-item">${data[i].description}</li>`);
     }
     $('#listAlbuns').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newAlbum" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Album"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" onclick="createNewAlbum()"><i class="fa fa-plus"></i></button></div></div></li>');
-    
 }
 
 function saveAlbunsOfPhoto(){
@@ -145,6 +151,8 @@ function createNewAlbum(){
             data: {description: description, token:token} ,
             dataType:'json',
             success: function (res) {
+                $('#newAlbum').val('');
+                ListAlbums=res;
                 fillListAlbums(res);
             },
             error: function (errorMessage) {
@@ -155,9 +163,9 @@ function createNewAlbum(){
 }
 
 function createNewGroup(){
-    var title = $('#newGroup').val();
-    var description ='teste'; 
-    if(title !== ''){
+    var title = $('#formIdTitleGroup').val();
+    var description =$('#formIdDescriptionGroup').val(); 
+    if(title !== '' && description!==''){
         $.ajax({
             url:'http://localhost:3000/group/createGroup',
             type: "post",
@@ -165,12 +173,15 @@ function createNewGroup(){
             dataType:'json',
             success: function (res) {
                 addGroupToFollower(res);
+                $('#formIdTitleGroup').val('');
+                $('#formIdDescriptionGroup').val('');
             },
             error: function (errorMessage) {
                 alert(errorMessage);
             }
         });
     }
+
 }
 
 function addGroupToFollower(res){
@@ -208,11 +219,12 @@ async function getGroupsDetailsByUser(res){
     var list= new Array();
     for(var i=0; i<res.length;i++){
        await $.ajax({
-            url:'http://localhost:3000/group/getListGroupOfUser',
+            url:'http://localhost:3000/group/getListGroupById',
             type: "get",
             data: {id_group: res[i].idGroup, token:token} ,
             dataType:'json',
             success: function (res) {
+                ListGroups.push(res[0]);
                 list.push(res[0]);
             },
             error: function (errorMessage) {
@@ -221,7 +233,34 @@ async function getGroupsDetailsByUser(res){
         });
     }
     for(var x=0; x<list.length;x++){
-        $('#listGroups').append(`<li class="list-group-item" data-id="${list[x].id_group}">${list[x].title}</li>`);
+        $('#listGroups').append(`<li class="list-group-item listGroups" data-id="${list[x].id_group}">${list[x].title}</li>`);
     }
-    $('#listGroups').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" onclick="createNewGroup()"><i class="fa fa-plus"></i></button></div></div></li>');
+    $('.listGroups').click(function(){
+        document.location.href = 'groups.html?id='+$(this).data('id');
+    });
+    $('#listGroups').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" data-toggle="modal" data-target="#modal-create-groups" onclick="fillModalNewGroup()"><i class="fa fa-plus"></i></button></div></div></li>');
+}
+
+function fillModalNewGroup(){
+    $('#formIdTitleGroup').val('');
+    $('#formIdTitleGroup').val($('#newGroup').val());
+    $('#newGroup').val('');
+}
+
+function fillModalToSelectAlbums(data){
+    $('#modal-body-albums .btn-group').remove();
+    $('#modal-body-albums h6').remove();
+    $('#modal-body-albums').append('<h6>select the albums for the photo</h6>')
+    for(var i=0; i<data.length; i++){
+        $('#modal-body-albums').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_albums}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].description}</label></div>`)
+    }
+}
+
+function fillModalToSelectGroups(data){
+    $('#modal-body-groups .btn-group').remove();
+    $('#modal-body-groups h6').remove();
+    $('#modal-body-groups').append('<h6>select the albums for the photo</h6>')
+    for(var i=0; i<data.length; i++){
+       $('#modal-body-groups').append(`<div title="${data[i].description}" class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_group}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].title}</label></div>`)
+    }
 }

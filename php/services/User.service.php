@@ -72,6 +72,14 @@
 			$stmt->execute(); 
 		}
 
+		public function getDetailsUserById() { 
+			$query = 'select * from user where id_user = :id_user';
+			$stmt = $this->connection->prepare($query);
+			$stmt->bindValue(':id_user', $this->user->__get('id_user'));
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+
 		public function recuperarTarefasPendentes() {
 			/*$query = '
 				select 

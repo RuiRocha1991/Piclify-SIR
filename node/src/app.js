@@ -25,6 +25,7 @@ const albumRoute= require('./routes/album-route');
 const groupRoute= require('./routes/group-route');
 const groupUserRoute= require('./routes/groupUser-route');
 const validatorRoute= require('./routes/validator-route');
+const followerRoute=require('./routes/follower-route');
 /*const customerRoute= require('./routes/customer-route');
 const orderRoute= require('./routes/order-routes');*/
 
@@ -59,7 +60,6 @@ app.use("/album", albumRoute);
 app.use("/group", groupRoute);
 app.use("/groupUser", groupUserRoute);
 app.use("/validator", validatorRoute);
-/*app.use('/customers', customerRoute);
-app.use('/orders', orderRoute);*/
+app.use("/follower", followerRoute);
 
 module.exports = app;

@@ -11,7 +11,7 @@
 
         public function create() { 
 			$query = "insert into albums(description,user) values  (:description, :user)";
-			$stmt = $this->connection->prepare($query);;
+			$stmt = $this->connection->prepare($query);
             $stmt->bindValue(':description', $this->album->__get('description'));
             $stmt->bindValue(':user', $this->album->__get('user'));
 			$stmt->execute(); 

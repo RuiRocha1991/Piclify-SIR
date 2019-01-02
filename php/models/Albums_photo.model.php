@@ -2,7 +2,7 @@
 
     class Albums_Photo{
         public $albums;
-        public $photo
+        public $photo;
 
         public function __get($atributo) {
             return $this->$atributo;

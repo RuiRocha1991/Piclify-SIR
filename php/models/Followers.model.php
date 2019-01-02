@@ -2,7 +2,7 @@
 
     class Follower{
         public $id_user;
-        public $id_follower
+        public $id_follower;
 
         public function __get($atributo) {
             return $this->$atributo;

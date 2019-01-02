@@ -1,0 +1,26 @@
+#profile-photo{
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.details-profile{
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+#container-profile-photo{
+    border-radius: 150px;
+    margin: 0 auto;
+}
+
+.list-group-item:hover{
+    cursor: pointer;
+    transform: scale(1.002); 
+    background: rgba(26,35,126,0.05);
+    transition:  0.5s ease;
+}
+
+.list-group-item{
+    transition:  0.5s ease;
+}

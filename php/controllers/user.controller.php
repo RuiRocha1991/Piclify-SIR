@@ -45,6 +45,13 @@
         $userService = new UserService($connection, $user);
         $user=$userService->login();
         echo json_encode($user);
+    }elseif($action=='getDetailsUserById'){
+        $user = new User();
+        $user->__set('id_user', $_POST['id_user']);
+        $connection = new Connection();
+        $userService = new UserService($connection, $user);
+        $user=$userService->getDetailsUserById();
+        echo json_encode($user);
     }
     
 ?>

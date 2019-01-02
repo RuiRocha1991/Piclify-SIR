@@ -8,6 +8,7 @@ const authService = require('../services/auth-service');
 router.get("/", authService.authorize, controller.get);
 router.get("/getUserByEmail", controller.getUserByEmail);
 router.get("/getFollowers", authService.authorize, controller.getNumberFollowers);
+router.get("/getDetailsUserById", authService.authorize, controller.getDetailsUserById);
 router.get("/isLogged", controller.isLogged);
 
 

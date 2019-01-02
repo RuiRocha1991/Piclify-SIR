@@ -8,13 +8,13 @@
     </script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PICLIFY - My Profile</title>
+    <title>PICLIFY - Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"  href="css/normalize.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="../design/css/nav-bar/nav-bar.css" />
-    <link rel="stylesheet" type="text/css"  href="../design/css/profile/profile.css" />
+    <link rel="stylesheet" type="text/css"  href="../design/css/groups/groups.css" />
 
 </head>
 <body>
@@ -40,10 +40,10 @@
                     <div style="clear:both"></div>
                     <ul class="navbar-nav ">
                         <li class="nav-item ">
-                            <a href="" class="nav-link nav-active">Profile</a>
+                            <a href="profile.html" class="nav-link nav-click">Profile</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="" class="nav-link nav-click">Groups</a>
+                            <a href="" class="nav-link nav-active">Groups</a>
                         </li>
                         <li class="nav-item ml-2">
                             <button class="btn btn-outline-light" id="logoutBtn" onclick="logout()">Logout</button>
@@ -58,46 +58,17 @@
         <div class="row justify-content-center">
             <div class="m-3 col-xl-2 col-lg-3 col-md-11 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
                 <div class="mb-3">
-                    <div id="container-profile-photo" >
-                        <img id="profile-photo"   width="300" height="300" class="justify-content-center img-fluid"/>
-                        <div id="container-img-edit">
-                            <img id="img-edit" src="img/editIcon.png" width="30" data-toggle="modal" data-target=".bd-example-modal-lg">
-                        </div>
-                    </div>
+                    <h5 id="titleGroup" class="m-2 text-center"></h5>
+                    <hr>
+                    <p id="descriptionGroup" class="m-2 text-center"></p>
                 </div>
                 <div id="container-info-user" class="p-3 border-top ">
-                    <h5 id="lb-name" class="m-2 "></h5>
-                    <h6 id="lb-email" class="m-2"></h6>
-                    <label id="lb-followers" class="m-2 details-profile"></label><br>
-                    <div id="container-btn_upload" class="p-1">
-                        <button class="btn btn-outline-light btn-block m-0" data-toggle="modal" data-target=".modal-upload-photo">Upload Photos</button>
-                    </div>
-
-                    <label class="mx-2 my-3 details-profile">Albums <br>
-                        <ul id="listAlbuns" class="list-group list-group-flush mt-2">
-                            <li class="list-group-item p-0">
-                                <div class="input-group border-bottom">
-                                    <input id="newAlbum" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Album">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary border-0" type="button" onclick="createNewAlbum()"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </li>                            
-                        </ul>
-                    </label><br>
-                    
-                    <label class="mx-2 my-3 details-profile">Groups <br>
-                        <ul id="listGroups" class="list-group list-group-flush mt-2">
-                            <li class="list-group-item p-0">
-                                <div class="input-group border-bottom">
-                                    <input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary border-0" type="button" onclick="createNewGroup()"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </label><br>
+                    <label id="lb-members" class="m-2 details-profile"></label><br>                  
+                    <h6 class="mx-1 my-3 details-profile text-center">Members </h6>
+                    <ul id="listMembers" class="list-group list-group-flush">
+                        
+                    </ul>
+                    <br>
                 </div>
             </div>
             
@@ -290,7 +261,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="js/logout.js"></script>
-    <script src="js/profile.js"></script>
+    <script src="js/groups.js"></script>
     
     
 </body>

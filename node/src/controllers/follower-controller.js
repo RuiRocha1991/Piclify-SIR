@@ -1,14 +1,13 @@
-"use strict";
+'use strict';
 const fetch = require('node-fetch');
-const authService = require('../services/auth-service');
+const authService= require('../services/auth-service');
 
-
-exports.addUserToGroup= async (req, res, next) => {
+exports.addFollower = async (req,res,next)=>{
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
     const data = await authService.decodeToken(token);  
-    req.body.user=data.id_user;
+    req.body.id_follower=data.id_user;
     try{
-        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=create',
+        fetch(global.URL_CONTROLLERS+'follower.controller.php?action=addFollower',
         {
             headers: {
                 'Accept': 'application/json',
@@ -19,7 +18,7 @@ exports.addUserToGroup= async (req, res, next) => {
         }
         )
         .then(data => data.json())
-        .then(function(data){
+        .then( async function(data){
             res.send(data);
         })
     }catch(e){
@@ -27,11 +26,14 @@ exports.addUserToGroup= async (req, res, next) => {
             message:'Falha ao processar requisição'
         });
     }
-};
+}
 
-exports.getListGroupsByUser= async (req, res, next)=>{
+exports.verifyFollower= async (req, res, next)=>{
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    req.query.id_follower=data.id_user;
     try{
-        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=getListGroupsByUser',
+        fetch(global.URL_CONTROLLERS+'follower.controller.php?action=verifyFollower',
         {
             headers: {
                 'Accept': 'application/json',
@@ -42,7 +44,9 @@ exports.getListGroupsByUser= async (req, res, next)=>{
         }
         )
         .then(data => data.json())
-        .then(d =>  res.send(d) );
+        .then( async function(data){
+            res.send(data);
+        })
     }catch(e){
         res.status(500).send({
             message:'Falha ao processar requisição'
@@ -50,9 +54,12 @@ exports.getListGroupsByUser= async (req, res, next)=>{
     }
 }
 
-exports.getListUsersByGroup= async (req, res, next)=>{
+exports.removeFollower= async (req,res, next)=>{
+    /*const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    req.query.id_follower=data.id_user;
     try{
-        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=getListUsersByGroup',
+        fetch(global.URL_CONTROLLERS+'follower.controller.php?action=addFollower',
         {
             headers: {
                 'Accept': 'application/json',
@@ -63,10 +70,12 @@ exports.getListUsersByGroup= async (req, res, next)=>{
         }
         )
         .then(data => data.json())
-        .then(d =>  res.send(d) );
+        .then( async function(data){
+            res.send(data);
+        })
     }catch(e){
         res.status(500).send({
             message:'Falha ao processar requisição'
         });
-    }
+    }*/
 }

@@ -23,5 +23,12 @@
 		$service = new GroupUserService($connection, $groupUser);
         $groupUser=$service-> getGroupsByUser();
         echo json_encode($groupUser);
-    }  
+    }elseif($action=='getListUsersByGroup'){
+        $groupUser= new User_group();
+        $groupUser->__set('group',$_POST['group']);
+		$connection = new Connection();
+		$service = new GroupUserService($connection, $groupUser);
+        $groupUser=$service-> getListUsersByGroup();
+        echo json_encode($groupUser);
+    }
 ?>

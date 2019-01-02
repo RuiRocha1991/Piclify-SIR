@@ -146,6 +146,26 @@ exports.getNumberFollowers= async (req, res, next)=>{
        
 }
 
+exports.getDetailsUserById=(req, res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=getDetailsUserById',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d => res.send(d)  );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+}
 
 
 exports.logout= async (req, res, next)=>{
@@ -156,31 +176,3 @@ exports.logout= async (req, res, next)=>{
         res.send({message: 'ok'});
     })
 }
-
-/*
-exports.refreshToken= async (req, res, next) => {
-    try{
-        const token = req.body.token || req.query.token || req.headers['x-access-token'];
-        const data = await authService.decodeToken(token);
-
-        const customer = await repository.getById(data.id);
-
-        if(!customer){
-            res.status(401).send({ message:'Cliente não encontrado'});
-            return;
-        }
-
-        const tokenData = await authService.generateToken({id: customer._id, email: customer.email,name:customer.name, roles:customer.roles})
-        res.status(201).send({
-            token :tokenData,
-            data: {
-                email:customer.email,
-                name:customer.name
-            }
-        });
-    }catch(e){
-        res.status(500).send({
-            message:'Falha ao processar requisição'
-        });
-    }
-};*/

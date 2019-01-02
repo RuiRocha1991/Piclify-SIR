@@ -24,6 +24,14 @@
             $stmt->execute(); 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        public function getListUsersByGroup() { 
+			$query = "select * from user_group where idGroup =:group";
+			$stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':group', $this->groupUser->__get('group'));
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
         
     }
 

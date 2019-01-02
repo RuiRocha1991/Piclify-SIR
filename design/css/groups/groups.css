@@ -1,0 +1,10 @@
+.list-group-item:hover{
+    cursor: pointer;
+    transform: scale(1.002); 
+    background: rgba(26,35,126,0.05);
+    transition:  0.5s ease;
+}
+
+.list-group-item{
+    transition:  0.5s ease;
+}
