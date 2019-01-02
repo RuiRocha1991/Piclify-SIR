@@ -171,15 +171,15 @@
             <form id="form-upload-photos " class="border m-3 p-4" action="../php/upload-files/upload-photos.php" method="POST" enctype="multipart/form-data">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="name_photo" name="name">Name</span>
+                        <span class="input-group-text" id="name_photo" >Name</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Name Photo" >
+                    <input type="text" class="form-control" placeholder="Name Photo" name="name">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="description-photo" name="description">Description</span>
+                        <span class="input-group-text" id="description-photo" >Description</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Description">
+                    <input type="text" class="form-control" placeholder="Description" name="description">
                 </div>
                 <div class="custom-control custom-checkbox mb-3">
                     <input type="checkbox" class="custom-control-input" id="isPrivate" name="isPrivate">
