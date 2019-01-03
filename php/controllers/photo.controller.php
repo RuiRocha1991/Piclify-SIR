@@ -7,13 +7,12 @@
 
     
     $action = isset($_GET['action']) ? $_GET['action']: null;
-	if($action == 'upload' ) {
+	if($action == 'getPhotosByUser' ) {
         $photo= new Photo();
-		
+		$photo->__set('user', $_POST['user']);
 		$connection = new Connection();
 		$service = new PhotoService($connection, $photo);
-        $service->();
-        $photo=$service->();
-        echo json_encode($photo);
+        $photos=$service->getPhotosByUser();
+        echo json_encode($photos);
     }     
 ?>

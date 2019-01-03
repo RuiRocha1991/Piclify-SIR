@@ -51,3 +51,44 @@ function fillModalToSelectGroups(data){
        $('#modal-body-groups').append(`<div title="${data[i].description}" class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_group}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].title}</label></div>`)
     }
 }
+
+function fillUserPhotos(data){
+    console.log(data);
+    $('#photosContainer .card').remove();
+    for(var i=0; i<data.length; i++){
+        $('#photosContainer').append(
+    
+    `<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data[i].id_photo}"> <!--Start Card-->
+                        <div class="card-header bg-white">
+                            <div class="input-group mt-1 border-bottom">
+                                <input  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data[i].name}" disabled="disabled">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-0 btn-edit-name" type="button"><i class="fa fa-edit"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <img class="img-fluid m-0" src="./../upload/userPhotos/${data[i].user}/${data[i].path}" alt="Image">
+                        </div>
+                        <div class="card-footer bg-white m-0 p-0">
+                                <div class="input-group mt-1 border-bottom">
+                                        <input data-id="1-description" type="text" class="description form-control border-0 bg-white text-center" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit" disabled="disabled">
+                                        <div class="input-group-append">
+                                            <button class="btn-edit-description btn btn-outline-secondary border-0" type="button"><i class="fa fa-edit"></i></button>
+                                        </div>
+                                    </div>
+                            
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> 242 Likes</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> 12</span></a></li>
+                            </ul>
+                            <ul class="list-inline mb-3">
+                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-book"></i><span> 3 Albums</span></a></li>
+                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-users"></i><span> 6 Groups</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2" type="checkbox" value="" id="defaultCheck1"><span>Is private</span></a></li>
+                            </ul>
+                            <span></span>
+                        </div>
+                    </div>`)
+                }
+}

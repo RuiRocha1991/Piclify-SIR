@@ -10,7 +10,6 @@
         }
 
         public function upload_new_photo() { 
-            var_dump($this->photo);
 			$query = "insert into photos(description,name,path,user,is_private) values (:description , :name, :path, :user, :is_private)";
 			$stmt = $this->connection->prepare($query);
             $stmt->bindValue(':description', $this->photo->__get('description'));     
@@ -21,6 +20,15 @@
 			$stmt->execute(); 
         }
         
+        public function getPhotosByUser() {
+            $query = "select * from photos where user = :id_user";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_user', $this->photo->__get('user'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
     }
+
+
 
 ?>

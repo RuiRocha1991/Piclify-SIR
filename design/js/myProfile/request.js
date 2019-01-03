@@ -123,3 +123,19 @@ async function getGroupsDetailsByUser(res){
     }
     fillListGroups(list);
 }
+
+function getPhotosByUser(){
+    $.ajax({
+        url:'http://localhost:3000/photo/getPhotosByUser',
+        type: "get",
+        data: {token:token},
+        dataType: 'json',
+        success: function(res) {
+            fillUserPhotos(res);
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+}

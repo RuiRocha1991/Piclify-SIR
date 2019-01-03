@@ -14,6 +14,7 @@ $(document).ready(function(){
             getNumberFollowers(res[0].id_user);
             getListAlbums(res[0].id_user);
             getListGroups(res[0].id_user);
+            getPhotosByUser();
         },
         error: function (errorMessage) {
             logout();
