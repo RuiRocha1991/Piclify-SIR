@@ -184,7 +184,7 @@ function createLogin(){
                 if(result.token){
                     login(result); 
                 }else{
-                    $('#defaultLoginFormSubmitHelpBlock').text('Envalid Email or Password ');
+                    $('#defaultLoginFormSubmitHelpBlock').text('Invalid Email or Password ');
                     $('#buttonSubmit').removeClass('my-4');
                     $('#buttonSubmit').addClass('mt-4');
                 } 
