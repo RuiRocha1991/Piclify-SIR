@@ -154,8 +154,8 @@ function createAccountRegister(data){
     });
 }
 
-function login(data){
-    document.cookie="token = "+data.token +" ;";
+async function login(data){
+    document.cookie=await "token = "+data.token +" ;";
     document.location.href = 'profile.html';
 }
 

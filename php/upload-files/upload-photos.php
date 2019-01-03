@@ -3,16 +3,11 @@
     require "../services/Photo.service.php";
     require "../connector/Connection.php";
 
-    /* if(isset(!$_POST['description']) && isset(!$_POST['name']) && isset(!$_FILES['photos']['size'])){
-        echo 'Estamos num bom caminho';
-    } */
     if(empty($_POST["description"]) || empty($_POST["name"]) || empty($_FILES["photos"]["name"]) ){
         header('Location: ../../design/profile.html?error=You need to fill all fields');
         exit('erro');
     }
-
-
-     
+  
     if($_FILES['photos']['error'] !=0){
         //exit('');
         header('Location: ../../design/profile.html?error=Error to upload image');
@@ -36,7 +31,6 @@
     } 
 
     $numRandom = rand(0, 1000000);
-    echo $numRandom;
 
     $basePath = '../../upload/userPhotos/'.$_POST['number'].'/';
     $filePath=$_POST['name'].$numRandom;
