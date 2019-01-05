@@ -131,11 +131,100 @@ function getPhotosByUser(){
         data: {token:token},
         dataType: 'json',
         success: function(res) {
-            fillUserPhotos(res);
+            //fillUserPhotos(res);
+            getCountLikes(res);
         },
         error: function(errorMessage){
             console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
+}
+
+function getCountLikes(data){
+    for(var i=0; i<data.length; i++){
+        $.ajax({
+            async: false,
+            url:'http://localhost:3000/likesPhoto/getCountLikes',
+            type: "get",
+            data:{token:token, id_photo:data[i].id_photo},
+            dataType: 'json',
+            success: function(res){
+                var result={data:data[i], countLikes : res[0].countLikes};
+                getCountComments(result);
+            },
+            error: function(errorMessage){
+                console.log("Erro ao carregar a foto");
+                alert(errorMessage);
+            }
+        })
+    }
+    
+}
+
+function getCountComments(data){
+    $.ajax({
+        async: false,
+        url:'http://localhost:3000/commentsPhoto/getCountComments',
+        type: "get",
+        data:{token:token, id_photo:data.data.id_photo},
+        dataType: 'json',
+        success: function(res){
+            var result ={data:data.data, countLikes : data.countLikes, countComments: res[0].countComments};
+            getCountAlbumsByPhoto(result);
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+    
+    
+}
+
+
+
+function getCountAlbumsByPhoto(data){
+    $.ajax({
+        async: false,
+        url:'http://localhost:3000/albumsPhoto/getCountAlbumsByPhoto',
+        type: "get",
+        data:{token:token, id_photo:data.data.id_photo},
+        dataType: 'json',
+        success: function(res){
+            var result ={data:data.data, countLikes : data.countLikes, countComments: data.countComments, countAlbums:res[0].countAlbums};
+            getCountGroupsByPhoto(result);
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+    
+    
+}
+
+function getCountGroupsByPhoto(data){
+    $.ajax({
+        async: false,
+        url:'http://localhost:3000/groupsPhoto/getCountGroupsByPhoto',
+        type: "get",
+        data:{token:token, id_photo:data.data.id_photo},
+        dataType: 'json',
+        success: function(res){
+            var result ={
+                data:data.data, 
+                countLikes : data.countLikes, 
+                countComments: data.countComments, 
+                countAlbums:data.countAlbums,
+                countGroups: res[0].countGroups};
+            fillUserPhotos(result);
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+    
+    
 }

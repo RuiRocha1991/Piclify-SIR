@@ -27,8 +27,11 @@ const groupUserRoute= require('./routes/groupUser-route');
 const validatorRoute= require('./routes/validator-route');
 const followerRoute=require('./routes/follower-route');
 const photoRoute=require('./routes/photo-route');
-/*const customerRoute= require('./routes/customer-route');
-const orderRoute= require('./routes/order-routes');*/
+const likesPhotoRoute=require('./routes/likesPhoto-route');
+const commentsPhotoRoute=require('./routes/commentsPhoto-route');
+const albumsPhotoRoute=require('./routes/albumsPhoto-route');
+const groupsPhotoRoute=require('./routes/groupsPhoto-route');
+
 
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,6 +66,11 @@ app.use("/groupUser", groupUserRoute);
 app.use("/validator", validatorRoute);
 app.use("/follower", followerRoute);
 app.use("/photo",photoRoute);
+app.use("/likesPhoto",likesPhotoRoute);
+app.use("/commentsPhoto",commentsPhotoRoute);
+app.use("/albumsPhoto",albumsPhotoRoute);
+app.use("/groupsPhoto",groupsPhotoRoute);
+
 
 
 module.exports = app;

@@ -1,7 +1,7 @@
 <?php 
 
     class Albums_Photo{
-        public $albums;
+        public $album;
         public $photo;
 
         public function __get($atributo) {
