@@ -53,11 +53,7 @@ function fillModalToSelectGroups(data){
 }
 
 function fillUserPhotos(data){
-    console.log(data);
-    $('#photosContainer .card').remove();
-        $('#photosContainer').append(
-    
-    `<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+    $('#photosContainer').append(`<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
                                 <input  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data.data.name}" disabled="disabled">
@@ -84,16 +80,9 @@ function fillUserPhotos(data){
                             <ul class="list-inline mb-3">
                                 <li class="albums list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-book"></i><span> ${data.countAlbums} Albums</span></a></li>
                                 <li class="groups list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-users"></i><span> ${data.countGroups} Groups</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2 checkbox-photo" type="checkbox" value="" id="defaultCheck1"><span>Is private</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}><span>Is private</span></a></li>
                             </ul>
                             <span></span>
                         </div>
-                    </div>`)
-                    if(data.data.is_private ==1){
-                        $('.checkbox-photo').attr('checked', true);
-                    }else{
-                        $('.checkbox-photo').attr('checked', false);
-                    }
-                        
-                
+                    </div>`);
 }
