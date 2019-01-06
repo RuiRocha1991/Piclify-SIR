@@ -54,7 +54,7 @@ function fillModalToSelectGroups(data){
 
 function fillUserPhotos(data){
 
-    $('#photosContainer').append(`<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+    $('#photosContainer').append(`<div class="card shadow-sm m-3 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
 
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
