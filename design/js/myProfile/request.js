@@ -161,7 +161,6 @@ function getCountLikes(data){
         })
     }
     initFunctionsCard()
-    
 }
 
 function getCountComments(data){
@@ -180,11 +179,7 @@ function getCountComments(data){
             alert(errorMessage);
         }
     })
-    
-    
 }
-
-
 
 function getCountAlbumsByPhoto(data){
     $.ajax({
@@ -202,8 +197,6 @@ function getCountAlbumsByPhoto(data){
             alert(errorMessage);
         }
     })
-    
-    
 }
 
 function getCountGroupsByPhoto(data){
@@ -253,7 +246,7 @@ function updatePhoto(id){
     photo.name = $('#photoName-'+ id).val()
     photo.description = $('#photoDescription-'+ id).val()
     photo.is_private = $('#photoIsPrivate-'+id).is(":checked")?1:0;
-    
+
     $.ajax({
         url:'http://localhost:3000/photo/update_photo',
         type: "post",
@@ -273,5 +266,4 @@ function updatePhoto(id){
             alert(errorMessage);
         }
     })
- 
 }

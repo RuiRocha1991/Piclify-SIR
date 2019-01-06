@@ -54,8 +54,7 @@ function fillModalWithPhotoGroups(data){
 
 function fillUserPhotos(data){
 
-
-    $('#photosContainer').append(`<div class="card shadow-sm m-3 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+    $('#photosContainer').append(`<div class="card mx-3 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
                                 <input id="photoName-${data.data.id_photo}"  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data.data.name}" disabled="disabled">
