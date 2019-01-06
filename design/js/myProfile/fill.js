@@ -57,7 +57,7 @@ function fillUserPhotos(data){
     $('#photosContainer .card').remove();
         $('#photosContainer').append(
     
-    `<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+    `<div class="card shadow-sm col-xl-6 col-lg-6 col-md-8 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
                                 <input  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data.data.name}" disabled="disabled">
