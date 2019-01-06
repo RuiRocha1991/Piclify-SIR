@@ -22,61 +22,9 @@ $(document).ready(function(){
         }
     });
 
-    $('.card').hover(function(){
-        $(this).addClass('shadow');
-    },function(){
-        $(this).removeClass('shadow');
-    }); 
+    
 
-    $('.btn-edit-name').click(function(){
-        let parent= $(this).parent().parent();
-        let input= parent[0].children[0];
-
-        if(parent[0].children[0].disabled == true){
-            $(input).prop('disabled', false);
-            $(input).select();
-            $(this).find('i').removeClass('fa-edit');
-            $(this).find('i').addClass('fa-save');
-            console.log($(input).data('id'));
-        }else{
-            $(input).prop('disabled', true);
-            $(this).find('i').addClass('fa-edit');
-            $(this).find('i').removeClass('fa-save');
-            console.log($(input).val());
-            //create function to save new name
-        }
-    });
-
-    $('.btn-edit-description').click(function(){
-        let parent= $(this).parent().parent();
-        let input= parent[0].children[0];
-        if(input.disabled == true){
-            $(input).prop('disabled', false);
-            $(input).select();
-            $(this).find('i').removeClass('fa-edit');
-            $(this).find('i').addClass('fa-save');
-            console.log($(input).data('id'));
-        }else{
-            $(input).prop('disabled', true);
-            $(this).find('i').addClass('fa-edit');
-            $(this).find('i').removeClass('fa-save');
-            console.log($(input).val());
-            //create a function to save descrition
-        }
-    })
-
-    $('.albums').click(function(){
-        console.log('chamou');
-        $('#modal-edit-albums').modal('show');
-        $('#modal-body-albums').attr("data-id",$(this).data('id'));
-        fillModalToSelectAlbums(ListAlbums);
-    })
-
-    $('.groups').click(function(){
-        $('#modal-edit-groups').modal('show');
-        $('#modal-body-groups').attr("data-id",$(this).data('id'));
-        fillModalToSelectGroups(ListGroups);
-    });
+    
 
     
 
@@ -92,4 +40,89 @@ function saveAlbunsOfPhoto(){
 
 function saveGroupsOfPhoto(){
     console.log('chegou');
+}
+
+function initFunctionsCard(){
+    $('.card').hover(function(){
+        $(this).addClass('shadow');
+    },function(){
+        $(this).removeClass('shadow');
+    }); 
+    initFunctionName()
+    initFunctionDescription()
+    initFunctionIsPrivate()
+    initFunctionAlbums()
+    initFunctionGroups()
+    
+}
+
+function initFunctionName(){
+    $('.btn-edit-name').click(function(){
+        let parent = $(this).parent().parent();
+        let input = parent[0].children[0];
+        let id_photo = $(this).parent().parent().parent().parent().data("id");
+        console.log(id_photo)
+
+        if(input.disabled == true){
+            $(input).prop('disabled', false )
+            $(this).find('i').removeClass('fa-edit')
+            $(this).find('i').addClass('fa-save')
+            $(input).select();
+        } else{
+            $(input).prop('disable', true)
+            $(this).find('i').addClass('fa-edit')
+            $(this).find('i').removeClass('fa-save') 
+            console.log($(input).val())
+        }
+    })
+}
+
+function initFunctionDescription(){
+    $('.btn-edit-description').click(function(){
+        let parent = $(this).parent().parent();
+        let input = parent[0].children[0];
+        let id_photo = $(this).parent().parent().parent().parent().data("id");
+        console.log(id_photo)
+
+        if(input.disabled == true){
+            $(input).prop('disabled', false )
+            $(this).find('i').removeClass('fa-edit')
+            $(this).find('i').addClass('fa-save')
+            $(input).select();
+        } else{
+            $(input).prop('disable', true)
+            $(this).find('i').addClass('fa-edit')
+            $(this).find('i').removeClass('fa-save') 
+            console.log($(input).val())
+        }
+    })
+}
+
+function initFunctionIsPrivate(){
+    $('.checkbox-photo').change(function() {
+        let id_photo = $(this).parent().parent().parent().parent().parent().parent().data('id');
+        console.log(id_photo)
+        if(this.checked) {
+            console.log('checked')
+        } else{
+            console.log('unchecked')
+        }      
+    });
+}
+
+function initFunctionAlbums(){
+    $('.albums').click(function(){
+        let id_photo = $(this).parent().parent().parent().parent().parent().parent().data('id');
+        $('#modal-edit-albums').modal('show');
+        $('#modal-body-albums').attr("data-id",id_photo);
+        fillModalWithPhotoAlbums(ListAlbums);
+    })
+}
+
+function initFunctionGroups(){
+    $('.groups').click(function(){
+        $('#modal-edit-groups').modal('show');
+        $('#modal-body-groups').attr("data-id",$(this).data('id'));
+        fillModalWithPhotoGroups(ListGroups);
+    });
 }
