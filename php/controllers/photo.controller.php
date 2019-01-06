@@ -14,5 +14,17 @@
 		$service = new PhotoService($connection, $photo);
         $photos=$service->getPhotosByUser();
         echo json_encode($photos);
-    }     
+    } 
+    
+    $action = isset($_GET['action']) ? $_GET['action']: null;
+	if($action == 'getPhotosByUser' ) {
+        $photo= new Photo();
+		$photo->__set('user', $_POST['user']);
+		$connection = new Connection();
+		$service = new PhotoService($connection, $photo);
+        $photos=$service->getPhotosByUser();
+        echo json_encode($photos);
+    }   
+
+
 ?>

@@ -34,7 +34,7 @@ function fillModalNewGroup(){
     $('#newGroup').val('');
 }
 
-function fillModalToSelectAlbums(data){
+function fillModalWithPhotoAlbums(data){
     $('#modal-body-albums .btn-group').remove();
     $('#modal-body-albums h6').remove();
     $('#modal-body-albums').append('<h6>select the albums for the photo</h6>')
@@ -43,7 +43,7 @@ function fillModalToSelectAlbums(data){
     }
 }
 
-function fillModalToSelectGroups(data){
+function fillModalWithPhotoGroups(data){
     $('#modal-body-groups .btn-group').remove();
     $('#modal-body-groups h6').remove();
     $('#modal-body-groups').append('<h6>select the albums for the photo</h6>')
@@ -54,7 +54,7 @@ function fillModalToSelectGroups(data){
 
 function fillUserPhotos(data){
 
-    $('#photosContainer').append(`<div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+    $('#photosContainer').append(`<div class="card shadow-sm mx-3 mb-3 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
 
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
@@ -80,9 +80,9 @@ function fillUserPhotos(data){
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
                             </ul>
                             <ul class="list-inline mb-3">
-                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-book"></i><span> ${data.countAlbums} Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-users"></i><span> ${data.countGroups} Groups</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}><span>Is private</span></a></li>
+                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"></i><span> ${data.countAlbums} Albums</span></a></li>
+                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i><span> ${data.countGroups} Groups</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
                             </ul>
                             <span></span>
                         </div>
