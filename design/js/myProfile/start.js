@@ -61,7 +61,6 @@ function initFunctionName(){
         let parent = $(this).parent().parent();
         let input = parent[0].children[0];
         let id_photo = $(this).parent().parent().parent().parent().data("id");
-        console.log(id_photo)
 
         if(input.disabled == true){
             $(input).prop('disabled', false )
@@ -69,10 +68,10 @@ function initFunctionName(){
             $(this).find('i').addClass('fa-save')
             $(input).select();
         } else{
-            $(input).prop('disable', true)
+            $(input).prop('disabled', true)
             $(this).find('i').addClass('fa-edit')
             $(this).find('i').removeClass('fa-save') 
-            console.log($(input).val())
+            updatePhoto(id_photo)
         }
     })
 }
@@ -82,7 +81,6 @@ function initFunctionDescription(){
         let parent = $(this).parent().parent();
         let input = parent[0].children[0];
         let id_photo = $(this).parent().parent().parent().parent().data("id");
-        console.log(id_photo)
 
         if(input.disabled == true){
             $(input).prop('disabled', false )
@@ -90,10 +88,10 @@ function initFunctionDescription(){
             $(this).find('i').addClass('fa-save')
             $(input).select();
         } else{
-            $(input).prop('disable', true)
+            $(input).prop('disabled', true)
             $(this).find('i').addClass('fa-edit')
             $(this).find('i').removeClass('fa-save') 
-            console.log($(input).val())
+            updatePhoto(id_photo)
         }
     })
 }
@@ -101,11 +99,11 @@ function initFunctionDescription(){
 function initFunctionIsPrivate(){
     $('.checkbox-photo').change(function() {
         let id_photo = $(this).parent().parent().parent().parent().parent().parent().data('id');
-        console.log(id_photo)
+
         if(this.checked) {
-            console.log('checked')
+            updatePhoto(id_photo)
         } else{
-            console.log('unchecked')
+            updatePhoto(id_photo)
         }      
     });
 }

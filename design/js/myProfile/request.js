@@ -226,7 +226,52 @@ function getCountGroupsByPhoto(data){
             console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
+    })  
+}
+
+function getPhotoById(id){
+    var photo;
+    $.ajax({
+        async:false,
+        url:'http://localhost:3000/photo/getPhotoById',
+        type: "get",
+        data:{token:token, id_photo:id},
+        dataType: 'json',
+        success: function(res){
+            photo= res[0];
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
     })
+    return photo
+}
+
+function updatePhoto(id){
+    let photo = getPhotoById(id)
+    photo.name = $('#photoName-'+ id).val()
+    photo.description = $('#photoDescription-'+ id).val()
+    photo.is_private = $('#photoIsPrivate-'+id).is(":checked")?1:0;
     
-    
+    $.ajax({
+        url:'http://localhost:3000/photo/update_photo',
+        type: "post",
+        data:{
+            token:token, 
+            id_photo:id, 
+            name:photo.name,
+            description: photo.description,
+            is_private: photo.is_private
+        },
+        dataType: 'json',
+        success: function(res){
+           console.log(res)
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+ 
 }

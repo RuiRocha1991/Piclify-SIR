@@ -19,14 +19,6 @@
             $stmt->bindValue(':user', $this->photo->__get('user'));
 			$stmt->execute(); 
         }
-        
-        public function getPhotosByUser() {
-            $query = "select * from photos where user = :id_user";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindValue(':id_user', $this->photo->__get('user'));
-            $stmt->execute();
-            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
-        }
 
         public function update_photo(){
             $query = "update photos set name= :name, description= :description, is_private= :is_private where id_photo = :id_photo";
@@ -37,6 +29,24 @@
             $stmt->bindValue(':id_photo', $this->photo->__get('id_photo'));
             $stmt->execute(); 
         }
+        
+        public function getPhotosByUser() {
+            $query = "select * from photos where user = :id_user";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_user', $this->photo->__get('user'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
+
+        public function getPhotoById() {
+            $query = "select * from photos where id_photo = :id_photo";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_photo', $this->photo->__get('id_photo'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
+
+        
     }
 
 
