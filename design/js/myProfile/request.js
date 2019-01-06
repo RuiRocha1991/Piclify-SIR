@@ -142,6 +142,7 @@ function getPhotosByUser(){
 }
 
 function getCountLikes(data){
+    $('#photosContainer .card').remove();
     for(var i=0; i<data.length; i++){
         $.ajax({
             async: false,
