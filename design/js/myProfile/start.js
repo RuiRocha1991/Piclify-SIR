@@ -109,11 +109,12 @@ function initFunctionIsPrivate(){
 }
 
 function initFunctionAlbums(){
-    $('.albums').click(function(){
-        let id_photo = $(this).parent().parent().parent().parent().parent().parent().data('id');
+    $('.albums').click(async function(){
+        let id_photo = $(this).parent().parent().parent().data('id');
+        let albumsByPhoto =await getAlbumsByPhoto(id_photo)
         $('#modal-edit-albums').modal('show');
         $('#modal-body-albums').attr("data-id",id_photo);
-        fillModalWithPhotoAlbums(ListAlbums);
+        fillModalWithPhotoAlbums(ListAlbums, albumsByPhoto,id_photo);
     })
 }
 

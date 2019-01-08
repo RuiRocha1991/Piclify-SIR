@@ -70,8 +70,7 @@ function getNumberFollowers(id){
 }
 
 function getListAlbums(id){
-    console.log(id);
-    console.log(token);
+    
     $.ajax({
         url:'http://localhost:3000/album/getListAlbums',
         type: "get",
@@ -86,6 +85,24 @@ function getListAlbums(id){
             alert(errorMessage);
         }
     });
+}
+
+async function getAlbumsByPhoto(id){
+    var photo
+    await $.ajax({
+        url:'http://localhost:3000/albumsPhoto/getAlbumsByPhoto',
+        type: "get",
+        data: {id_photo: id, token:token},
+        dataType:'json',
+        success: function (res) {
+            photo= res
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage);
+            alert(errorMessage);
+        }
+    });
+    return photo
 }
 
 function getListGroups(id){
@@ -260,6 +277,25 @@ function updatePhoto(id){
         dataType: 'json',
         success: function(res){
            console.log(res)
+        },
+        error: function(errorMessage){
+            console.log("Erro ao carregar a foto");
+            alert(errorMessage);
+        }
+    })
+}
+
+function onClickChangeStateOfAlbumPhoto(action, photo, album){
+    /* console.log(action)
+    console.log(photo)
+    console.log(album) */
+    $.ajax({
+        url:'http://localhost:3000/albumsPhoto/'+action,
+        type: "post",
+        data:{token:token, id_photo:photo, id_album:album},
+        dataType: 'json',
+        success: function(res){
+            console.log(res)
         },
         error: function(errorMessage){
             console.log("Erro ao carregar a foto");

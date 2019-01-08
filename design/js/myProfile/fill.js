@@ -34,13 +34,42 @@ function fillModalNewGroup(){
     $('#newGroup').val('');
 }
 
-function fillModalWithPhotoAlbums(data){
+function fillModalWithPhotoAlbums(albumsByUser, albumsByPhoto, photo){
+    let albumHasPhoto =false
     $('#modal-body-albums .btn-group').remove();
     $('#modal-body-albums h6').remove();
     $('#modal-body-albums').append('<h6>select the albums for the photo</h6>')
-    for(var i=0; i<data.length; i++){
-        $('#modal-body-albums').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_albums}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].description}</label></div>`)
+    for(var i=0; i<albumsByUser.length; i++){
+        albumHasPhoto =false
+        for(var j=0; j<albumsByPhoto.length; j++){
+            if(albumsByPhoto[j].album==albumsByUser[i].id_albums){
+                albumHasPhoto = true
+            }
+        }
+
+        if(albumHasPhoto){       
+            $('#modal-body-albums').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light active select" data-id="${albumsByUser[i].id_albums}"><input type="checkbox" name="options" autocomplete="off" checked> ${albumsByUser[i].description}</label></div>`)
+        }else{
+            $('#modal-body-albums').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light select" data-id="${albumsByUser[i].id_albums}"><input type="checkbox" name="options" autocomplete="off"> ${albumsByUser[i].description}</label></div>`)
+        }
+        
+        
     }
+    $('.select').click(function(){
+        if($(this).hasClass('active')){
+            onClickChangeStateOfAlbumPhoto('removeAlbumOfPhoto',photo, $(this).data('id'))
+            var total = $('#countAlbums'+photo).text() -1
+            $('#countAlbums'+photo).text('')
+            $('#countAlbums'+photo).text(total)
+        }else{
+            onClickChangeStateOfAlbumPhoto('addPhotoInAlbum',photo, $(this).data('id'))
+            var totalAdd = $('#countAlbums'+photo).text() +1
+            $('#countAlbums'+photo).text('')
+            $('#countAlbums'+photo).text(totalAdd)
+        }
+    })
+
+    
 }
 
 function fillModalWithPhotoGroups(data){
@@ -79,8 +108,8 @@ function fillUserPhotos(data){
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
                             </ul>
                             <ul class="list-inline mb-3">
-                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"></i><span> ${data.countAlbums} Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i><span> ${data.countGroups} Groups</span></a></li>
+                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}">${data.countAlbums}</span><span> Albums</span></a></li>
+                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i> <span>${data.countGroups}</span><span>Groups</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input id="photoIsPrivate-${data.data.id_photo}" class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
                             </ul>
                             <span></span>
