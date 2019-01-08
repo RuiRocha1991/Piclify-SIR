@@ -22,3 +22,45 @@ exports.countGroupsByPhoto= async (req,res,next)=>{
         });
     }
 }
+
+exports.addPhotoInGroup= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=addPhotoInGroup',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.body)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}
+
+exports.removeGroupOfPhoto= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=removeGroupOfPhoto',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.body)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}

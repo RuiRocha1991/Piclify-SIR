@@ -103,9 +103,11 @@ function initFunctionAlbums(){
 }
 
 function initFunctionGroups(){
-    $('.groups').click(function(){
+    $('.groups').click(async function(){
+        let id_photo = $(this).parent().parent().parent().data('id');
+        let groupsByPhoto =await getGroupsByPhoto(id_photo)
         $('#modal-edit-groups').modal('show');
-        $('#modal-body-groups').attr("data-id",$(this).data('id'));
-        fillModalWithPhotoGroups(ListGroups);
+        $('#modal-body-groups').attr("data-id",id_photo);
+        fillModalWithPhotoGroups(ListGroups, groupsByPhoto, id_photo);
     });
 }

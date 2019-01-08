@@ -66,13 +66,48 @@ function fillModalWithPhotoAlbums(albumsByUser, albumsByPhoto, photo){
     
 }
 
-function fillModalWithPhotoGroups(data){
+/* function fillModalWithPhotoGroups(data){
     $('#modal-body-groups .btn-group').remove();
     $('#modal-body-groups h6').remove();
     $('#modal-body-groups').append('<h6>select the albums for the photo</h6>')
     for(var i=0; i<data.length; i++){
        $('#modal-body-groups').append(`<div title="${data[i].description}" class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_group}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].title}</label></div>`)
     }
+} */
+
+function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
+    console.log(groupsByPhoto[0])
+
+    let groupHasPhoto =false
+    $('#modal-body-groups .btn-group').remove();
+    $('#modal-body-groups h6').remove();
+    $('#modal-body-groups').append('<h6>select the groups for the photo</h6>')
+    for(var i=0; i<groupsByUser.length; i++){
+        groupHasPhoto =false
+        for(var j=0; j<groupsByPhoto.length; j++){
+            if(groupsByPhoto[j].group==groupsByUser[i].id_group){
+                groupHasPhoto = true
+            }
+        }
+       
+
+        if(groupHasPhoto){       
+            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light active select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off" checked> ${groupsByUser[i].description}</label></div>`)
+        }else{
+            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off"> ${groupsByUser[i].description}</label></div>`)
+        }
+        
+        
+    }
+    $('.select').click(function(){
+        if($(this).hasClass('active')){
+            onClickChangeStateOfGroupPhoto('removeGroupOfPhoto',photo, $(this).data('id'));
+        }else{
+            onClickChangeStateOfGroupPhoto('addPhotoInGroup',photo, $(this).data('id'));
+        }
+    })
+
+    
 }
 
 function fillUserPhotos(data){

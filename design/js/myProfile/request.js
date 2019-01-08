@@ -105,6 +105,24 @@ async function getAlbumsByPhoto(id){
     return photo
 }
 
+async function getGroupsByPhoto(id){
+    var photo
+    await $.ajax({
+        url:'http://localhost:3000/groupsPhoto/getCountGroupsByPhoto',
+        type: "get",
+        data: {id_photo: id, token:token},
+        dataType:'json',
+        success: function (res) {
+            photo= res
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage);
+            alert(errorMessage);
+        }
+    });
+    return photo
+}
+
 function getListGroups(id){
     $.ajax({
         url:'http://localhost:3000/groupUser/getListGroupsByUser',

@@ -17,6 +17,15 @@
             $stmt->execute();
         }
 
+        public function removeGroupOfPhoto(){
+            $query = "delete from group_photo_relations where group= :id_group and photo = :id_photo";
+            $stmt= $this->connection->prepare($query);
+            $stmt->bindValue(':id_album', $this->groupsPhoto->__get('album'));
+            $stmt->bindValue(':id_photo', $this->groupsPhoto->__get('photo'));
+            
+            $stmt->execute();
+        }
+
         public function countGroupsByPhoto(){
             $query = "select count(photo) as countGroups from group_photo_relations where photo= :id_photo";
             $stmt= $this->connection->prepare($query);

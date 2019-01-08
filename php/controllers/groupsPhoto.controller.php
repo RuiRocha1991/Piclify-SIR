@@ -14,5 +14,21 @@
 		$service = new GroupsPhotoService($connection, $groupsPhoto);
         $total=$service->countGroupsByPhoto();
         echo json_encode($total);
+    } elseif($action == 'addPhotoInGroup' ) {
+        $groupsPhoto= new Group_photo_relations();
+        $groupsPhoto->__set('photo', $_POST['id_photo']);
+        $groupsPhoto->__set('album', $_POST['id_album']);
+		$connection = new Connection();
+		$service = new GroupsPhotoService($connection, $groupsPhoto);
+        $service->addPhotoInGroup();
+        echo json_encode($groupsPhoto);
+    } elseif($action == 'removeGroupOfPhoto' ) {
+        $groupsPhoto= new Group_photo_relations();
+        $groupsPhoto->__set('photo', $_POST['id_photo']);
+        $groupsPhoto->__set('album', $_POST['id_album']);
+		$connection = new Connection();
+		$service = new GroupsPhotoService($connection, $groupsPhoto);
+        $service->removeGroupOfPhoto();
+        echo json_encode($groupsPhoto);
     }     
 ?>
