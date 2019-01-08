@@ -57,15 +57,9 @@ function fillModalWithPhotoAlbums(albumsByUser, albumsByPhoto, photo){
     }
     $('.select').click(function(){
         if($(this).hasClass('active')){
-            onClickChangeStateOfAlbumPhoto('removeAlbumOfPhoto',photo, $(this).data('id'))
-            var total = $('#countAlbums'+photo).text() -1
-            $('#countAlbums'+photo).text('')
-            $('#countAlbums'+photo).text(total)
+            onClickChangeStateOfAlbumPhoto('removeAlbumOfPhoto',photo, $(this).data('id'));
         }else{
-            onClickChangeStateOfAlbumPhoto('addPhotoInAlbum',photo, $(this).data('id'))
-            var totalAdd = $('#countAlbums'+photo).text() +1
-            $('#countAlbums'+photo).text('')
-            $('#countAlbums'+photo).text(totalAdd)
+            onClickChangeStateOfAlbumPhoto('addPhotoInAlbum',photo, $(this).data('id'));
         }
     })
 
@@ -108,8 +102,8 @@ function fillUserPhotos(data){
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
                             </ul>
                             <ul class="list-inline mb-3">
-                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}">${data.countAlbums}</span><span> Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"></i> <span>${data.countGroups}</span><span>Groups</span></a></li>
+                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}"> ${data.countAlbums}</span><span> Albums</span></a></li>
+                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users" id="countGroups${data.data.id_photo}"></i><span> ${data.countGroups}</span><span> Groups</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input id="photoIsPrivate-${data.data.id_photo}" class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
                             </ul>
                             <span></span>

@@ -148,11 +148,9 @@ function getPhotosByUser(){
         data: {token:token},
         dataType: 'json',
         success: function(res) {
-            //fillUserPhotos(res);
             getCountLikes(res);
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
@@ -172,7 +170,6 @@ function getCountLikes(data){
                 getCountComments(result);
             },
             error: function(errorMessage){
-                console.log("Erro ao carregar a foto");
                 alert(errorMessage);
             }
         })
@@ -192,7 +189,6 @@ function getCountComments(data){
             getCountAlbumsByPhoto(result);
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
@@ -210,7 +206,6 @@ function getCountAlbumsByPhoto(data){
             getCountGroupsByPhoto(result);
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
@@ -233,7 +228,6 @@ function getCountGroupsByPhoto(data){
             fillUserPhotos(result);
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })  
@@ -251,7 +245,6 @@ function getPhotoById(id){
             photo= res[0];
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
@@ -279,26 +272,31 @@ function updatePhoto(id){
            console.log(res)
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })
 }
 
 function onClickChangeStateOfAlbumPhoto(action, photo, album){
-    /* console.log(action)
-    console.log(photo)
-    console.log(album) */
     $.ajax({
         url:'http://localhost:3000/albumsPhoto/'+action,
         type: "post",
         data:{token:token, id_photo:photo, id_album:album},
         dataType: 'json',
         success: function(res){
-            console.log(res)
+            if(action =='removeAlbumOfPhoto'){
+                var total = $('#countAlbums'+res.photo).text();
+                total --;
+                $('#countAlbums'+res.photo).text('');
+                $('#countAlbums'+res.photo).text(' '+total);
+            }else{
+                var total = $('#countAlbums'+res.photo).text();
+                total++;
+                $('#countAlbums'+res.photo).text('');
+                $('#countAlbums'+res.photo).text(' '+ total);
+            }
         },
         error: function(errorMessage){
-            console.log("Erro ao carregar a foto");
             alert(errorMessage);
         }
     })

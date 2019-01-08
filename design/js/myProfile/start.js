@@ -21,27 +21,11 @@ $(document).ready(function(){
             document.location.href = 'login.html';
         }
     });
-
-    
-
-    
-
-    
-
 });
 
 function showModalEditAlbums(data){
     console.log(data);
 }
-
-function saveAlbunsOfPhoto(){
-    console.log('chegou');
-}
-
-function saveGroupsOfPhoto(){
-    console.log('chegou');
-}
-
 function initFunctionsCard(){
     $('.card').hover(function(){
         $(this).addClass('shadow');
