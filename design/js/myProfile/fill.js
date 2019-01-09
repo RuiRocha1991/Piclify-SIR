@@ -87,15 +87,12 @@ function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
                 groupHasPhoto = true
             }
         }
-       
 
         if(groupHasPhoto){       
-            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light active select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off" checked> ${groupsByUser[i].description}</label></div>`)
+            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light active select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off" checked> ${groupsByUser[i].title}</label></div>`)
         }else{
-            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off"> ${groupsByUser[i].description}</label></div>`)
+            $('#modal-body-groups').append(`<div class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light select" data-id="${groupsByUser[i].id_group}"><input type="checkbox" name="options" autocomplete="off"> ${groupsByUser[i].title}</label></div>`)
         }
-        
-        
     }
     $('.select').click(function(){
         console.log('select existe')
