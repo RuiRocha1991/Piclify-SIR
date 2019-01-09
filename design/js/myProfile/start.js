@@ -5,7 +5,7 @@ var ListGroups= new Array();
 $(document).ready(function(){
     var data = {token:token};
     $.ajax({
-        url:'http://localhost:3000/user',
+        url:window.CONNECTION_NODE+'/user',
         type: "get",
         data: data ,
         dataType:'json',
