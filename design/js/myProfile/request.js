@@ -2,7 +2,7 @@ function createNewAlbum(){
     var description = $('#newAlbum').val();
     if(description !== ''){
         $.ajax({
-            url:'http://localhost:3000/album/createAlbum',
+            url:window.CONNECTION_NODE+'/album/createAlbum',
             type: "post",
             data: {description: description, token:token} ,
             dataType:'json',
@@ -23,7 +23,7 @@ function createNewGroup(){
     var description =$('#formIdDescriptionGroup').val(); 
     if(title !== '' && description!==''){
         $.ajax({
-            url:'http://localhost:3000/group/createGroup',
+            url:window.CONNECTION_NODE+'/group/createGroup',
             type: "post",
             data: {title: title,description: description, token:token} ,
             dataType:'json',
@@ -56,7 +56,7 @@ function addGroupToFollower(res){
 
 function getNumberFollowers(id){
     $.ajax({
-        url:'http://localhost:3000/user/getFollowers',
+        url:window.CONNECTION_NODE+'/user/getFollowers',
         type: "get",
         data: {id_user: id, token:token} ,
         dataType:'json',
@@ -72,7 +72,7 @@ function getNumberFollowers(id){
 function getListAlbums(id){
     
     $.ajax({
-        url:'http://localhost:3000/album/getListAlbums',
+        url:window.CONNECTION_NODE+'/album/getListAlbums',
         type: "get",
         data: {id_user: id, token:token},
         dataType:'json',
@@ -90,7 +90,7 @@ function getListAlbums(id){
 async function getAlbumsByPhoto(id){
     var photo
     await $.ajax({
-        url:'http://localhost:3000/albumsPhoto/getAlbumsByPhoto',
+        url:window.CONNECTION_NODE+'/albumsPhoto/getAlbumsByPhoto',
         type: "get",
         data: {id_photo: id, token:token},
         dataType:'json',
@@ -108,7 +108,7 @@ async function getAlbumsByPhoto(id){
 async function getGroupsByPhoto(id){
     var photo
     await $.ajax({
-        url:'http://localhost:3000/groupsPhoto/getGroupsByPhoto',
+        url:window.CONNECTION_NODE+'/groupsPhoto/getGroupsByPhoto',
         type: "get",
         data: {id_photo: id, token:token},
         dataType:'json',
@@ -125,7 +125,7 @@ async function getGroupsByPhoto(id){
 
 function getListGroups(id){
     $.ajax({
-        url:'http://localhost:3000/groupUser/getListGroupsByUser',
+        url:window.CONNECTION_NODE+'/groupUser/getListGroupsByUser',
         type: "get",
         data: {user: id,token:token} ,
         dataType:'json',
@@ -143,7 +143,7 @@ async function getGroupsDetailsByUser(res){
     var list= new Array();
     for(var i=0; i<res.length;i++){
        await $.ajax({
-            url:'http://localhost:3000/group/getListGroupById',
+            url:window.CONNECTION_NODE+'/group/getListGroupById',
             type: "get",
             data: {id_group: res[i].idGroup, token:token} ,
             dataType:'json',
@@ -161,7 +161,7 @@ async function getGroupsDetailsByUser(res){
 
 function getPhotosByUser(){
     $.ajax({
-        url:'http://localhost:3000/photo/getPhotosByUser',
+        url:window.CONNECTION_NODE+'/photo/getPhotosByUser',
         type: "get",
         data: {token:token},
         dataType: 'json',
@@ -179,7 +179,7 @@ function getCountLikes(data){
     for(var i=0; i<data.length; i++){
         $.ajax({
             async: false,
-            url:'http://localhost:3000/likesPhoto/getCountLikes',
+            url:window.CONNECTION_NODE+'/likesPhoto/getCountLikes',
             type: "get",
             data:{token:token, id_photo:data[i].id_photo},
             dataType: 'json',
@@ -198,7 +198,7 @@ function getCountLikes(data){
 function getCountComments(data){
     $.ajax({
         async: false,
-        url:'http://localhost:3000/commentsPhoto/getCountComments',
+        url:window.CONNECTION_NODE+'/commentsPhoto/getCountComments',
         type: "get",
         data:{token:token, id_photo:data.data.id_photo},
         dataType: 'json',
@@ -215,7 +215,7 @@ function getCountComments(data){
 function getCountAlbumsByPhoto(data){
     $.ajax({
         async: false,
-        url:'http://localhost:3000/albumsPhoto/getCountAlbumsByPhoto',
+        url:window.CONNECTION_NODE+'/albumsPhoto/getCountAlbumsByPhoto',
         type: "get",
         data:{token:token, id_photo:data.data.id_photo},
         dataType: 'json',
@@ -232,7 +232,7 @@ function getCountAlbumsByPhoto(data){
 function getCountGroupsByPhoto(data){
     $.ajax({
         async: false,
-        url:'http://localhost:3000/groupsPhoto/getCountGroupsByPhoto',
+        url:window.CONNECTION_NODE+'/groupsPhoto/getCountGroupsByPhoto',
         type: "get",
         data:{token:token, id_photo:data.data.id_photo},
         dataType: 'json',
@@ -255,7 +255,7 @@ function getPhotoById(id){
     var photo;
     $.ajax({
         async:false,
-        url:'http://localhost:3000/photo/getPhotoById',
+        url:window.CONNECTION_NODE+'/photo/getPhotoById',
         type: "get",
         data:{token:token, id_photo:id},
         dataType: 'json',
@@ -276,7 +276,7 @@ function updatePhoto(id){
     photo.is_private = $('#photoIsPrivate-'+id).is(":checked")?1:0;
 
     $.ajax({
-        url:'http://localhost:3000/photo/update_photo',
+        url:window.CONNECTION_NODE+'/photo/update_photo',
         type: "post",
         data:{
             token:token, 
@@ -297,7 +297,7 @@ function updatePhoto(id){
 
 function onClickChangeStateOfAlbumPhoto(action, photo, album){
     $.ajax({
-        url:'http://localhost:3000/albumsPhoto/'+action,
+        url:window.CONNECTION_NODE+'/albumsPhoto/'+action,
         type: "post",
         data:{token:token, id_photo:photo, id_album:album},
         dataType: 'json',
@@ -322,7 +322,7 @@ function onClickChangeStateOfAlbumPhoto(action, photo, album){
 
 function onClickChangeStateOfGroupPhoto(action, photo, group){
     $.ajax({
-        url:'http://localhost:3000/groupsPhoto/'+action,
+        url:window.CONNECTION_NODE+'/groupsPhoto/'+action,
         type: "post",
         data:{token:token, id_photo:photo, id_group:group},
         dataType: 'json',

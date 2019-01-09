@@ -32,4 +32,5 @@ upload
 
 #config
 /node/src/conn.js
+/design/js/conn/
 
