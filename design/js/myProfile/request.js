@@ -41,7 +41,7 @@ function createNewGroup(){
 
 function addGroupToFollower(res){
     $.ajax({
-        url:'http://localhost:3000/groupUser/addUserToGroup',
+        url:window.CONNECTION_NODE+'/groupUser/addUserToGroup',
         type: "post",
         data: {group: res[0].id_group, token:token} ,
         dataType:'json',

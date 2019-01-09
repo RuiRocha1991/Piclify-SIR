@@ -47,7 +47,7 @@ function verifyEmailIsValid(){
     $('#defaultRegisterFormEmail').addClass('mb-4'); 
     isEmailError=false;
     $.ajax({
-        url:'http://localhost:3000/validator/isEmail',
+        url:window.CONNECTION_NODE+'/validator/isEmail',
         type: "get",
         data: {email: email} ,
         dataType:'json',
