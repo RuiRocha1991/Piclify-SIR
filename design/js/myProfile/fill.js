@@ -76,8 +76,6 @@ function fillModalWithPhotoAlbums(albumsByUser, albumsByPhoto, photo){
 } */
 
 function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
-    console.log(groupsByPhoto[0])
-
     let groupHasPhoto =false
     $('#modal-body-groups .btn-group').remove();
     $('#modal-body-groups h6').remove();
@@ -85,7 +83,7 @@ function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
     for(var i=0; i<groupsByUser.length; i++){
         groupHasPhoto =false
         for(var j=0; j<groupsByPhoto.length; j++){
-            if(groupsByPhoto[j].group==groupsByUser[i].id_group){
+            if(groupsByPhoto[j].id_group==groupsByUser[i].id_group){
                 groupHasPhoto = true
             }
         }
@@ -100,6 +98,7 @@ function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
         
     }
     $('.select').click(function(){
+        console.log('select existe')
         if($(this).hasClass('active')){
             onClickChangeStateOfGroupPhoto('removeGroupOfPhoto',photo, $(this).data('id'));
         }else{
@@ -138,7 +137,7 @@ function fillUserPhotos(data){
                             </ul>
                             <ul class="list-inline mb-3">
                                 <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}"> ${data.countAlbums}</span><span> Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users" id="countGroups${data.data.id_photo}"></i><span> ${data.countGroups}</span><span> Groups</span></a></li>
+                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"> </i><span id="countGroups${data.data.id_photo}"> ${data.countGroups}</span><span> Groups</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input id="photoIsPrivate-${data.data.id_photo}" class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
                             </ul>
                             <span></span>

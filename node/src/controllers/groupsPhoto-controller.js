@@ -2,9 +2,30 @@
 const fetch = require('node-fetch');
 const authService = require('../services/auth-service');
 
-exports.countGroupsByPhoto= async (req,res,next)=>{
+exports.getCountGroupsByPhoto= async (req,res,next)=>{
     try{
         fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=countGroupsByPhoto',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}
+
+exports.getGroupsByPhoto= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=getGroupsByPhoto',
         {
             headers: {
                 'Accept':'application/json',

@@ -108,7 +108,7 @@ async function getAlbumsByPhoto(id){
 async function getGroupsByPhoto(id){
     var photo
     await $.ajax({
-        url:'http://localhost:3000/groupsPhoto/getCountGroupsByPhoto',
+        url:'http://localhost:3000/groupsPhoto/getGroupsByPhoto',
         type: "get",
         data: {id_photo: id, token:token},
         dataType:'json',
@@ -312,6 +312,31 @@ function onClickChangeStateOfAlbumPhoto(action, photo, album){
                 total++;
                 $('#countAlbums'+res.photo).text('');
                 $('#countAlbums'+res.photo).text(' '+ total);
+            }
+        },
+        error: function(errorMessage){
+            alert(errorMessage);
+        }
+    })
+}
+
+function onClickChangeStateOfGroupPhoto(action, photo, group){
+    $.ajax({
+        url:'http://localhost:3000/groupsPhoto/'+action,
+        type: "post",
+        data:{token:token, id_photo:photo, id_group:group},
+        dataType: 'json',
+        success: function(res){
+            if(action =='removeGroupOfPhoto'){
+                var total = $('#countGroups'+res.photo).text();
+                total --;
+                $('#countGroups'+res.photo).text('');
+                $('#countGroups'+res.photo).text(' '+total);
+            }else{
+                var total = $('#countGroups'+res.photo).text();
+                total++;
+                $('#countGroups'+res.photo).text('');
+                $('#countGroups'+res.photo).text(' '+ total);
             }
         },
         error: function(errorMessage){
