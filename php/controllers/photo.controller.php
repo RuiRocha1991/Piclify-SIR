@@ -31,6 +31,10 @@
 		$service = new PhotoService($connection, $photo);
         $photos=$service->getPhotoById();
         echo json_encode($photos);
+    }elseif($action =='getAllPhotosPublic'){
+        $connection = new Connectio($connection, null);
+        $photos= $service->getAllPhotosPublic();
+        echo json_encode($photos);
     }
     
 

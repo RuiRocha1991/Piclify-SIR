@@ -46,6 +46,12 @@
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
 
+        public function getAllPhotosPublic() {
+            $query = "select * from photos where is_private=0";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
         
     }
 

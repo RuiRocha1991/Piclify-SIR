@@ -4,7 +4,7 @@ $(document).ready(function(){
     window.$_GET = new URLSearchParams(location.search);
     getMembersGroup($_GET.get('id'));
     $.ajax({
-        url:'http://localhost:3000/group/getListGroupById',
+        url:window.CONNECTION_NODE+'/group/getListGroupById',
         type: "get",
         data: {token:token, id_group:$_GET.get('id') } ,
         dataType:'json',
@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 function getMembersGroup(id){
     $.ajax({
-        url:'http://localhost:3000/groupUser/getListUsersByGroup',
+        url:window.CONNECTION_NODE+'/groupUser/getListUsersByGroup',
         type: "get",
         data: {token:token, group:id} ,
         dataType:'json',
@@ -39,7 +39,7 @@ async function getDetailsMembers(data){
     $('#listMembers li').remove();
     for(var i=0; i<data.length;i++){
         await $.ajax({
-            url:'http://localhost:3000/user/getDetailsUserById',
+            url:window.CONNECTION_NODE+'/user/getDetailsUserById',
             type: "get",
             data: {token:token, id_user:data[i].idUser} ,
             dataType:'json',
