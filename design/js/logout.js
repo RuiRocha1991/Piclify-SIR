@@ -1,6 +1,6 @@
 function logout(){
     $.ajax({
-        url:'http://localhost:3000/user/logout',
+        url:window.CONNECTION_NODE+'/user/logout',
         type: "POST",
         dataType:'json',
         success: function (res) {
