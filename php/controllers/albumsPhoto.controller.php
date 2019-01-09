@@ -21,6 +21,13 @@
 		$service = new AlbumsPhotoService($connection, $albumsPhoto);
         $albumsPhoto=$service->getAlbumsByPhoto();
         echo json_encode($albumsPhoto);
+    } elseif($action == 'getPhotosByAlbum' ) {
+        $albumsPhoto= new Albums_Photo();
+        $albumsPhoto->__set('album', $_POST['id_album']);
+		$connection = new Connection();
+		$service = new AlbumsPhotoService($connection, $albumsPhoto);
+        $albumsPhoto=$service->getPhotosByAlbum();
+        echo json_encode($albumsPhoto);
     } elseif($action == 'addPhotoInAlbum' ) {
         $albumsPhoto= new Albums_Photo();
         $albumsPhoto->__set('photo', $_POST['id_photo']);
