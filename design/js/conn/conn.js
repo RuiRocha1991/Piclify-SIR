@@ -1,1 +1,0 @@
-var CONNECTION_NODE= 'http://localhost:3000';
