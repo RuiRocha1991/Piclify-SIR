@@ -47,7 +47,7 @@ function verifyEmailIsValid(){
     $('#defaultRegisterFormEmail').addClass('mb-4'); 
     isEmailError=false;
     $.ajax({
-        url:'http://localhost:3000/validator/isEmail',
+        url:'http://vps628806.ovh.net:3000/validator/isEmail',
         type: "get",
         data: {email: email} ,
         dataType:'json',
@@ -71,7 +71,7 @@ function verifyPasswordIsValid(){
     $('#defaultRegisterFormPasswordHelpBlock').removeClass('text-danger'); 
     isPasswordError=false;
     $.ajax({
-        url:'http://localhost:3000/validator/isPassword',
+        url:'http://vps628806.ovh.net:3000/validator/isPassword',
         type: "get",
         data: {password: password} ,
         dataType:'json',
@@ -117,7 +117,7 @@ function createAccountVerifyEmail(){
     if(data){
         $('#defaultRegisterFormButtonHelpBlock').text('');
         $.ajax({
-            url:'http://localhost:3000/user/getUserByEmail',
+            url:'http://vps628806.ovh.net:3000/user/getUserByEmail',
             type: "get",
             data: {email: data.email} ,
             dataType:'json',
@@ -141,7 +141,7 @@ function createAccountVerifyEmail(){
 
 function createAccountRegister(data){
     $.ajax({
-        url:'http://localhost:3000/user',
+        url:'http://vps628806.ovh.net:3000/user',
         type: "POST",
         data: data,
         dataType:'json',
@@ -176,7 +176,7 @@ function createLogin(){
     var data = getDataFromFormLogin();
     if(data){
         $.ajax({
-            url:'http://localhost:3000/user/login',
+            url:'http://vps628806.ovh.net:3000/user/login',
             type: "post",
             data: {email: data.email, password: data.password} ,
             dataType:'json',
