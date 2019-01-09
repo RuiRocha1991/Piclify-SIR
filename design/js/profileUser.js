@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 function getDetailsUser(id){
     $.ajax({
-        url:'http://localhost:3000/user/getDetailsUserById',
+        url:window.CONNECTION_NODE+'/user/getDetailsUserById',
         type: "get",
         data: {token:token, id_user: id} ,
         dataType:'json',
@@ -36,7 +36,7 @@ function fillProfileDetails(data){
 
 function getNumberFollowers(id){
     $.ajax({
-        url:'http://localhost:3000/user/getFollowers',
+        url:window.CONNECTION_NODE+'/user/getFollowers',
         type: "get",
         data: {id_user: id, token:token} ,
         dataType:'json',
@@ -51,7 +51,7 @@ function getNumberFollowers(id){
 
 function getListAlbums(id){
     $.ajax({
-        url:'http://localhost:3000/album/getListAlbums',
+        url:window.CONNECTION_NODE+'/album/getListAlbums',
         type: "get",
         data: {id_user: id, token:token},
         dataType:'json',
@@ -75,7 +75,7 @@ function fillListAlbums(data){
 
 function getListGroups(id){
     $.ajax({
-        url:'http://localhost:3000/groupUser/getListGroupsByUser',
+        url:window.CONNECTION_NODE+'/groupUser/getListGroupsByUser',
         type: "get",
         data: {user: id,token:token} ,
         dataType:'json',
@@ -93,7 +93,7 @@ async function getGroupsDetailsByUser(res){
     var list= new Array();
     for(var i=0; i<res.length;i++){
        await $.ajax({
-            url:'http://localhost:3000/group/getListGroupById',
+            url:window.CONNECTION_NODE+'/group/getListGroupById',
             type: "get",
             data: {id_group: res[i].idGroup, token:token} ,
             dataType:'json',
@@ -115,7 +115,7 @@ async function getGroupsDetailsByUser(res){
 
 function verifyIsFollowed(id){
     $.ajax({
-        url:'http://localhost:3000/follower/verifyFollower',
+        url:window.CONNECTION_NODE+'/follower/verifyFollower',
         type: "get",
         data: {id_user: id,token:token} ,
         dataType:'json',

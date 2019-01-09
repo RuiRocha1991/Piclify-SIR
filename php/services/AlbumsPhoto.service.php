@@ -35,6 +35,14 @@
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
+        public function getPhotosByAlbum() { 
+			$query = "select photo from albums_photos where album =:id_album";
+			$stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_album', $this->albumsPhoto->__get('album'));
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
         public function countAlbumsByPhoto(){
             $query = "select count(photo) as countAlbums from albums_photos where photo= :id_photo";
             $stmt= $this->connection->prepare($query);

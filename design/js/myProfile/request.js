@@ -159,6 +159,31 @@ async function getGroupsDetailsByUser(res){
     fillListGroups(list);
 }
 
+function getPhotosByAlbum(album){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/albumsPhoto/getPhotosByAlbum',
+        type: "get",
+        data: {token:token, id_album: album},
+        dataType: 'json',
+        success: async function(res) {
+            var photosInfo = await getInfoPhotos(res)
+            console.log('__________')
+            getCountLikes(photosInfo);
+        },
+        error: function(errorMessage){
+            alert(errorMessage);
+        }
+    })
+}
+
+function getInfoPhotos(data){
+    var photos = []
+    for(var i=0;i<data.length; i++){
+        photos.push(getPhotoById(data[i].photo))
+    }
+    return photos
+}
+
 function getPhotosByUser(){
     $.ajax({
         url:window.CONNECTION_NODE+'/photo/getPhotosByUser',
@@ -175,7 +200,8 @@ function getPhotosByUser(){
 }
 
 function getCountLikes(data){
-    $('#photosContainer .card').remove();
+    /* $('#photosContainer .card').remove(); */
+    console.log(data)
     for(var i=0; i<data.length; i++){
         $.ajax({
             async: false,

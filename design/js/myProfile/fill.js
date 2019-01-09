@@ -1,6 +1,6 @@
 function fillProfileDetails(data){
     var photo =data.profile_photo =='' ? 'no-photo.png': data.profile_photo;
-    $('#profile-photo').attr('src','../upload/profile/'+photo);
+    $('#container-profile-photo').css('background-image',"url('../upload/profile/"+photo+"')");
     $('#lb-name').text(data.name);
     $('#lb-email').text(data.email);
     $('#input-id_user').val(data.id_user);
@@ -12,9 +12,13 @@ function fillListAlbums(data){
     $('#listAlbuns li').remove();
 
     for(var i=0; i<data.length; i++){
-        $('#listAlbuns').append(`<li class="list-group-item">${data[i].description}</li>`);
+        $('#listAlbuns').append(`<li class="list-group-item listAlbums" data-id="${data[i].id_albums}">${data[i].description}</li>`);
     }
     $('#listAlbuns').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newAlbum" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Album"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" onclick="createNewAlbum()"><i class="fa fa-plus"></i></button></div></div></li>');
+    $('.listAlbums').click(function(){
+        $('#photosContainer').html("")
+        getPhotosByAlbum($(this).data('id'))
+    });
 }
 
 function fillListGroups(data){
@@ -98,7 +102,6 @@ function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
 }
 
 function fillUserPhotos(data){
-
     $('#photosContainer').append(`<div class="card mx-3 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="input-group mt-1 border-bottom">
@@ -108,8 +111,8 @@ function fillUserPhotos(data){
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body p-0">
-                            <img class="img-fluid m-0" src="./../upload/userPhotos/${data.data.user}/${data.data.path}" alt="Image">
+                        <div class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden;max-With: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
+                              
                         </div>
                         <div class="card-footer bg-white m-0 p-0">
                                 <div class="input-group mt-1 border-bottom">
