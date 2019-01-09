@@ -66,15 +66,6 @@ function fillModalWithPhotoAlbums(albumsByUser, albumsByPhoto, photo){
     
 }
 
-/* function fillModalWithPhotoGroups(data){
-    $('#modal-body-groups .btn-group').remove();
-    $('#modal-body-groups h6').remove();
-    $('#modal-body-groups').append('<h6>select the albums for the photo</h6>')
-    for(var i=0; i<data.length; i++){
-       $('#modal-body-groups').append(`<div title="${data[i].description}" class="btn-group btn-group-toggle p-1 div-btn-modal-albums m-3" data-toggle="buttons"><label class="btn btn-outline-light  "><input data-id="${data[i].id_group}"  type="checkbox" name="options" autocomplete="off" checked> ${data[i].title}</label></div>`)
-    }
-} */
-
 function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
     let groupHasPhoto =false
     $('#modal-body-groups .btn-group').remove();
