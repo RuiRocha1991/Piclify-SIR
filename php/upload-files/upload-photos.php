@@ -55,4 +55,5 @@
     $photoService->upload_new_photo();
     header('Location: ../../design/profile.html');
 
+
 ?>

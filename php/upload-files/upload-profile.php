@@ -24,7 +24,6 @@
     if(file_exists($targetPath)){
         unlink(realpath($targetPath));
     }
-    /* $targetPath=$basePath.$filePath; */
     if(!move_uploaded_file($_FILES['profile']['tmp_name'],$targetPath )){
         header('Location: ../../design/profile.html?error=Error to move image');
     }
