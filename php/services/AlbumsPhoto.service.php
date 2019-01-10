@@ -50,6 +50,14 @@
             $stmt->execute();
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         } 
+
+        public function getPhotosToVisitorByAlbum(){
+            $query = "select * from albums_photos where album= :album";
+            $stmt= $this->connection->prepare($query);
+            $stmt->bindValue(':album', $this->albumsPhoto->__get('album'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
     }
 
 

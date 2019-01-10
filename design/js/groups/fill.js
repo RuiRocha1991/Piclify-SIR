@@ -1,6 +1,5 @@
 function addCardToGroup(data,user){
-    console.log(data)
-    var time = calculateTimeOfUpload(data.data.date_upload)
+    var time = calculateTimeOfUpload(data.data.date_upload);
     $('#container').append(`<div class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${data.data.id_photo}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="media m-0">

@@ -13,9 +13,8 @@
             $query = "insert into comments (text, user, photo) values (:text, :id_user, :id_photo)";
             $stmt= $this->connection->prepare($query);
             $stmt->bindValue(':text', $this->commentPhoto->__get('text'));
-            $stmt->bindValue(':id_user', $this->commentPhoto->__get('id_user'));
-            $stmt->bindValue(':id_photo', $this->commentPhoto->__get('id_photo'));
-            
+            $stmt->bindValue(':id_user', $this->commentPhoto->__get('user'));
+            $stmt->bindValue(':id_photo', $this->commentPhoto->__get('photo'));
             $stmt->execute();
         }
 

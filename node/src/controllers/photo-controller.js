@@ -67,3 +67,45 @@ exports.getPhotoById= async (req,res,next)=>{
         });
     }
 }
+
+exports.getPhotosToVisitorByUser= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'photo.controller.php?action=getPhotosToVisitorByUser',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}
+
+exports.getPhotosToVisitorById= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'photo.controller.php?action=getPhotosToVisitorById',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}

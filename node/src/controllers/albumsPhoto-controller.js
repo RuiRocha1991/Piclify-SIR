@@ -105,4 +105,25 @@ exports.removeAlbumOfPhoto= async (req,res,next)=>{
             message:'Failure to process request'
         });
     }
+}//
+
+exports.getPhotosToVisitorByAlbum= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'albumsPhoto.controller.php?action=getPhotosToVisitorByAlbum',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
 }

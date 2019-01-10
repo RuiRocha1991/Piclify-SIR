@@ -46,13 +46,21 @@
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
 
-        public function getAllPhotosPublic() {
-            $query = "select * from photos where is_private=0";
+        public function getAllPhotosPublicByUser() {
+            $query = "select * from photos where is_private=0 and user = :id_user";
             $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_user', $this->photo->__get('user'));
             $stmt->execute();
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
         
+        public function getPhotoByIdToFollower() {
+            $query = "select * from photos where is_private=0 and id_photo = :id_photo";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_photo', $this->photo->__get('id_photo'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
     }
 
 

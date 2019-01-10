@@ -33,11 +33,13 @@
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
 
-
-
-       
+        public function isLikePhoto(){
+            $query = "select *  from likes_photo where id_photo= :id_photo and id_user =:id_user";
+            $stmt= $this->connection->prepare($query);
+            $stmt->bindValue(':id_photo', $this->likesPhoto->__get('id_photo'));
+            $stmt->bindValue(':id_user', $this->likesPhoto->__get('id_user'));
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
     }
-
-
-
 ?>

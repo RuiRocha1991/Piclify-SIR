@@ -6,4 +6,5 @@ const controller = require('../controllers/commentsPhoto-controller');
 const authService = require('../services/auth-service');
 
 router.get("/getCountComments", authService.authorize, controller.countComments);
+router.post("/addComment", authService.authorize, controller.addComment);
 module.exports = router;

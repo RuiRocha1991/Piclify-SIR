@@ -7,7 +7,7 @@ const authService = require('../services/auth-service');
 
 router.post('/addFollower', authService.authorize, controller.addFollower);
 
-router.delete('/deleteFollower', authService.authorize, controller.removeFollower);
+router.post('/removeFollower', authService.authorize, controller.removeFollower);
 
 router.get('/verifyFollower', authService.authorize, controller.verifyFollower);
 

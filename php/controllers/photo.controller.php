@@ -31,11 +31,27 @@
 		$service = new PhotoService($connection, $photo);
         $photos=$service->getPhotoById();
         echo json_encode($photos);
-    }elseif($action =='getAllPhotosPublic'){
-        $connection = new Connectio($connection, null);
-        $photos= $service->getAllPhotosPublic();
+    }elseif($action =='getPhotosToVisitorByUser'){
+        $photo = new Photo();
+        $photo->__set('user', $_POST['id_user']);
+        $connection = new Connection();
+        $service= new PhotoService($connection, $photo);
+        if($_POST['isFollower']=='true'){
+            $photos= $service->getPhotosByUser();
+        }else{
+            $photos= $service->getAllPhotosPublicByUser();
+        }
         echo json_encode($photos);
+    }elseif($action =='getPhotosToVisitorById'){
+        $photo = new Photo();
+        $photo->__set('id_photo', $_POST['id_photo']);
+        $connection = new Connection();
+        $service= new PhotoService($connection, $photo);
+        if($_POST['isFollower'][0]['isFollower']=='1'){
+            $photos= $service->getPhotoById();
+        }else{
+            $photos= $service->getPhotoByIdToFollower();
+        }    
+        echo json_encode($photos); 
     }
-    
-
 ?>

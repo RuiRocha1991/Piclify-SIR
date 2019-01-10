@@ -6,10 +6,6 @@ function calculateTimeOfUpload(uploadDate){
     var diffHours = Math.ceil(timeDiff / (60*60*1000));
     var diffMinutes = Math.ceil(timeDiff / (60*1000));
     var diffSeconds = Math.ceil(timeDiff / (1000));
-    console.log(diffDays)
-    console.log(diffHours)
-    console.log(diffMinutes)
-    console.log(diffSeconds)
     if(diffSeconds < 60){
         return diffSeconds+' seconds'
     }else if(diffSeconds == 60){

@@ -55,18 +55,18 @@ exports.verifyFollower= async (req, res, next)=>{
 }
 
 exports.removeFollower= async (req,res, next)=>{
-    /*const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
     const data = await authService.decodeToken(token);  
-    req.query.id_follower=data.id_user;
+    req.body.id_follower=data.id_user;
     try{
-        fetch(global.URL_CONTROLLERS+'follower.controller.php?action=addFollower',
+        fetch(global.URL_CONTROLLERS+'follower.controller.php?action=removeFollower',
         {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(req.query) 
+            body: JSON.stringify(req.body) 
         }
         )
         .then(data => data.json())
@@ -77,5 +77,5 @@ exports.removeFollower= async (req,res, next)=>{
         res.status(500).send({
             message:'Falha ao processar requisição'
         });
-    }*/
+    }
 }

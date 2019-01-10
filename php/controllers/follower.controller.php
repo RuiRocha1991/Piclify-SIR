@@ -13,7 +13,8 @@
         $follower->__set('id_follower', $_POST['id_follower']);
         $connection = new Connection();
         $service = new FollowerService($connection, $follower);
-        $service->addFollolwer();
+        $service->addFollower();
+        echo json_encode( $follower );
     }elseif($action == 'verifyFollower'){
         $follower = new Follower();
         $follower->__set('id_user',$_POST['id_user']);
@@ -28,5 +29,6 @@
         $connection= new Connection();
         $service = new FollowerService($connection, $follower);
         $service->removeFollower();
+        echo json_encode( $follower );
     }
 ?>

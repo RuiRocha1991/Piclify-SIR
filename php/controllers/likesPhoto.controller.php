@@ -14,5 +14,29 @@
 		$service = new LikesPhotoService($connection, $likesPhoto);
         $total=$service->countLikes();
         echo json_encode($total);
+    }elseif($action == 'isLikePhoto' ) {
+        $likesPhoto= new Like_photo();
+        $likesPhoto->__set('id_photo', $_POST['id_photo']);
+        $likesPhoto->__set('id_user', $_POST['id_user']);
+		$connection = new Connection();
+		$service = new LikesPhotoService($connection, $likesPhoto);
+        $likesPhoto=$service->isLikePhoto();
+        echo json_encode($likesPhoto);
+    }elseif($action == 'addLike' ) {
+        $likesPhoto= new Like_photo();
+        $likesPhoto->__set('id_photo', $_POST['id_photo']);
+        $likesPhoto->__set('id_user', $_POST['id_user']);
+		$connection = new Connection();
+		$service = new LikesPhotoService($connection, $likesPhoto);
+        $service->addLike();
+        echo json_encode($likesPhoto);
+    }elseif($action == 'removeLike' ) {
+        $likesPhoto= new Like_photo();
+        $likesPhoto->__set('id_photo', $_POST['id_photo']);
+        $likesPhoto->__set('id_user', $_POST['id_user']);
+		$connection = new Connection();
+		$service = new LikesPhotoService($connection, $likesPhoto);
+        $service->removeLike();
+        echo json_encode($likesPhoto);
     }     
 ?>
