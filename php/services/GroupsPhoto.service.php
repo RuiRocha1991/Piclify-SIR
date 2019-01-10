@@ -34,6 +34,14 @@
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
+        public function getPhotosByGroup() { 
+			$query = "select photo from group_photo_relations where id_group =:id_group";
+			$stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_group', $this->groupsPhoto->__get('group'));
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
         public function countGroupsByPhoto(){
             $query = "select count(photo) as countGroups from group_photo_relations where photo= :id_photo";
             $stmt= $this->connection->prepare($query);

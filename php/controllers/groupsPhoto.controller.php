@@ -21,7 +21,14 @@
 		$service = new GroupsPhotoService($connection, $groupsPhoto);
         $groupsPhoto=$service->getGroupsByPhoto();
         echo json_encode($groupsPhoto);
-    }elseif($action == 'addPhotoInGroup' ) {
+    }elseif($action == 'getPhotosByGroup' ) {
+        $groupsPhoto= new Group_photo_relations();
+        $groupsPhoto->__set('group', $_POST['id_group']);
+		$connection = new Connection();
+		$service = new GroupsPhotoService($connection, $groupsPhoto);
+        $groupsPhoto=$service->getPhotosByGroup();
+        echo json_encode($groupsPhoto);
+    } elseif($action == 'addPhotoInGroup' ) {
         $groupsPhoto= new Group_photo_relations();
         $groupsPhoto->__set('photo', $_POST['id_photo']);
         $groupsPhoto->__set('group', $_POST['id_group']);

@@ -8,3 +8,8 @@
 .list-group-item{
     transition:  0.5s ease;
 }
+
+#container-btn_follower{
+    background: rgba(26,35,126, 0.9);
+    border-radius: 5px;
+}

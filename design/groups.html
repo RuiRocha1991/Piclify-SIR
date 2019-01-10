@@ -56,204 +56,31 @@
     </header>
 
     <section class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="m-3 col-xl-2 col-lg-3 col-md-11 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
-                <div class="mb-3">
-                    <h5 id="titleGroup" class="m-2 text-center"></h5>
-                    <hr>
-                    <p id="descriptionGroup" class="m-2 text-center"></p>
+            <div class="row m-3">
+                <div class="col-xl-3 col-lg-4 col-md-11 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
+                    <div class="mb-3">
+                        <h5 id="titleGroup" class="m-2 text-center"></h5>
+                        <hr>
+                        <p id="descriptionGroup" class="m-2 text-center"></p>
+                    </div>
+                    <div id="container-btn_follower" class="p-1 mb-2">
+                            <button id="btn-follower" class="btn btn-outline-light btn-block m-0"> Join Group </button>
+                        </div>
+                    <div id="container-info-user" class="p-3 border-top ">              
+                        <h6 id="lb-members" class="mx-1 my-3 details-profile text-center"></h6>
+                        <ul id="listMembers" class="list-group list-group-flush">   
+                        </ul>
+                        <br>
+                    </div>
                 </div>
-                <div id="container-info-user" class="p-3 border-top ">
-                    <label id="lb-members" class="m-2 details-profile"></label><br>                  
-                    <h6 class="mx-1 my-3 details-profile text-center">Members </h6>
-                    <ul id="listMembers" class="list-group list-group-flush">
-                        
-                    </ul>
-                    <br>
+                
+                <div class="col-xl-8 col-lg-7 col-md-11 col-sm-11" >
+                    <div id="container" class="row justify-content-center">          
+                    </div> <!--End Row-->
                 </div>
             </div>
-            
-            <div class="mx-3 col-xl-9 col-lg-8 col-md-11 col-sm-11" >
-                <div class="row justify-content-center">
-
-                    <div class="card shadow-sm m-3 col-xl-3 col-lg-3 col-md-5 col-sm-11" data-id="1"> <!--Start Card-->
-                        <div class="card-header bg-white">
-                            <div class="input-group mt-1 border-bottom">
-                                <input data-id="1-photo" type="text" class="name-photo form-control border-0 bg-white text-center" value="Name Photo" disabled="disabled">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary border-0 btn-edit-name" type="button"><i class="fa fa-edit"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body p-0">
-                            <img class="img-fluid m-0" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg" alt="Image">
-                        </div>
-                        <div class="card-footer bg-white m-0 p-0">
-                                <div class="input-group mt-1 border-bottom">
-                                        <input data-id="1-description" type="text" class="description form-control border-0 bg-white text-center" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit" disabled="disabled">
-                                        <div class="input-group-append">
-                                            <button class="btn-edit-description btn btn-outline-secondary border-0" type="button"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                    </div>
-                            
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> 242 Likes</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> 12</span></a></li>
-                            </ul>
-                            <ul class="list-inline mb-3">
-                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-book"></i><span> 3 Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right" data-id="1"><a><i class="fa fa-users"></i><span> 6 Groups</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <input class="form-check-input pt-2" type="checkbox" value="" id="defaultCheck1"><span>Is private</span></a></li>
-                            </ul>
-                            <span></span>
-                        </div>
-                    </div> <!--End Card-->
-                              
-                </div> <!--End Row-->
-            </div>
-        </div>
-
     </section>
 
-<!-- Modal upload photo profile-->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <form id="form-upload-profile " class="border m-3 p-4" action="../php/upload-files/upload-profile.php" method="POST" enctype="multipart/form-data">
-                <div class="custom-file m-2">
-                    <input class="custom-file-input" type="file" id="input-photo-profile" name="profile">
-                    <label class="custom-file-label">Select photo</label>
-                </div>
-                <input id="input-id_user" type="text" name="number" >
-                <input class="btn btn-success" type="submit">
-                <input class="btn btn-danger" type="reset">
-            </form>
-            <div class="modal-footer mt-2">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-        </div>
-    </div>
-<!-- End Modal area upload photo to profile -->
-
-<!-- Modal area upload photos-->
-    <div class="modal-upload-photo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <form id="form-upload-photos " class="border m-3 p-4" action="../php/upload-files/upload-photos.php" method="POST" enctype="multipart/form-data">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="name_photo" name="name">Name</span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Name Photo" >
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="description-photo" name="description">Description</span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Description">
-                </div>
-                <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" id="isPrivate" name="isPrivate">
-                    <label class="custom-control-label" for="isPrivate">Is private</label>
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="input-photos" name="photos" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="input-photos">Choose file</label>
-                    </div>
-                </div>
-                <input id="form-id_user" type="text" name="number" >
-                <input class="btn btn-success" type="submit">
-                <input class="btn btn-danger" type="reset">
-            </form>
-            <div class="modal-footer mt-2">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-        </div>
-    </div>
-<!-- End Modal area upload photos-->
-
-<!-- Modal edit albums of photo-->
-<div class="modal fade" id="modal-edit-albums" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Albums of Photo</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div id="modal-body-albums" class="modal-body" data-id="">
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="saveAlbunsOfPhoto()">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- End Modal edit albuns of photo-->
-
-<!-- Modal edit Groups of photo-->
-<div class="modal fade" id="modal-edit-groups" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" >Edit Group of Photo</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div id="modal-body-groups" class="modal-body" data-id="">
-                    
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="saveGroupsOfPhoto()">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- End Modal edit groups of photo -->
-
-<!-- Modal create Groups-->
-<div class="modal fade" id="modal-create-groups" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" >Create New Group of Photo</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Title</label>
-                        <input type="text" class="form-control" id="formIdTitleGroup" placeholder="Title Group">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">Description</label>
-                        <input type="text" class="form-control" id="formIdDescriptionGroup" placeholder="Description Group">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="createNewGroup()" data-dismiss="modal">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- End Modal edit groups -->
 
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
@@ -263,7 +90,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="js/conn/conn.js"></script>
     <script src="js/logout.js"></script>
-    <script src="js/groups.js"></script>
+    <script src="js/groups/groups.js"></script>
+    <script src="js/groups/fill.js"></script>
+    <script src="js/groups/request.js"></script>
+    <script src="js/globalFunctions/calcTime.js"></script>
     
     
 </body>

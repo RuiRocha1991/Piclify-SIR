@@ -44,6 +44,27 @@ exports.getGroupsByPhoto= async (req,res,next)=>{
     }
 }
 
+exports.getPhotosByGroup= async (req,res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=getPhotosByGroup',
+        {
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query)
+        })
+        .then(data=> data.json())
+        .then(data=> res.send(data));
+
+    }catch(e){
+        res.status(500).send({
+            message:'Failure to process request'
+        });
+    }
+}
+
 exports.addPhotoInGroup= async (req,res,next)=>{
     try{
         fetch(global.URL_CONTROLLERS+'groupsPhoto.controller.php?action=addPhotoInGroup',

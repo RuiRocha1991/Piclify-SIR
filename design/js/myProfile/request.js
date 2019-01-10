@@ -167,7 +167,6 @@ function getPhotosByAlbum(album){
         dataType: 'json',
         success: async function(res) {
             var photosInfo = await getInfoPhotos(res)
-            console.log('__________')
             getCountLikes(photosInfo);
         },
         error: function(errorMessage){
@@ -200,8 +199,6 @@ function getPhotosByUser(){
 }
 
 function getCountLikes(data){
-    /* $('#photosContainer .card').remove(); */
-    console.log(data)
     for(var i=0; i<data.length; i++){
         $.ajax({
             async: false,

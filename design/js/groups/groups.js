@@ -9,6 +9,8 @@ $(document).ready(function(){
         data: {token:token, id_group:$_GET.get('id') } ,
         dataType:'json',
         success: function (res) {
+            console.log(res)
+            getPhotosByGroup($_GET.get('id'))
             fillInfoAboutGroup(res);
         },
         error: function (errorMessage) {
@@ -25,7 +27,8 @@ function getMembersGroup(id){
         data: {token:token, group:id} ,
         dataType:'json',
         success: function (res) {
-            $('#lb-members').text('Membres: ' +res.length);
+            $('#lb-members').text('Members:  ' +res.length);
+
             getDetailsMembers(res);
         },
         error: function (errorMessage) {
@@ -61,6 +64,13 @@ async function getDetailsMembers(data){
 
 function fillInfoAboutGroup(data){
     $('#titleGroup').text(data[0].title);
-    $('#descriptionGroup').text(data[0].description);
-    
+    $('#descriptionGroup').text(data[0].description); 
+}
+
+function initFunctionsCard(){
+    $('.card').hover(function(){
+        $(this).addClass('shadow');
+    },function(){
+        $(this).removeClass('shadow');
+    });  
 }

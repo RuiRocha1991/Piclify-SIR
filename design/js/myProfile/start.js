@@ -106,7 +106,6 @@ function initFunctionGroups(){
     $('.groups').click(async function(){
         let id_photo = $(this).parent().parent().parent().data('id');
         let groupsByPhoto =await getGroupsByPhoto(id_photo)
-        console.log(groupsByPhoto)
         $('#modal-edit-groups').modal('show');
         $('#modal-body-groups').attr("data-id",id_photo);
         fillModalWithPhotoGroups(ListGroups, groupsByPhoto, id_photo);
