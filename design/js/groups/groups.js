@@ -9,7 +9,6 @@ $(document).ready(function(){
         data: {token:token, id_group:$_GET.get('id') } ,
         dataType:'json',
         success: function (res) {
-            console.log(res)
             getPhotosByGroup($_GET.get('id'))
             fillInfoAboutGroup(res);
         },

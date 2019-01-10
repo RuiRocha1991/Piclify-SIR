@@ -148,7 +148,7 @@ async function getGroupsDetailsByUser(res){
             data: {id_group: res[i].idGroup, token:token} ,
             dataType:'json',
             success: function (res) {
-                //ListGroups.push(res[0]);
+                ListGroups.push(res[0]);
                 list.push(res[0]);
             },
             error: function (errorMessage) {
