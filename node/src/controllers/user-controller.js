@@ -167,6 +167,46 @@ exports.getDetailsUserById=(req, res,next)=>{
     }
 }
 
+exports.verifyIsShowMyProfile=async (req, res,next)=>{
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token); 
+    try{
+        if(req.query.id_user== data.id_user){
+            res.send({
+                IsShowMyProfile: true
+            });
+        }else{
+            res.send({
+                IsShowMyProfile:false
+            });
+        }
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }  
+}
+
+exports.getUserByNameEmailCountryLocality= (req, res,next)=>{
+    try{
+        fetch(global.URL_CONTROLLERS+'user.controller.php?action=getUserByNameEmailCountryLocality',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d => res.send(d)  );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }  
+}
 
 exports.logout= async (req, res, next)=>{
     req.session.destroy(err => {

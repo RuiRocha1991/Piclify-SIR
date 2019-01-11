@@ -50,6 +50,27 @@ exports.getListGroupById=  (req, res, next)=>{
     }
 }
 
+exports.getGroupByTitleOrDescription =(req, res, next) =>{
+    try{
+        fetch(global.URL_CONTROLLERS+'group.controller.php?action=getGroupByTitleOrDescription',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d =>  res.send(d) );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+}
+
 exports.getGroupById= (req, res, next)=>{
     try{
         fetch(global.URL_CONTROLLERS+'group.controller.php?action=getGroupById',

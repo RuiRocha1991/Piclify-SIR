@@ -35,6 +35,15 @@
             $stmt->execute(); 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        public function getGroupByTitleOrDescription(){
+            $query ='SELECT * FROM photo_group WHERE title LIKE :title or description LIKE :description';
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':title', "%{$this->group->__get('title')}%");
+            $stmt->bindValue(':description', "%{$this->group->__get('description')}%");
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
     }
 
 ?>

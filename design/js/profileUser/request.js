@@ -8,6 +8,7 @@ function getDetailsUser(id){
         success: function (res) {
             user=res[0];
             fillProfileDetails(res[0]);
+            verifyIsShowMyProfile(res[0].id_user);
         },
         error: function (errorMessage) {
             logout();
@@ -55,6 +56,23 @@ function getListGroups(id){
         dataType:'json',
         success: function (res) {
             getGroupsDetailsByUser(res);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+}
+
+function verifyIsShowMyProfile(id){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/user/verifyIsShowMyProfile',
+        type: "get",
+        data: {id_user: id, token:token} ,
+        dataType:'json',
+        success: function (res) {
+            if(res.IsShowMyProfile){
+                $('#container-btn_follower').css('visibility', 'hidden');
+            }
         },
         error: function (errorMessage) {
             alert(errorMessage);

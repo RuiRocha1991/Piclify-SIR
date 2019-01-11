@@ -24,5 +24,13 @@
 		$service = new GroupService($connection, $group);
         $group=$service->getGroupByID();
         echo json_encode($group);
+    }elseif($action=='getGroupByTitleOrDescription'){
+        $group= new Group_photo();
+        $group->__set('title', $_POST['title']);
+        $group->__set('description', $_POST['description']);
+		$connection = new Connection();
+		$service = new GroupService($connection, $group);
+        $groups=$service->getGroupByTitleOrDescription();
+        echo json_encode($groups);
     }
 ?>
