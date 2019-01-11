@@ -20,8 +20,7 @@ $(document).ready(async function(){
     loadPhotos(listPhotos);
 });
 
-function initFunctions(id){
-   
+function initFunctionsIndex(id){
     $('#card'+id).hover(function(){
         $(this).addClass('shadow');
     },function(){
@@ -47,4 +46,10 @@ function initFunctions(id){
             }
         }
     });
+
+    $('#photo'+id).click(function(){
+        console.log("abrir aqui o modal");
+        //select photo.path, photo.name, user.name, user.path .....
+        //select * from comments where id_photo=id
+    })
 }

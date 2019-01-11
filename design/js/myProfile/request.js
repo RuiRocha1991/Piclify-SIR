@@ -54,21 +54,6 @@ function addGroupToFollower(res){
     });
 }
 
-function getNumberFollowers(id){
-    $.ajax({
-        url:window.CONNECTION_NODE+'/user/getFollowers',
-        type: "get",
-        data: {id_user: id, token:token} ,
-        dataType:'json',
-        success: function (res) {
-            $('#lb-followers').text(res[0].followers+' followers');
-        },
-        error: function (errorMessage) {
-            alert(errorMessage);
-        }
-    });
-}
-
 function getListAlbums(id){
     
     $.ajax({
@@ -167,8 +152,10 @@ function getPhotosByAlbum(album){
         data: {token:token, id_album: album},
         dataType: 'json',
         success: async function(res) {
-            var photosInfo = await getInfoPhotos(res)
-            getCountLikes(photosInfo);
+            countLoad =0;
+            countuploadedPhotos=4;
+            listPhotos = await getInfoPhotos(res);
+            loadPhotos(listPhotos);
         },
         error: function(errorMessage){
             alert(errorMessage);
@@ -181,104 +168,29 @@ function getInfoPhotos(data){
     for(var i=0;i<data.length; i++){
         photos.push(getPhotoById(data[i].photo))
     }
-    return photos
+    return photos;
 }
 
-async function getPhotosByUser(){
-    await $.ajax({
-        url:window.CONNECTION_NODE+'/photo/getPhotosByUser',
+function getPhotosToMyProfile(){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/photo/getPhotosToMyProfile',
         type: "get",
         data: {token:token},
         dataType: 'json',
         success: function(res) {
             listPhotos=res;
+            loadPhotos(res);
         },
         error: function(errorMessage){
             alert(errorMessage);
         }
     })
-    loadPhotos(listPhotos);
 }
 
 function loadPhotos(photos){
-    getCountLikes(photos.slice(countLoad,countuploadedPhotos));
+    fillUserPhotos(photos.slice(countLoad,countuploadedPhotos));
     countLoad=countuploadedPhotos;
     countuploadedPhotos=countuploadedPhotos+rangeLoad;
-}
-
-function getCountLikes(data){
-    for(var i=0; i<data.length; i++){
-        $.ajax({
-            async: false,
-            url:window.CONNECTION_NODE+'/likesPhoto/getCountLikes',
-            type: "get",
-            data:{token:token, id_photo:data[i].id_photo},
-            dataType: 'json',
-            success: function(res){
-                var result={data:data[i], countLikes : res[0].countLikes};
-                getCountComments(result);
-            },
-            error: function(errorMessage){
-                alert(errorMessage);
-            }
-        })
-    }
-}
-
-function getCountComments(data){
-    $.ajax({
-        async: false,
-        url:window.CONNECTION_NODE+'/commentsPhoto/getCountComments',
-        type: "get",
-        data:{token:token, id_photo:data.data.id_photo},
-        dataType: 'json',
-        success: function(res){
-            var result ={data:data.data, countLikes : data.countLikes, countComments: res[0].countComments};
-            getCountAlbumsByPhoto(result);
-        },
-        error: function(errorMessage){
-            alert(errorMessage);
-        }
-    })
-}
-
-function getCountAlbumsByPhoto(data){
-    $.ajax({
-        async: false,
-        url:window.CONNECTION_NODE+'/albumsPhoto/getCountAlbumsByPhoto',
-        type: "get",
-        data:{token:token, id_photo:data.data.id_photo},
-        dataType: 'json',
-        success: function(res){
-            var result ={data:data.data, countLikes : data.countLikes, countComments: data.countComments, countAlbums:res[0].countAlbums};
-            getCountGroupsByPhoto(result);
-        },
-        error: function(errorMessage){
-            alert(errorMessage);
-        }
-    })
-}
-
-function getCountGroupsByPhoto(data){
-    $.ajax({
-        async: false,
-        url:window.CONNECTION_NODE+'/groupsPhoto/getCountGroupsByPhoto',
-        type: "get",
-        data:{token:token, id_photo:data.data.id_photo},
-        dataType: 'json',
-        success: function(res){
-            var result ={
-                data:data.data, 
-                countLikes : data.countLikes, 
-                countComments: data.countComments, 
-                countAlbums:data.countAlbums,
-                countGroups: res[0].countGroups};
-            fillUserPhotos(result);
-        },
-        error: function(errorMessage){
-            alert(errorMessage);
-        }
-    })  
 }
 
 function getPhotoById(id){

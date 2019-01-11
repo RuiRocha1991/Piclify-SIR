@@ -19,7 +19,6 @@ async function searchUserAndGroup(){
         listResult['groups']=groups;
     }
     fillAutoComplete(listResult);
-    //console.log(listResult);
 }
 
 async function getUserByNameEmailCountryLocality(){
