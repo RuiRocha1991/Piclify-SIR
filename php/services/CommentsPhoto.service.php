@@ -28,6 +28,15 @@
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
 
+        public function getCommentsByPhoto(){
+            $query = "select * from comments where photo= :id_photo";
+            $stmt= $this->connection->prepare($query);
+            $stmt->bindValue(':id_photo', 9);
+            $stmt->execute();
+            return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
+        }
+        
+
 
 
        

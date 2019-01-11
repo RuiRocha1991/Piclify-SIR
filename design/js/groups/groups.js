@@ -1,5 +1,5 @@
 var token =document.cookie.replace('token=', '');
-
+var modal;
 $(document).ready(function(){
     window.$_GET = new URLSearchParams(location.search);
     getMembersGroup($_GET.get('id'), $_GET.get('user'));
@@ -17,6 +17,13 @@ $(document).ready(function(){
             document.location.href = 'login.html';
         }
     });
+    modal= document.getElementById('modalPhoto');
+    window.onclick = function(event){
+        if(event.target ==modal){
+            modal.style.display = "none"
+            console.log('ola mano')
+        }
+    }
 });
 
 function getMembersGroup(group,user){
@@ -47,7 +54,7 @@ async function getDetailsMembers(data,user){
                 dataType:'json',
                 success: function (res) {
 
-                    $('#listMembers').append(`<div class="row ml-3 mb-3 userProfile" style="align-items:center;" data-id="${res[0].id_user}" >
+                    $('#listMembers').append(`<div class="row ml-3 mb-3 userProfile border-top border-bottom" style="align-items:center;" data-id="${res[0].id_user}" >
                         <div class=" p-0" style="background-image: url('./../upload/profile/${res[0].profile_photo}'); overflow:hidden; max-height:100%; background-repeat:no-repeat; background-position:center; background-size:cover; height:40px;width:40px; border-radius: 100%"></div>
                         <small class="ml-3 mt-2" style="font-size: 20px;font-weight: bold;">${res[0].name}</small>
                     </div>`)

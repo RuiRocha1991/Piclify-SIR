@@ -1,6 +1,7 @@
 function addCardToGroup(data,user){
+    console.log(data)
     var time = calculateTimeOfUpload(data.data.date_upload);
-    $('#container').append(`<div id="photoCard" class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${user.id_user}"> <!--Start Card-->
+    $('#container').append(`<div id="photoCard${data.data.id_photo}" class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${user.id_user}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="media m-0">
                                 <div class="d-flex mr-3 userPhoto" style="background-image: url('./../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 50%; cursor:pointer">
@@ -46,17 +47,10 @@ function addCardToGroup(data,user){
                     });
     $('.userPhoto').click(function(){
         document.location.href = 'profileUser.html?id='+user.id_user;
-    });              
-
-    $("#photoCard").click(function() {
-        $(".modal-view-photo").modal('show')
-        $(".photo").html(`<div style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat;                            background-position:center; background-size:contain; height:100%; width: 100%;">
-        </div>`)
-        $(".user-photo").html(`<div style="background-image: url('./../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat;                            background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 100%; cursor:pointer">
-        </div>`)
-        $(".user-name").html(user.name)
-        $(".upload-time").html(time)
-        $('.description-photo').html(data.data.description)
+    });   
+    $("#photoCard"+data.data.id_photo).click(function() {
+        modal.style.display = "block";
+        openPhotoModal(data,user)
+        getComments(data.data.id_photo)
     });
-        
 }

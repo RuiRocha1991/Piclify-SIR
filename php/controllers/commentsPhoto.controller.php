@@ -23,5 +23,12 @@
 		$service = new CommentsPhotoService($connection, $commentsPhoto);
         $service->addComment();
         echo json_encode($commentsPhoto);
-    }     
+    }if($action == 'getCommentsByPhoto' ) {
+        $commentsPhoto= new Comment();
+        $commentsPhoto->__set('photo', 9);
+		$connection = new Connection();
+		$service = new CommentsPhotoService($connection, $commentsPhoto);
+        $total=$service->getCommentsByPhoto();
+        echo json_encode($total);
+    }      
 ?>
