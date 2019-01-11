@@ -52,6 +52,16 @@
         $userService = new UserService($connection, $user);
         $user=$userService->getDetailsUserById();
         echo json_encode($user);
+    }elseif($action=='getUserByNameEmailCountryLocality'){
+        $user = new User();
+        $user->__set('name', $_POST['name']);
+        $user->__set('email', $_POST['email']);
+        $user->__set('locality', $_POST['locality']);
+        $user->__set('country', $_POST['country']);
+        $connection = new Connection();
+        $userService = new UserService($connection, $user);
+        $user=$userService->getUserByNameEmailCountryLocality();
+        echo json_encode($user);
     }
     
 ?>

@@ -30,5 +30,19 @@
         $service = new FollowerService($connection, $follower);
         $service->removeFollower();
         echo json_encode( $follower );
+    }elseif($action == 'getMyFollowed'){
+        $follower = new Follower();
+        $follower->__set('id_follower', $_POST['id_follower']);
+        $connection= new Connection();
+        $service = new FollowerService($connection, $follower);
+        $myFollowed = $service->getMyFollowed();
+        echo json_encode( $myFollowed );
+    }elseif($action == 'getPhotosMyFollowedAndMY'){
+        $follower = new Follower();
+        $follower->__set('id_follower', $_POST['id_follower']);
+        $connection= new Connection();
+        $service = new FollowerService($connection, $follower);
+        $myFollowed = $service->getPhotosMyFollowedAndMY();
+        echo json_encode( $myFollowed );
     }
 ?>

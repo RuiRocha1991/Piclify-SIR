@@ -1,0 +1,7 @@
+#autoComplete{
+    position: absolute; 
+    margin-top:40px; 
+    background-color: white; 
+    width: 300px; 
+    visibility: hidden;
+}

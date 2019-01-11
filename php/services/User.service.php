@@ -10,8 +10,8 @@
         }
 
         public function create() { //create
-            $query = 'insert into user(birth_date, country, email, genre, is_validate, locality, name, password )
-			values(:birth_date, :country, :email, :genre, :is_validate, :locality, :name, :password)';
+            $query = 'insert into user(birth_date, country, email, genre, is_validate, locality, name, password, profile_photo )
+			values(:birth_date, :country, :email, :genre, :is_validate, :locality, :name, :password, :profile_photo)';
             $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':birth_date', $this->user->__get('birth_date'));
             $stmt->bindValue(':country', $this->user->__get('country'));
@@ -21,6 +21,7 @@
             $stmt->bindValue(':locality', $this->user->__get('locality'));
             $stmt->bindValue(':name', $this->user->__get('name'));
 			$stmt->bindValue(':password', $this->user->__get('password'));
+			$stmt->bindValue(':profile_photo','no-photo.png');
 			//is_active
 			$stmt->execute();
         }
@@ -80,21 +81,17 @@
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
 
-		public function recuperarTarefasPendentes() {
-			/*$query = '
-				select 
-					t.id, s.status, t.tarefa 
-				from 
-					tb_tarefas as t
-					left join tb_status as s on (t.id_status = s.id)
-				where
-					t.id_status = :id_status
-			';
+		public function getUserByNameEmailCountryLocality() { 
+			$query = "select * from user where name LIKE :name or email LIKE :email or country LIKE :country or locality LIKE :locality";
 			$stmt = $this->connection->prepare($query);
-			$stmt->bindValue(':id_status', $this->tarefa->__get('id_status'));
+			$stmt->bindValue(':email', "%{$this->user->__get('name')}%");
+			$stmt->bindValue(':name', "%{$this->user->__get('name')}%");
+			$stmt->bindValue(':country', "%{$this->user->__get('name')}%");
+			$stmt->bindValue(':locality', "%{$this->user->__get('name')}%");
 			$stmt->execute();
-			return $stmt->fetchAll(PDO::FETCH_OBJ);*/
+			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
+		
     }
 
 ?>

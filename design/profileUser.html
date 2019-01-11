@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/brands.css" integrity="sha384-1KLgFVb/gHrlDGLFPgMbeedi6tQBLcWvyNUN+YKXbD7ZFbjX6BLpMDf0PJ32XJfX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/fontawesome.css" integrity="sha384-jLuaxTTBR42U2qJ/pm4JRouHkEDHkVqH0T1nyQXn1mZ7Snycpf6Rl25VBNthU4z0" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"  href="../design/css/nav-bar/nav-bar.css" />
+    <link rel="stylesheet" type="text/css"  href="../design/css/autoComplete/autocompleto.css" />
     <link rel="stylesheet" type="text/css"  href="../design/css/profileUser/profileUser.css" />
 
 </head>
@@ -40,6 +41,8 @@
                             <span class="icon"><i class="fa fa-search"></i></span>
                             <input type="search" id="search" placeholder="Search..." />
                         </div>
+                        <ul id="autoComplete" class="list-group list-group-flush rounded">
+                        </ul>
                     </div>
                     <div style="clear:both"></div>
                     <ul class="navbar-nav ">
@@ -104,6 +107,8 @@
     <script src="js/conn/conn.js"></script>
     <script src="js/logout.js"></script>
     <script src="js/profileUser/profileUser.js"></script>
+    <script src="js/search/fill.js"></script>
+    <script src="js/search/request.js"></script>
     <script src="js/profileUser/fill.js"></script>
     <script src="js/profileUser/request.js"></script>
     <script src="js/comments/request.js"></script>

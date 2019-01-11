@@ -27,6 +27,12 @@ function fillListAlbums(data){
     })
 }
 
+function loadPhotos(photos, user){
+    fillCardPhotos(photos.slice(countLoad,countuploadedPhotos),user);
+    countLoad=countuploadedPhotos;
+    countuploadedPhotos=countuploadedPhotos+rangeLoad;
+}
+
 async function fillCardPhotos(photos, user){
     $('#container .card').remove();
     for(var i=0; i<photos.length; i++){
@@ -34,7 +40,7 @@ async function fillCardPhotos(photos, user){
         var comments= await getCountCommentsByPhoto(photos[i].id_photo);
         var islike = await getIsLikePhoto(photos[i].id_photo) ? 'fas': 'far';
         var time = calculateTimeOfUpload(photos[i].date_upload);
-        $('#container').append(`<div class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded"> <!--Start Card-->
+        $('#container').append(`<div id="card${photos[i].id_photo}" class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded"> <!--Start Card-->
             <div class="card-header bg-white">
                 <div class="media m-0">
                     <div class="d-flex mr-1" style="background-image: url('../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 50%">
@@ -57,42 +63,21 @@ async function fillCardPhotos(photos, user){
                     </label>
                 </div>
                 <ul class="list-inline m-0">
-                    <li class="list-inline-item mt-2"><a><i data-id="${photos[i].id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${photos[i].id_photo}"> ${likes}</span></a></li>
+                    <li class="list-inline-item mt-2"><a><i id="iconLikes${photos[i].id_photo}" data-id="${photos[i].id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${photos[i].id_photo}"> ${likes}</span></a></li>
                     <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span id="countComment${photos[i].id_photo}"> ${comments}</span></a></li>
                 </ul>
             </div>
             <div class="input-group mt-2">
                 <input id="inputComment${photos[i].id_photo}" type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn-AddComment btn btn-outline-success" type="button"  data-id="${photos[i].id_photo}" ><i class="fa fa-share-square"></i></button>
+                    <button id="btn-AddComment${photos[i].id_photo}" class="btn-AddComment btn btn-outline-success" type="button"  data-id="${photos[i].id_photo}" ><i class="fa fa-share-square"></i></button>
                 </div>
             </div>
         </div>`);
+        initFunctions(photos[i].id_photo);
     }
 
-    $('.card').hover(function(){
-        $(this).addClass('shadow');
-    },function(){
-        $(this).removeClass('shadow');
-    }); 
-    $('.btn-AddComment').click(function(){
-        addComment($(this).data('id'), $('#inputComment'+$(this).data('id')).val());
-    });
-    $('.fa-thumbs-up').click( async function(){
-        if($(this).hasClass('far')){
-            if(addLike($(this).data('id'))){
-                $(this).removeClass('far');
-                $(this).addClass('fas');
-                $('#countLikes'+$(this).data('id')).html(' '+ await getCountLikesByPhoto($(this).data('id')));
-            }
-        }else{
-            if(removeLike($(this).data('id'))){
-                $(this).removeClass('fas');
-                $(this).addClass('far');
-                $('#countLikes'+$(this).data('id')).html(' ' + await getCountLikesByPhoto($(this).data('id')))
-            }
-        }
-    });
+    
 
 
 }
