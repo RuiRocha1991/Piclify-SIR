@@ -139,6 +139,7 @@ function getListGroups(id){
 }
 
 async function getGroupsDetailsByUser(res){
+    let user = res[0].idUser
     $('#listGroups li').remove();
     var list= new Array();
     for(var i=0; i<res.length;i++){
@@ -156,7 +157,7 @@ async function getGroupsDetailsByUser(res){
             }
         });
     }
-    fillListGroups(list);
+    fillListGroups(list, user);
 }
 
 function getPhotosByAlbum(album){

@@ -13,3 +13,19 @@
     background: rgba(26,35,126, 0.9);
     border-radius: 5px;
 }
+
+
+
+.modalPhoto{
+    position: absolute;
+    display: flex;
+    background-color: white;
+    border-radius: .3rem;
+    width: 80%;
+    height: 80%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left:10%;
+    margin-right: 10%;
+    overflow: hidden;
+}
