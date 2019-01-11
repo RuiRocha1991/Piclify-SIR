@@ -10,7 +10,7 @@ function logout(){
             }
         },
         error: function (errorMessage) {
-            alert(errorMessage);
+            console.log(errorMessage);
         }
     });
 }

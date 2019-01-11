@@ -1,4 +1,4 @@
-var user;
+
 function getDetailsUser(id){
     $.ajax({
         url:window.CONNECTION_NODE+'/user/getDetailsUserById',
@@ -162,19 +162,20 @@ function removeFollower(){
     });
 }
 
-function getPhotosByIdUser(id, isFollower){
-    $.ajax({
+async function getPhotosByIdUser(id, isFollower){
+    await $.ajax({
         url:window.CONNECTION_NODE+'/photo/getPhotosToVisitorByUser',
         type: "get",
         data: {id_user: id,token:token, isFollower:isFollower} ,
         dataType:'json',
         success: function (res) {
-            fillCardPhotos(res, user);
+            listPhotos=res;
         },
         error: function (errorMessage) {
             alert(errorMessage);
         }
     });
+    loadPhotos(res, user);
 }
 
 function getPhotosToVisitorByAlbum(album){

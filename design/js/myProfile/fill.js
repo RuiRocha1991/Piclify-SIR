@@ -102,36 +102,38 @@ function fillModalWithPhotoGroups(groupsByUser, groupsByPhoto, photo){
 }
 
 function fillUserPhotos(data){
-    $('#photosContainer').append(`<div class="card mx-3 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
-                        <div class="card-header bg-white">
-                            <div class="input-group mt-1 border-bottom">
-                                <input id="photoName-${data.data.id_photo}"  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data.data.name}" disabled="disabled">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary border-0 btn-edit-name" type="button"><i class="fa fa-edit"></i></button>
-                                </div>
-                            </div>
+    $('#photosContainer').append(`<div id="card${data.data.id_photo}" class="card mx-3 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11" data-id="${data.data.id_photo}"> <!--Start Card-->
+        <div class="card-header bg-white">
+            <div class="input-group mt-1 border-bottom">
+                <input id="photoName-${data.data.id_photo}"  type="text" class="name-photo form-control border-0 bg-white text-center" value="${data.data.name}" disabled="disabled">
+                <div class="input-group-append">
+                    <button id="btn-edit-name${data.data.id_photo}" class="btn btn-outline-secondary border-0 " type="button"><i class="fa fa-edit"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden;max-With: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
+                
+        </div>
+        <div class="card-footer bg-white m-0 p-0">
+                <div class="input-group mt-1 border-bottom">
+                        <input id="photoDescription-${data.data.id_photo}" type="text" class="description form-control border-0 bg-white text-center" value="${data.data.description}" disabled="disabled">
+                        <div class="input-group-append">
+                            <button id="btn-edit-description${data.data.id_photo}" class=" btn btn-outline-secondary border-0" type="button"><i class="fa fa-edit"></i></button>
                         </div>
-                        <div class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden;max-With: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
-                              
-                        </div>
-                        <div class="card-footer bg-white m-0 p-0">
-                                <div class="input-group mt-1 border-bottom">
-                                        <input id="photoDescription-${data.data.id_photo}" type="text" class="description form-control border-0 bg-white text-center" value="${data.data.description}" disabled="disabled">
-                                        <div class="input-group-append">
-                                            <button class="btn-edit-description btn btn-outline-secondary border-0" type="button"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                    </div>
-                            
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> ${data.countLikes} </span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
-                            </ul>
-                            <ul class="list-inline mb-3">
-                                <li class="albums list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}"> ${data.countAlbums}</span><span> Albums</span></a></li>
-                                <li class="groups list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"> </i><span id="countGroups${data.data.id_photo}"> ${data.countGroups}</span><span> Groups</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input id="photoIsPrivate-${data.data.id_photo}" class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
-                            </ul>
-                            <span></span>
-                        </div>
-                    </div>`);
+                    </div>
+            
+            <ul class="list-inline m-0">
+                <li class="list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-thumbs-up"></i><span> ${data.countLikes} </span></a></li>
+                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
+            </ul>
+            <ul class="list-inline mb-3">
+                <li id="albums${data.data.id_photo}" class=" list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-book"> </i><span id="countAlbums${data.data.id_photo}"> ${data.countAlbums}</span><span> Albums</span></a></li>
+                <li id="groups${data.data.id_photo}" class=" list-inline-item mt-2 py-2 pr-2 border-right"><a><i class="fa fa-users"> </i><span id="countGroups${data.data.id_photo}"> ${data.countGroups}</span><span> Groups</span></a></li>
+                <li class="list-inline-item mt-2"><a><i class="fa fa-lock mr-4"></i> <label><input id="photoIsPrivate-${data.data.id_photo}" class="form-check-input pt-2 checkbox-photo" type="checkbox" ${data.data.is_private ==1? 'checked': ''}>Is private</label></a></li>
+            </ul>
+            <span></span>
+        </div>
+    </div>`);
+
+    initFunctionsCard(data.data.id_photo);
 }

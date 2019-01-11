@@ -183,19 +183,26 @@ function getInfoPhotos(data){
     return photos
 }
 
-function getPhotosByUser(){
-    $.ajax({
+async function getPhotosByUser(){
+    await $.ajax({
         url:window.CONNECTION_NODE+'/photo/getPhotosByUser',
         type: "get",
         data: {token:token},
         dataType: 'json',
         success: function(res) {
-            getCountLikes(res);
+            listPhotos=res;
         },
         error: function(errorMessage){
             alert(errorMessage);
         }
     })
+    loadPhotos(listPhotos);
+}
+
+function loadPhotos(photos){
+    getCountLikes(photos.slice(countLoad,countuploadedPhotos));
+    countLoad=countuploadedPhotos;
+    countuploadedPhotos=countuploadedPhotos+rangeLoad;
 }
 
 function getCountLikes(data){
@@ -215,7 +222,6 @@ function getCountLikes(data){
             }
         })
     }
-    initFunctionsCard()
 }
 
 function getCountComments(data){
