@@ -10,8 +10,8 @@
         }
 
         public function create() { //create
-            $query = 'insert into user(birth_date, country, email, genre, is_validate, locality, name, password )
-			values(:birth_date, :country, :email, :genre, :is_validate, :locality, :name, :password)';
+            $query = 'insert into user(birth_date, country, email, genre, is_validate, locality, name, password, profile_photo )
+			values(:birth_date, :country, :email, :genre, :is_validate, :locality, :name, :password, :profile_photo)';
             $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':birth_date', $this->user->__get('birth_date'));
             $stmt->bindValue(':country', $this->user->__get('country'));
@@ -21,6 +21,7 @@
             $stmt->bindValue(':locality', $this->user->__get('locality'));
             $stmt->bindValue(':name', $this->user->__get('name'));
 			$stmt->bindValue(':password', $this->user->__get('password'));
+			$stmt->bindValue(':profile_photo','no-photo.png');
 			//is_active
 			$stmt->execute();
         }
