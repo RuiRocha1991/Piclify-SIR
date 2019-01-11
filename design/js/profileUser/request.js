@@ -175,7 +175,7 @@ async function getPhotosByIdUser(id, isFollower){
             alert(errorMessage);
         }
     });
-    loadPhotos(res, user);
+    loadPhotos(listPhotos, user);
 }
 
 function getPhotosToVisitorByAlbum(album){
