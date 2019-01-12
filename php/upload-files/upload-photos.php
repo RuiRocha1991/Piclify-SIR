@@ -33,11 +33,11 @@
     $numRandom = rand(0, 1000000);
 
     $basePath = '../../upload/userPhotos/'.$_POST['number'].'/';
-    $filePath=$_POST['name'].$numRandom;
+    $filePath=str_replace(' ','',$_POST['name']).$numRandom;
     $targetPath=$basePath.$filePath;
     while(file_exists($targetPath)){
         $numRamdom = rand(0, 1000000);
-        $filePath=$_POST['name'].$numRandom;
+        $filePath=str_replace(' ','',$_POST['name']).$numRandom;
         $targetPath=$basePath.$filePath;
     }
     if(!move_uploaded_file($_FILES['photos']['tmp_name'],$targetPath )){

@@ -34,7 +34,7 @@ exports.post= (req, res, next) => {
         .then(data => data.json())
         .then( async function(data){
             const token = await authService.generateToken({id_user: data[0].id_user, email: data[0].email,name:data[0].name})
-            emailService.send(req.body.email, 'Bem vindo ao node store', global.EMAIL_TMPL.replace('{0}', req.body.name));
+            emailService.send(req.body.email, 'Welcome to Piclify', global.EMAIL_TMPL.replace('{0}', req.body.name));
             res.send({token:token});
         })
     }catch(e){
