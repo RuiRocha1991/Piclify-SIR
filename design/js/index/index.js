@@ -3,8 +3,14 @@ var listPhotos=new Array();
 var countLoad =0;
 var rangeLoad=3;
 var countuploadedPhotos=6;
-
+var modal;
 $(document).ready(async function(){
+    modal= document.getElementById('modalPhoto');
+    window.onclick = function(event){
+        if(event.target ==modal){
+            modal.style.display = "none"
+        }
+    }
     $('.profile-nav').click(function(){
         $(this).css("color", "white");
     });
@@ -16,22 +22,23 @@ $(document).ready(async function(){
            }
         }
     });
+
     listPhotos= await getPhotosMyFollowedAndMY();
     loadPhotos(listPhotos);
 });
 
-function initFunctionsIndex(id){
-    $('#card'+id).hover(function(){
+function initFunctionsIndex(data){
+    $('#card'+data.id_photo).hover(function(){
         $(this).addClass('shadow');
     },function(){
         $(this).removeClass('shadow');
     }); 
-    $('#btn-AddComment'+id).click(function(){
+    $('#btn-AddComment'+data.id_photo).click(function(){
         if($('#inputComment'+$(this).data('id')).val() != ""){
             addComment($(this).data('id'), $('#inputComment'+$(this).data('id')).val());
         }
     });
-    $('#iconLike'+id).click( async function(){
+    $('#iconLike'+data.id_photo).click( async function(){
         if($(this).hasClass('far')){
             if(addLike($(this).data('id'))){
                 $(this).removeClass('far');
@@ -47,9 +54,8 @@ function initFunctionsIndex(id){
         }
     });
 
-    $('#photo'+id).click(function(){
-        console.log("abrir aqui o modal");
-        //select photo.path, photo.name, user.name, user.path .....
-        //select * from comments where id_photo=id
-    })
+    $('#photo'+data.id_photo).click(function(){
+        modal.style.display = "block";
+        openPhotoModal(data);
+    });
 }

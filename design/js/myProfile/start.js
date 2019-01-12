@@ -5,6 +5,7 @@ var ListGroups= new Array();
 var countLoad =0;
 var rangeLoad=2;
 var countuploadedPhotos=4;
+var modal;
 $(document).ready(function(){
     var data = {token:token};
     $.ajax({
@@ -30,20 +31,36 @@ $(document).ready(function(){
            }
         }
     });
+
+    modal= document.getElementById('modalPhoto');
+    window.onclick = function(event){
+        if(event.target ==modal){
+            modal.style.display = "none"
+        }
+    }
+
+  
+
 });
 
 
-function initFunctionsCard(id){
-    $('#card'+id).hover(function(){
+function initFunctionsCard(data){
+    $('#card'+data.id_photo).hover(function(){
         $(this).addClass('shadow');
     },function(){
         $(this).removeClass('shadow');
     }); 
-    initFunctionName(id);
-    initFunctionDescription(id);
-    initFunctionIsPrivate(id);
-    initFunctionAlbums(id);
-    initFunctionGroups(id);
+
+    $('#photoCard'+data.id_photo).click(function(){
+        modal.style.display = "block";
+        openPhotoModal(data);
+    });
+
+    initFunctionName(data.id_photo);
+    initFunctionDescription(data.id_photo);
+    initFunctionIsPrivate(data.id_photo);
+    initFunctionAlbums(data.id_photo);
+    initFunctionGroups(data.id_photo);
     
 }
 

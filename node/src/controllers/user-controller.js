@@ -103,6 +103,18 @@ exports.get= async (req, res, next)=>{
     } 
 }
 
+exports.getMyId= async (req, res, next)=>{
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    try{
+        res.send(data.id_user);
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    } 
+}
+
 exports.getUserByEmail= async (req, res, next)=>{
     try{
         fetch(global.URL_CONTROLLERS+'user.controller.php?action=getUserByEmail',

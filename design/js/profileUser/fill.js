@@ -55,7 +55,7 @@ async function fillCardPhotos(photos, user){
                     <h5 class="text-center mb-0">${photos[i].name}</h5>
             </div>
             </div>
-            <div class="card-body p-0" style="background-image: url('../upload/userPhotos/${user.id_user}/${photos[i].path}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
+            <div id="photoCard${data[i].id_photo}" class="card-body p-0" style="background-image: url('../upload/userPhotos/${user.id_user}/${photos[i].path}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
             </div>
             <div class="card-footer bg-white mx-3 p-0">
                 <div>
@@ -75,6 +75,11 @@ async function fillCardPhotos(photos, user){
                 </div>
             </div>
         </div>`);
+
+        $('#photoCard'+photos[i].id_photo).click(function(){
+            modal.style.display = "block";
+            openPhotoModal(photos[i]);
+        });
         initFunctionsProfileUser(photos[i].id_photo);
     }
 

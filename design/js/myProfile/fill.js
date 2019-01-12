@@ -102,7 +102,7 @@ function fillUserPhotos(data){
                     </div>
                 </div>
             </div>
-            <div class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data[i].user}/${data[i].path}'); overflow:hidden;max-With: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
+            <div id="photoCard${data[i].id_photo}" class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data[i].user}/${data[i].path}'); overflow:hidden;max-With: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
                     
             </div>
             <div class="card-footer bg-white m-0 p-0">
@@ -125,6 +125,6 @@ function fillUserPhotos(data){
                 <span></span>
             </div>
         </div>`);
-        initFunctionsCard(data[i].id_photo);
+        initFunctionsCard(data[i]);
     }
 }

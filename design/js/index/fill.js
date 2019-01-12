@@ -29,7 +29,7 @@ function showPhoto(data){
                     <p class="font-weight-normal m-0 border-bottom mt-1 pb-1">${data[i].description}</p>
                 </div>
                 <ul class="list-inline m-0">
-                    <li class="list-inline-item mt-2"><a><i id="iconLike${data[i].id_photo}" data-id="${data[i].id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${data[i].id_photo}"> ${data[i].likes}</span></a></li>
+                    <li class="list-inline-item mt-2"><a><i id="iconLike${data[i].id_photo}" data-id="${data[i].id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${data[i].id_photo}"> ${data[i].countLikes}</span></a></li>
                     <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span id="countComment${data[i].id_photo}"> ${data[i].countComments}</span></a></li>
                 </ul>
             </div>
@@ -40,6 +40,6 @@ function showPhoto(data){
                 </div>
             </div>
         </div>`);
-        initFunctionsIndex(data[i].id_photo);
+        initFunctionsIndex(data[i]);
     }
 }

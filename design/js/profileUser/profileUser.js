@@ -4,8 +4,14 @@ var countLoad =0;
 var rangeLoad=2;
 var countuploadedPhotos=4;
 var user;
-
+var modal;
 $(document).ready(async function(){
+    modal= document.getElementById('modalPhoto');
+    window.onclick = function(event){
+        if(event.target ==modal){
+            modal.style.display = "none"
+        }
+    }
     window.$_GET = new URLSearchParams(location.search);
     getDetailsUser($_GET.get('id'));
    // getNumberFollowers($_GET.get('id'));
@@ -43,6 +49,7 @@ function initFunctionToElements(){
 }
 
 function initFunctionsProfileUser(id){
+ 
     $('#card'+id).hover(function(){
         $(this).addClass('shadow');
     },function(){

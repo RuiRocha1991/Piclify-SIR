@@ -1,13 +1,12 @@
 var token =document.cookie.replace('token=', '');
 var modal;
-var owner;
 var user;
-$(document).ready(function(){
+$(document).ready(async function(){
     window.$_GET = new URLSearchParams(location.search);
+    user = await getMyId();
     getMembersGroup($_GET.get('id'));
     verifyIsOwnerGroup($_GET.get('id'));
-    owner=$_GET.get('user');
-    user =$_GET.get('userToken');
+    verifyIsJoinGroup($_GET.get('id'));
     $.ajax({
         url:window.CONNECTION_NODE+'/group/getListGroupById',
         type: "get",
@@ -28,7 +27,6 @@ $(document).ready(function(){
             modal.style.display = "none"
         }
     }
-    
     $('#btn-join').click(function(){
         if($('#btn-join').text() == 'Join Group'){
             addUserToGroup($_GET.get('id'));
@@ -37,6 +35,12 @@ $(document).ready(function(){
         }
         
     })
+
+    $('#modalPhoto').on("show", function () {
+        $("body").addClass("modal-open");
+      }).on("hidden", function () {
+        $("body").removeClass("modal-open")
+      });
 });
 
 function getMembersGroup(group){
@@ -47,7 +51,7 @@ function getMembersGroup(group){
         dataType:'json',
         success: function (res) {
             $('#lb-members').text('Members:  ' +res.length);
-            getDetailsMembers(res,owner,user);
+            getDetailsMembers(res);
         },
         error: function (errorMessage) {
             logout();
@@ -57,7 +61,6 @@ function getMembersGroup(group){
 }
 
 async function getDetailsMembers(data){
-    var userIsJoined = false
     $('#listMembers li').remove();
     for(var i=0; i<data.length;i++){
         if(data[i].idUser!=user){ //se for diferente do utilizador
@@ -74,16 +77,10 @@ async function getDetailsMembers(data){
                     document.location.href = 'login.html';
                 }
             });
-        }else{
-            userIsJoined = true;
         }
     }
 
-    if(userIsJoined ==true){
-        $('#btn-join').html('Leave Group')
-    }else{
-        $('#btn-join').html('Join Group')
-    }
+   
     $(".userProfile").css( 'cursor', 'pointer' );
     $('.userProfile').click(function(){
         document.location.href = 'profileUser.html?id='+$(this).data('id');

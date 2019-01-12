@@ -1,5 +1,7 @@
-function addCardToGroup(data,user){
+async function addCardToGroup(data){
+    var user = await getDetailsUser(data.data.user);
     var time = calculateTimeOfUpload(data.data.date_upload);
+    var islike = await getIsLikePhoto(data.data.id_photo) ? 'fas': 'far';
     $('#container').append(`<div class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${user.id_user}"> <!--Start Card-->
                         <div class="card-header bg-white">
                             <div class="media m-0" id="userPhoto${data.data.id_photo}">
@@ -23,7 +25,7 @@ function addCardToGroup(data,user){
                                 </label>
                             </div>
                             <ul class="list-inline m-0">
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-thumbs-up"></i><span id="countLikes${data.data.id_photo}"> ${data.countLikes}</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i id="iconLikes${data.data.id_photo}" data-id="${data.data.id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${data.data.id_photo}"> ${data.countLikes}</span></a></li>
                                 <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span id="countComment${data.data.id_photo}"> ${data.countComments}</span></a></li>
                             </ul>
                         </div>
@@ -44,7 +46,23 @@ function addCardToGroup(data,user){
                 });
                 $("#photoCard"+data.data.id_photo).click(function() {
                     modal.style.display = "block";
-                    openPhotoModal(data,user);
+                    openPhotoModal(data.data);
+                });
+
+                $('#iconLikes'+data.data.id_photo).click( async function(){
+                    if($(this).hasClass('far')){
+                        if(addLike($(this).data('id'))){
+                            $(this).removeClass('far');
+                            $(this).addClass('fas');
+                            $('#countLikes'+$(this).data('id')).html(' '+ await getCountLikesByPhoto($(this).data('id')));
+                        }
+                    }else{
+                        if(removeLike($(this).data('id'))){
+                            $(this).removeClass('fas');
+                            $(this).addClass('far');
+                            $('#countLikes'+$(this).data('id')).html(' ' + await getCountLikesByPhoto($(this).data('id')))
+                        }
+                    }
                 });
                 initFunctionsCard();
 }

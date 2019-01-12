@@ -96,3 +96,30 @@ exports.getListUsersByGroup= async (req, res, next)=>{
         });
     }
 }
+
+
+exports.verifyIsJoinGroup= async (req, res, next) => {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    req.query.user=data.id_user;
+    try{
+        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=verifyIsJoinGroup',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(function(data){
+            res.send(data);
+        })
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+};

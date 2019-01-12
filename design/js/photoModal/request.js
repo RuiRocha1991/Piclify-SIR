@@ -14,9 +14,7 @@ function getComments(photo){
 }
 function printComments(data){
     $('#comments .comments').remove();
-    console.log(data.length);
     for(var i=0;i<data.length; i++){
-        console.log(data[i]);
         fillComments(data[i]);
     }
 }

@@ -10,5 +10,5 @@ router.post("/removeUserFromGroup", authService.authorize, controller.removeUser
 
 router.get('/getListGroupsByUser',  authService.authorize, controller.getListGroupsByUser);
 router.get('/getListUsersByGroup',  authService.authorize, controller.getListUsersByGroup);
-
+router.get('/verifyIsJoinGroup',  authService.authorize, controller.verifyIsJoinGroup);
 module.exports = router;

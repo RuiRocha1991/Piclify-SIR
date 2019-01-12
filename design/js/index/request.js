@@ -37,3 +37,21 @@ async function getPhotosMyFollowedAndMY(){
     });
     return photos;
 }
+
+async function getMyId(){
+    var user
+    await $.ajax({
+        url:window.CONNECTION_NODE+'/user/getMyId',
+        type: "get",
+        data: {token:token} ,
+        dataType:'json',
+        success: function (res) {
+            user=res;
+        },
+        error: function (errorMessage) {
+            logout();
+            document.location.href = 'login.html';
+        }
+    });
+    return user
+}

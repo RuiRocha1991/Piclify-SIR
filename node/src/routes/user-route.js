@@ -10,9 +10,9 @@ router.get("/getUserByEmail", controller.getUserByEmail);
 router.get("/getFollowers", authService.authorize, controller.getNumberFollowers);
 router.get("/getDetailsUserById", authService.authorize, controller.getDetailsUserById);
 router.get("/isLogged", controller.isLogged);//
-router.get("/verifyIsShowMyProfile", controller.verifyIsShowMyProfile);
-router.get("/getUserByNameEmailCountryLocality", controller.getUserByNameEmailCountryLocality);
-
+router.get("/verifyIsShowMyProfile", authService.authorize, controller.verifyIsShowMyProfile);
+router.get("/getUserByNameEmailCountryLocality",authService.authorize, controller.getUserByNameEmailCountryLocality);
+router.get("/getMyId",authService.authorize, controller.getMyId);
 router.post("/", controller.post);
 router.post("/login", controller.login);
 router.post("/logout", controller.logout);

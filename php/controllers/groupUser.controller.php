@@ -38,5 +38,13 @@
 		$service = new GroupUserService($connection, $groupUser);
         $groupUser=$service-> getListUsersByGroup();
         echo json_encode($groupUser);
+    }elseif($action=='verifyIsJoinGroup'){
+        $groupUser= new User_group();
+        $groupUser->__set('user',$_POST['user']);
+        $groupUser->__set('group', $_POST['id_group']);
+		$connection = new Connection();
+		$service = new GroupUserService($connection, $groupUser);
+        $groupUser=$service-> verifyIsJoinGroup();
+        echo json_encode($groupUser);
     }
 ?>

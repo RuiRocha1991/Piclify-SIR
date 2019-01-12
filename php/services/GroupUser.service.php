@@ -40,6 +40,15 @@
             $stmt->execute(); 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        public function verifyIsJoinGroup() { 
+			$query = "select count(*) as isJoin from user_group where idUser =:user and idGroup= :group";
+			$stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':user', $this->groupUser->__get('user'));
+            $stmt->bindValue(':group', $this->groupUser->__get('group'));
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
         
     }
 

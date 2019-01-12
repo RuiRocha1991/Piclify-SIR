@@ -69,8 +69,7 @@ function getCountComments(data){
         dataType: 'json',
         success:async function(res){
             var result ={data:data.data, countLikes : data.countLikes, countComments: res[0].countComments};
-            var user = await getDetailsUser(data.data.user)
-            addCardToGroup(result, user); 
+            addCardToGroup(result); 
         },
         error: function(errorMessage){
             alert(errorMessage);
@@ -103,8 +102,8 @@ function addUserToGroup(group){
         data: {group: group, token:token} ,
         dataType:'json',
         success: function (res) {
-            $('#btn-join').html('Leave Group');
             getMembersGroup(group);
+            verifyIsJoinGroup(group);
         },
         error: function (errorMessage) {
             console.log(errorMessage);
@@ -119,8 +118,8 @@ function removeUserFromGroup(group){
         data: {group: group, token:token} ,
         dataType:'json',
         success: function (res) {
-            $('#btn-join').html('Join Group');
             getMembersGroup(group);
+            verifyIsJoinGroup(group);
         },
         error: function (errorMessage) {
             console.log(errorMessage);
@@ -136,7 +135,6 @@ function verifyIsOwnerGroup(id){
         data: {id_group: id, token:token} ,
         dataType:'json',
         success: function (res) {
-            console.log(res);
             if(res[0].isOwner=='1'){
                 $('#container-btn_join').css('visibility', 'hidden');
             }
@@ -145,4 +143,40 @@ function verifyIsOwnerGroup(id){
             alert(errorMessage);
         }
     });
+}
+function verifyIsJoinGroup(id){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/groupUser/verifyIsJoinGroup',
+        type: "get",
+        data: {id_group: id, token:token} ,
+        dataType:'json',
+        success: function (res) {
+            if(res[0].isJoin=='1'){
+                $('#btn-join').html('Leave Group');
+            }else{
+                $('#btn-join').html('Join Group');
+            }
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+}
+
+async function getMyId(){
+    var user
+    await $.ajax({
+        url:window.CONNECTION_NODE+'/user/getMyId',
+        type: "get",
+        data: {token:token} ,
+        dataType:'json',
+        success: function (res) {
+            user=res;
+        },
+        error: function (errorMessage) {
+            logout();
+            document.location.href = 'login.html';
+        }
+    });
+    return user
 }
