@@ -130,7 +130,10 @@ function getListGroups(id){
         data: {user: id,token:token} ,
         dataType:'json',
         success: function (res) {
-            getGroupsDetailsByUser(res);
+            if(res.lenth!=0){
+                getGroupsDetailsByUser(res);
+            }
+            
         },
         error: function (errorMessage) {
             alert(errorMessage);
@@ -139,7 +142,7 @@ function getListGroups(id){
 }
 
 async function getGroupsDetailsByUser(res){
-    let user = res[0].idUser
+    let user = res
     $('#listGroups li').remove();
     var list= new Array();
     for(var i=0; i<res.length;i++){

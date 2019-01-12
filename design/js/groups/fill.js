@@ -1,13 +1,12 @@
 function addCardToGroup(data,user){
-    console.log(data)
     var time = calculateTimeOfUpload(data.data.date_upload);
-    $('#container').append(`<div id="photoCard${data.data.id_photo}" class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${user.id_user}"> <!--Start Card-->
+    $('#container').append(`<div class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded" data-id="${user.id_user}"> <!--Start Card-->
                         <div class="card-header bg-white">
-                            <div class="media m-0">
+                            <div class="media m-0" id="userPhoto${data.data.id_photo}">
                                 <div class="d-flex mr-3 userPhoto" style="background-image: url('./../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 50%; cursor:pointer">
                                 </div>
                                 <div class="media-body">
-                                    <small style="font-size: 20px;font-weight: bold;cursor:pointer" class="userPhoto"> ${user.name}</small>
+                                    <small style="font-size: 20px;cursor:pointer" class="userPhoto font-weight-bold"> ${user.name}</small>
                                     <small class="mt-1 float-right"><i class="icon ion-md-time"></i><span>${time} ago</span></small>
                                 </div>
                             </div><!--/ media -->
@@ -15,7 +14,7 @@ function addCardToGroup(data,user){
                                 <h5 class="text-center mb-0">${data.data.name}</h5>
                         </div>
                         </div>
-                        <div class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px">
+                        <div id="photoCard${data.data.id_photo}" class="card-body p-0" style="background-image: url('./../upload/userPhotos/${data.data.user}/${data.data.path}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:300px; cursor:pointer">
                         </div>
                         <div class="card-footer bg-white mx-3 p-0">
                             <div>
@@ -35,22 +34,12 @@ function addCardToGroup(data,user){
                             </div>
                         </div>
                     </div>   `);
-                    $(".userPhoto").css( 'cursor', 'pointer' );
-                    $('.userPhoto').click(function(){
-                        console.log('Chegou');
-                        document.location.href = 'profileUser.html?id='+$(this).data('id');
+                    $('#userPhoto'+data.data.id_photo).click(function(){
+                        document.location.href = 'profileUser.html?id='+data.data.id_photo;
                     });
-                    $(".userPhoto").css( 'cursor', 'pointer' );
-                    $('.userPhoto').click(function(){
-                        console.log('Chegou');
-                        document.location.href = 'profileUser.html?id='+$(this).data('id');
-                    });
-    $('.userPhoto').click(function(){
-        document.location.href = 'profileUser.html?id='+user.id_user;
-    });   
-    $("#photoCard"+data.data.id_photo).click(function() {
-        modal.style.display = "block";
-        openPhotoModal(data,user)
-        getComments(data.data.id_photo)
-    });
+                $("#photoCard"+data.data.id_photo).click(function() {
+                    modal.style.display = "block";
+                    openPhotoModal(data,user)
+                    getComments(data.data.id_photo)
+                });
 }

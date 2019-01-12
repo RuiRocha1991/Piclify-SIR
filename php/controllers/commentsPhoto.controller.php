@@ -25,7 +25,7 @@
         echo json_encode($commentsPhoto);
     }if($action == 'getCommentsByPhoto' ) {
         $commentsPhoto= new Comment();
-        $commentsPhoto->__set('photo', 9);
+        $commentsPhoto->__set('photo', $_POST['id_photo']);
 		$connection = new Connection();
 		$service = new CommentsPhotoService($connection, $commentsPhoto);
         $total=$service->getCommentsByPhoto();

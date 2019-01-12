@@ -29,19 +29,14 @@
         }
 
         public function getCommentsByPhoto(){
-            $query = "select * from comments where photo= :id_photo";
+            /* $query = "select * from comments where photo= :id_photo"; */
+            $query = "select text,date,id_user,name,profile_photo from comments,user where photo= :id_photo and user=id_user order by date desc";
             $stmt= $this->connection->prepare($query);
-            $stmt->bindValue(':id_photo', 9);
+            $stmt->bindValue(':id_photo',$this->commentPhoto->__get('photo') );
             $stmt->execute();
             return json_encode($stmt->fetchAll(PDO::FETCH_OBJ));
         }
-        
-
-
-
+    
        
     }
-
-
-
 ?>

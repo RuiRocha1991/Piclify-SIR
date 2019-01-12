@@ -6,9 +6,16 @@ function getComments(photo){
         dataType:'json',
         success: function (res) {
             console.log(res)
+            printComments(res)
         },
         error: function(errorMessage){
             alert(errorMessage);
         }
     });
 }
+function printComments(data){
+    for(var i=0;i<data.length; i++){
+        fillComments(data[i])
+    }
+}
+    
