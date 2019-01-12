@@ -20,9 +20,7 @@ async function addCardToGroup(data){
                         </div>
                         <div class="card-footer bg-white mx-3 p-0">
                             <div>
-                                <label class="h6 mt-1">
-                                    <p class="font-weight-normal m-0 border-bottom mt-1 pb-1">${data.data.description}</p>
-                                </label>
+                                <p class="font-weight-normal m-0 border-bottom mt-1 pb-1">${data.data.description}</p>
                             </div>
                             <ul class="list-inline m-0">
                                 <li class="list-inline-item mt-2"><a><i id="iconLikes${data.data.id_photo}" data-id="${data.data.id_photo}" class="${islike} fa-thumbs-up"></i><span id="countLikes${data.data.id_photo}"> ${data.countLikes}</span></a></li>

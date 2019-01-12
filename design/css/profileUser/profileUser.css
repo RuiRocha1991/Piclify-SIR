@@ -38,3 +38,13 @@
     transition: 0.4s ease;
     cursor: pointer;
 }
+
+.member{
+    text-decoration: none;
+    color: black;
+}
+  
+.member:hover{
+    text-decoration: none;
+    color: black;
+}

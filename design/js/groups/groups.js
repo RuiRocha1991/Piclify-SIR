@@ -70,9 +70,10 @@ async function getDetailsMembers(data){
                 data: {token:token, id_user:data[i].idUser} ,
                 dataType:'json',
                 success: function (res) {
-                    $('#listMembers').append(`<li class="list-group-item member" data-id="${res[0].id_user}" >${res[0].name}</li>`)
+                    $('#listMembers').append(`<a href="profileUser.html?id=${res[0].id_user}" class="list-group-item member" style="color: black;" > ${res[0].name} </a>`);
                 },
                 error: function (errorMessage) {
+                    console.log(errorMessage);
                     logout();
                     document.location.href = 'login.html';
                 }
