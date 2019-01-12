@@ -1,5 +1,5 @@
 async function openPhotoModal(data){
-    console.log(data);
+console.log(data)
     var user = await getDetailsUser(data.user);
     $('#modalPhoto .myModal').remove();
     var time = calculateTimeOfUpload(data.date_upload);

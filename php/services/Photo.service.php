@@ -31,7 +31,7 @@
         }
         
         public function getPhotosByUser() {
-            $query = "select * from photos where user = :id_user";
+            $query = "SELECT *, (SELECT COUNT(likes_photo.id_photo) from likes_photo WHERE likes_photo.id_photo = photos.id_photo) as countLikes, (SELECT COUNT(comments.photo) from comments WHERE comments.photo = photos.id_photo) as countComments, (SELECT COUNT(albums_photos.photo) from albums_photos WHERE albums_photos.photo = photos.id_photo) as countAlbums, (SELECT COUNT(group_photo_relations.photo) from group_photo_relations WHERE group_photo_relations.photo = photos.id_photo) as countGroups from photos where user = :id_user order BY photos.date_upload desc";
             $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':id_user', $this->photo->__get('user'));
             $stmt->execute();
@@ -47,7 +47,7 @@
         }
 
         public function getAllPhotosPublicByUser() {
-            $query = "select * from photos where is_private=0 and user = :id_user";
+            $query = "SELECT *, (SELECT COUNT(likes_photo.id_photo) from likes_photo WHERE likes_photo.id_photo = photos.id_photo) as countLikes, (SELECT COUNT(comments.photo) from comments WHERE comments.photo = photos.id_photo) as countComments, (SELECT COUNT(albums_photos.photo) from albums_photos WHERE albums_photos.photo = photos.id_photo) as countAlbums, (SELECT COUNT(group_photo_relations.photo) from group_photo_relations WHERE group_photo_relations.photo = photos.id_photo) as countGroups from photos where is_private=0 and user = :id_user";
             $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':id_user', $this->photo->__get('user'));
             $stmt->execute();
@@ -55,7 +55,7 @@
         }
         
         public function getPhotoByIdToFollower() {
-            $query = "select * from photos where is_private=0 and id_photo = :id_photo";
+            $query = "select *, (Select count(id_photo) from likes_photo where likes_photo.id_photo = photos.id_photo ) as countLikes, (Select count(photo) from comments where comments.photo=photos.id_photo) as countComments from photos where is_private=0 and id_photo = :id_photo";
             $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':id_photo', $this->photo->__get('id_photo'));
             $stmt->execute();

@@ -1,5 +1,5 @@
 
-function getDetailsUser(id){
+function getDetailsUserToProfile(id){
     $.ajax({
         url:window.CONNECTION_NODE+'/user/getDetailsUserById',
         type: "get",
@@ -175,7 +175,7 @@ async function getPhotosByIdUser(id, isFollower){
             alert(errorMessage);
         }
     });
-    loadPhotos(listPhotos, user);
+    loadPhotos(listPhotos);
 }
 
 function getPhotosToVisitorByAlbum(album){
