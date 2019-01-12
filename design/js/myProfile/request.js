@@ -116,7 +116,7 @@ function getListGroups(id){
         dataType:'json',
         success: function (res) {
             if(res.lenth!=0){
-                getGroupsDetailsByUser(res);
+                getGroupsDetailsByUser(res,id);
             }
             
         },
@@ -126,7 +126,7 @@ function getListGroups(id){
     });
 }
 
-async function getGroupsDetailsByUser(res){
+async function getGroupsDetailsByUser(res,id){
     let user = res
     $('#listGroups li').remove();
     var list= new Array();
@@ -145,7 +145,7 @@ async function getGroupsDetailsByUser(res){
             }
         });
     }
-    fillListGroups(list, user);
+    fillListGroups(list,id);
 }
 
 function getPhotosByAlbum(album){

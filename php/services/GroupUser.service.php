@@ -17,6 +17,14 @@
 			$stmt->execute(); 
         }
 
+        public function delete() { 
+			$query = "delete from user_group where idGroup = :group and idUser= :user";
+			$stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':group', $this->groupUser->__get('group'));
+            $stmt->bindValue(':user', $this->groupUser->__get('user'));
+			$stmt->execute(); 
+        }
+
         public function getGroupsByUser() { 
 			$query = "select * from user_group where idUser =:user";
 			$stmt = $this->connection->prepare($query);

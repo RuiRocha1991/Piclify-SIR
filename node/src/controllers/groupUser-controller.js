@@ -29,6 +29,32 @@ exports.addUserToGroup= async (req, res, next) => {
     }
 };
 
+exports.removeUserFromGroup= async (req, res, next) => {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    req.body.user=data.id_user;
+    try{
+        fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=delete',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.body) 
+        }
+        )
+        .then(data => data.json())
+        .then(function(data){
+            res.send(data);
+        })
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+};
+
 exports.getListGroupsByUser= async (req, res, next)=>{
     try{
         fetch(global.URL_CONTROLLERS+'groupUser.controller.php?action=getListGroupsByUser',

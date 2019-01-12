@@ -20,12 +20,14 @@ function fillListAlbums(data){
     });
 }
 
-function fillListGroups(data,user){
+function fillListGroups(data,id){
+    console.log('data')
+    console.log(data)
     for(var x=0; x<data.length;x++){
-        $('#listGroups').append(`<li class="list-group-item listGroups" data-id="${data[x].id_group}">${data[x].title}</li>`);
+        $('#listGroups').append(`<li class="list-group-item listGroups" data-id="${data[x].id_group}" data-user="${data[x].owner}">${data[x].title}</li>`);
     }
     $('.listGroups').click(function(){
-        document.location.href = 'groups.html?id='+$(this).data('id')+'&user='+user;
+        document.location.href = 'groups.html?id='+$(this).data('id')+'&user='+$(this).data('user')+'&userToken='+id;
     });
     $('#listGroups').append('<li class="list-group-item p-0"><div class="input-group border-bottom"><input id="newGroup" type="text" class="name-photo form-control border-0 bg-white" placeholder="New Group"><div class="input-group-append"><button class="btn btn-outline-secondary border-0" type="button" data-toggle="modal" data-target="#modal-create-groups" onclick="fillModalNewGroup()"><i class="fa fa-plus"></i></button></div></div></li>');
 }

@@ -95,3 +95,33 @@ async function getDetailsUser(id){
     });
     return user
 }
+
+function addUserToGroup(group){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/groupUser/addUserToGroup',
+        type: "post",
+        data: {group: group, token:token} ,
+        dataType:'json',
+        success: function (res) {
+            console.log('adicionou')
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+}
+
+function removeUserFromGroup(group){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/groupUser/removeUserFromGroup',
+        type: "post",
+        data: {group: group, token:token} ,
+        dataType:'json',
+        success: function (res) {
+            console.log('removeu')
+        },
+        error: function (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+}
