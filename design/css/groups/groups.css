@@ -13,3 +13,7 @@
     background: rgba(26,35,126, 0.9);
     border-radius: 5px;
 }
+
+.card:hover{
+    cursor: pointer;
+}

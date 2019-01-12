@@ -53,5 +53,12 @@
             $photos= $service->getPhotoByIdToFollower();
         }    
         echo json_encode($photos); 
+    }elseif($action =='getPhotosToMyProfile'){
+        $photo = new Photo();
+        $photo->__set('id_user', $_POST['id_user']);
+        $connection = new Connection();
+        $service= new PhotoService($connection, $photo);
+        $photos= $service->getPhotosToMyProfile();
+        echo json_encode($photos); 
     }
 ?>

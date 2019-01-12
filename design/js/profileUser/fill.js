@@ -14,6 +14,7 @@ function fillProfileDetails(data){
     $('#lb-email').text(data.email);
     $('#input-id_user').val(data.id_user);
     $('#form-id_user').val(data.id_user);
+    $('#lb-followers').text(data.countFollowers);
 }
 
 function fillListAlbums(data){
@@ -23,6 +24,7 @@ function fillListAlbums(data){
         $('#listAlbuns').append(`<li data-id="${data[i].id_albums}" class="listAlbuns list-group-item">${data[i].description}</li>`);
     }
     $('.listAlbuns').click(function(){
+        $('#container .card').remove();
         getPhotosToVisitorByAlbum($(this).data('id'));
     })
 }
@@ -34,7 +36,6 @@ function loadPhotos(photos, user){
 }
 
 async function fillCardPhotos(photos, user){
-    $('#container .card').remove();
     for(var i=0; i<photos.length; i++){
         var likes = await getCountLikesByPhoto(photos[i].id_photo);
         var comments= await getCountCommentsByPhoto(photos[i].id_photo);
@@ -42,14 +43,14 @@ async function fillCardPhotos(photos, user){
         var time = calculateTimeOfUpload(photos[i].date_upload);
         $('#container').append(`<div id="card${photos[i].id_photo}" class="card mx-3 p-0 mb-4 col-xl-5 col-lg-5 col-md-5 col-sm-11 border rounded"> <!--Start Card-->
             <div class="card-header bg-white">
-                <div class="media m-0">
-                    <div class="d-flex mr-1" style="background-image: url('../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 50%">
-                    </div>
-                    <div class="media-body">
-                        <small class="">${user.name}</small>
-                        <small class="mt-1 float-right"><i class="icon ion-md-time"></i><span>${time} ago</span></small>
-                    </div>
-                </div><!--/ media -->
+            <div class="media m-0" id="userPhoto${photos[i].id_photo}">
+                <div class="d-flex mr-3 userPhoto" style="background-image: url('./../upload/profile/${user.profile_photo}'); overflow:hidden; max-width: 100%; max-height:100%; background-repeat: no-repeat; background-position:center; background-size:cover; height:50px; width: 50px; border-radius: 50%; cursor:pointer">
+                </div>
+                <div class="media-body">
+                    <small style="font-size: 20px; cursor:pointer;" class="userPhoto font-weight-bold"> ${user.name}</small>
+                    <small class="mt-1 float-right"><i class="icon ion-md-time"></i><span>${time} ago</span></small>
+                </div>
+            </div><!--/ media -->
             <div class="border-bottom pb-1 mb-0">
                     <h5 class="text-center mb-0">${photos[i].name}</h5>
             </div>
@@ -74,7 +75,7 @@ async function fillCardPhotos(photos, user){
                 </div>
             </div>
         </div>`);
-        initFunctions(photos[i].id_photo);
+        initFunctionsProfileUser(photos[i].id_photo);
     }
 
     

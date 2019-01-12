@@ -2,5 +2,12 @@ body{
     background : url(https://picsum.photos/1920/1080/?random);
     background-attachment: fixed;
     background-size: cover; 
+    background-repeat: no-repeat;
 }
 
+
+@media (max-width: 768px) { 
+    #container{
+        margin: 40px 8px 10px 8px !important; 
+    }
+}

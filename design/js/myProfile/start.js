@@ -14,10 +14,9 @@ $(document).ready(function(){
         dataType:'json',
         success: function (res) {
             fillProfileDetails(res[0]);
-            getNumberFollowers(res[0].id_user);
             getListAlbums(res[0].id_user);
             getListGroups(res[0].id_user);
-            getPhotosByUser();
+            getPhotosToMyProfile();
         },
         error: function (errorMessage) {
             logout();

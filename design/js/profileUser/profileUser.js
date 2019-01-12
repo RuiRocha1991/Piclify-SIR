@@ -1,14 +1,14 @@
 var token =document.cookie.replace('token=', '');
 var listPhotos=new Array();
 var countLoad =0;
-var rangeLoad=3;
-var countuploadedPhotos=6;
+var rangeLoad=2;
+var countuploadedPhotos=4;
 var user;
 
 $(document).ready(async function(){
     window.$_GET = new URLSearchParams(location.search);
     getDetailsUser($_GET.get('id'));
-    getNumberFollowers($_GET.get('id'));
+   // getNumberFollowers($_GET.get('id'));
     getListAlbums($_GET.get('id'));
     getListGroups($_GET.get('id'));
     let result =await verifyIsFollowed($_GET.get('id'));
@@ -36,10 +36,13 @@ function initFunctionToElements(){
         }else{
             addFollower();
         }
+        $('#container .card').remove();
+        countLoad =0;
+        countuploadedPhotos=4;
     })
 }
 
-function initFunctions(id){
+function initFunctionsProfileUser(id){
     $('#card'+id).hover(function(){
         $(this).addClass('shadow');
     },function(){

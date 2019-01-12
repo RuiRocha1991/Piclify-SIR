@@ -27,13 +27,8 @@
         }
 
 		public function getNewUser() { //read
-			$query = '
-				select 
-					*
-				from 
-					user 
-				where
-					email=:email';
+			$query = 'SELECT *, (select COUNT(followers.id_user) from followers WHERE followers.id_user = user.id_user) as countFollowers FROM user WHERE user.
+			email=:email';
 			$stmt = $this->connection->prepare($query);
 			$stmt->bindValue(':email', $this->user->__get('email'));
 			$stmt->execute();
@@ -74,7 +69,7 @@
 		}
 
 		public function getDetailsUserById() { 
-			$query = 'select * from user where id_user = :id_user';
+			$query = 'SELECT *, (select COUNT(followers.id_user) from followers WHERE followers.id_user = :id_user) as countFollowers FROM user WHERE user.id_user=:id_user';
 			$stmt = $this->connection->prepare($query);
 			$stmt->bindValue(':id_user', $this->user->__get('id_user'));
 			$stmt->execute();
