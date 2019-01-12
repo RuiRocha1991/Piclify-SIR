@@ -19,9 +19,9 @@ function fillProfileDetails(data){
 
 function fillListAlbums(data){
     $('#listAlbuns li').remove();
-
     for(var i=0; i<data.length; i++){
-        $('#listAlbuns').append(`<li data-id="${data[i].id_albums}" class="listAlbuns list-group-item">${data[i].description}</li>`);
+        if(data[i].totalPhotos>0)
+            $('#listAlbuns').append(`<li data-id="${data[i].id_albums}" class="listAlbuns list-group-item">${data[i].description}</li>`);
     }
     $('.listAlbuns').click(function(){
         $('#container .card').remove();

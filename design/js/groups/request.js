@@ -103,10 +103,11 @@ function addUserToGroup(group){
         data: {group: group, token:token} ,
         dataType:'json',
         success: function (res) {
-            console.log('adicionou')
+            $('#btn-join').html('Leave Group');
+            getMembersGroup(group);
         },
         error: function (errorMessage) {
-            alert(errorMessage);
+            console.log(errorMessage);
         }
     });
 }
@@ -118,7 +119,27 @@ function removeUserFromGroup(group){
         data: {group: group, token:token} ,
         dataType:'json',
         success: function (res) {
-            console.log('removeu')
+            $('#btn-join').html('Join Group');
+            getMembersGroup(group);
+        },
+        error: function (errorMessage) {
+            console.log(errorMessage);
+        }
+    });
+}
+
+
+function verifyIsOwnerGroup(id){
+    $.ajax({
+        url:window.CONNECTION_NODE+'/group/verifyIsOwner',
+        type: "get",
+        data: {id_group: id, token:token} ,
+        dataType:'json',
+        success: function (res) {
+            console.log(res);
+            if(res[0].isOwner=='1'){
+                $('#container-btn_join').css('visibility', 'hidden');
+            }
         },
         error: function (errorMessage) {
             alert(errorMessage);

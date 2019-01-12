@@ -44,5 +44,5 @@
 		$service = new GroupsPhotoService($connection, $groupsPhoto);
         $service->removeGroupOfPhoto();
         echo json_encode($groupsPhoto);
-    }     
+    }
 ?>

@@ -17,6 +17,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="../design/css/nav-bar/nav-bar.css" />
     <link rel="stylesheet" type="text/css"  href="../design/css/groups/groups.css" />
+    <link rel="stylesheet" type="text/css"  href="../design/css/autoComplete/autocompleto.css" />
     <link rel="stylesheet" type="text/css"  href="../design/css/modalPhoto/modalPhoto.css" />
 
 </head>
@@ -38,6 +39,9 @@
                             <span class="icon"><i class="fa fa-search"></i></span>
                             <input type="search" id="search" placeholder="Search..." />
                         </div>
+                        <ul id="autoComplete" class="list-group list-group-flush rounded">
+                                
+                            </ul>
                     </div>
                     <div style="clear:both"></div>
                     <ul class="navbar-nav ">
@@ -45,7 +49,7 @@
                             <a href="profile.html" class="nav-link nav-click">Profile</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="" class="nav-link nav-active">Groups</a>
+                            <a href="" class="nav-link nav-active">About</a>
                         </li>
                         <li class="nav-item ml-2">
                             <button class="btn btn-outline-light" id="logoutBtn" onclick="logout()">Logout</button>
@@ -56,7 +60,7 @@
         </nav>
     </header>
 
-    <section class="container-fluid">
+    <section class="container-fluid" style="margin-top:85px;">
             <div class="row m-3">
                 <div class="col-xl-3 col-lg-4 col-md-11 col-sm-11 shadow-sm p-3 mb-5 rounded border bg-light">
                     <div class="mb-3">
@@ -64,8 +68,9 @@
                         <hr>
                         <p id="descriptionGroup" class="m-2 text-center"></p>
                     </div>
-                    <div id="buttonToJoin"></div>
-                    
+                    <div id="container-btn_join" class="p-1 mb-2">
+                        <button id="btn-join" class="btn btn-outline-light btn-block m-0"></button>
+                    </div>
                     <div id="container-info-user" class="p-3 border-top ">              
                         <h6 id="lb-members" class="mx-1 my-3 details-profile text-center"></h6>
                         <ul id="listMembers" class="list-group list-group-flush">   
@@ -80,14 +85,10 @@
                 </div>
             </div>
     </section>
-   <!--  <div id="modalPhoto"  class="modal-view-photo modal fade modalShaddow" tabindex="-1" role="dialog" aria-hidden="true">
-        
-    </div> -->
 
     <!-- The Modal -->
     <div id="modalPhoto" tabindex="-1" role="dialog" aria-hidden="true" > 
-          <div class="modalPhoto">
-          </div>  
+           
     </div>
     
 
@@ -107,6 +108,8 @@
     <script src="js/photoModal/fill.js"></script>
     <script src="js/photoModal/request.js"></script>
     <script src="js/comments/request.js"></script>
+    <script src="js/search/fill.js"></script>
+    <script src="js/search/request.js"></script>
     
     
 </body>

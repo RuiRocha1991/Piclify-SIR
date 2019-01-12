@@ -9,11 +9,17 @@
     transition:  0.5s ease;
 }
 
-#container-btn_follower{
+#container-btn_join{
     background: rgba(26,35,126, 0.9);
     border-radius: 5px;
 }
 
 .card:hover{
+    transition:  0.5s ease;
     cursor: pointer;
 }
+
+.card{
+    transition:  0.5s ease;
+}
+

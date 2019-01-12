@@ -44,6 +44,15 @@
             $stmt->execute(); 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        public function verifyIsOwner(){
+            $query ='SELECT count(*) as isOwner FROM photo_group WHERE id_group=:id_group and owner=:user';
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindValue(':id_group',$this->group->__get('id_group'));
+            $stmt->bindValue(':user',$this->group->__get('owner'));
+            $stmt->execute(); 
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
     }
 
 ?>

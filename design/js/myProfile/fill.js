@@ -21,8 +21,6 @@ function fillListAlbums(data){
 }
 
 function fillListGroups(data,id){
-    console.log('data')
-    console.log(data)
     for(var x=0; x<data.length;x++){
         $('#listGroups').append(`<li class="list-group-item listGroups" data-id="${data[x].id_group}" data-user="${data[x].owner}">${data[x].title}</li>`);
     }

@@ -91,3 +91,27 @@ exports.getGroupById= (req, res, next)=>{
         });
     }
 }
+
+exports.verifyIsOwner= async (req, res, next)=>{
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);  
+    req.query.owner=data.id_user;
+    try{
+        fetch(global.URL_CONTROLLERS+'group.controller.php?action=verifyIsOwner',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(req.query) 
+        }
+        )
+        .then(data => data.json())
+        .then(d =>  res.send(d) );
+    }catch(e){
+        res.status(500).send({
+            message:'Falha ao processar requisição'
+        });
+    }
+}

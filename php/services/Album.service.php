@@ -18,7 +18,7 @@
         }
 
         public function getAlbumByUser() { 
-			$query = "select * from albums where user =:user";
+			$query = "SELECT *, (select COUNT(albums_photos.album) from albums_photos where albums_photos.album = albums.id_albums) as totalPhotos FROM albums where user=:user";
 			$stmt = $this->connection->prepare($query);
             $stmt->bindValue(':user', $this->album->__get('user'));
             $stmt->execute(); 

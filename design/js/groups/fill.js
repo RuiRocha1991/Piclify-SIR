@@ -23,23 +23,28 @@ function addCardToGroup(data,user){
                                 </label>
                             </div>
                             <ul class="list-inline m-0">
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-thumbs-up"></i><span> ${data.countLikes}</span></a></li>
-                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span> ${data.countComments}</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-thumbs-up"></i><span id="countLikes${data.data.id_photo}"> ${data.countLikes}</span></a></li>
+                                <li class="list-inline-item mt-2"><a><i class="fa fa-comments"></i><span id="countComment${data.data.id_photo}"> ${data.countComments}</span></a></li>
                             </ul>
                         </div>
                         <div class="input-group mt-2">
-                            <input type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input id="inputComment${data.data.id_photo}" type="text" class="form-control" placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa fa-share-square"></i></button>
+                                <button id="btn-AddComment${data.data.id_photo}" class="btn-AddComment btn btn-outline-success" type="button"  data-id="${data.data.id_photo}" ><i class="fa fa-share-square"></i></button>
                             </div>
                         </div>
                     </div>   `);
-                    $('#userPhoto'+data.data.id_photo).click(function(){
-                        document.location.href = 'profileUser.html?id='+data.data.id_photo;
-                    });
+                
+
+                $('#btn-AddComment'+data.data.id_photo).click(function(){
+                    addComment($(this).data('id'), $('#inputComment'+$(this).data('id')).val());
+                });   
+                $('#userPhoto'+data.data.id_photo).click(function(){
+                    document.location.href = 'profileUser.html?id='+data.data.id_photo;
+                });
                 $("#photoCard"+data.data.id_photo).click(function() {
                     modal.style.display = "block";
-                    openPhotoModal(data,user)
-                    getComments(data.data.id_photo)
+                    openPhotoModal(data,user);
                 });
+                initFunctionsCard();
 }

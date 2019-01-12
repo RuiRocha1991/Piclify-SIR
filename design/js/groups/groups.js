@@ -1,8 +1,13 @@
 var token =document.cookie.replace('token=', '');
 var modal;
+var owner;
+var user;
 $(document).ready(function(){
     window.$_GET = new URLSearchParams(location.search);
-    getMembersGroup($_GET.get('id'), $_GET.get('user'), $_GET.get('userToken'));
+    getMembersGroup($_GET.get('id'));
+    verifyIsOwnerGroup($_GET.get('id'));
+    owner=$_GET.get('user');
+    user =$_GET.get('userToken');
     $.ajax({
         url:window.CONNECTION_NODE+'/group/getListGroupById',
         type: "get",
@@ -24,19 +29,17 @@ $(document).ready(function(){
         }
     }
     
-    $('#buttonToJoin').click(function(){
-        if($('#btn-follower').text() == 'Join Group'){
-            addUserToGroup($_GET.get('id'))
-            $('#btn-follower').html('Leave Group')
+    $('#btn-join').click(function(){
+        if($('#btn-join').text() == 'Join Group'){
+            addUserToGroup($_GET.get('id'));
         } else{
-            removeUserFromGroup($_GET.get('id'))
-            $('#btn-follower').html('Join Group')
+            removeUserFromGroup($_GET.get('id'));
         }
         
     })
 });
 
-function getMembersGroup(group,owner,user){
+function getMembersGroup(group){
     $.ajax({
         url:window.CONNECTION_NODE+'/groupUser/getListUsersByGroup',
         type: "get",
@@ -53,8 +56,7 @@ function getMembersGroup(group,owner,user){
     });
 }
 
-async function getDetailsMembers(data,owner,user){
-    var contaDono= false
+async function getDetailsMembers(data){
     var userIsJoined = false
     $('#listMembers li').remove();
     for(var i=0; i<data.length;i++){
@@ -65,14 +67,7 @@ async function getDetailsMembers(data,owner,user){
                 data: {token:token, id_user:data[i].idUser} ,
                 dataType:'json',
                 success: function (res) {
-
-                    $('#listMembers').append(`<div class="row ml-3 mb-3 userProfile border-top border-bottom" style="align-items:center;" data-id="${res[0].id_user}" >
-                        <div class=" p-0" style="background-image: url('./../upload/profile/${res[0].profile_photo}'); overflow:hidden; max-height:100%; background-repeat:no-repeat; background-position:center; background-size:cover; height:40px;width:40px; border-radius: 100%"></div>
-                        <small class="ml-3 mt-2" style="font-size: 20px;font-weight: bold;">${res[0].name}</small>
-                    </div>`)
-
-                    
-                    
+                    $('#listMembers').append(`<li class="list-group-item member" data-id="${res[0].id_user}" >${res[0].name}</li>`)
                 },
                 error: function (errorMessage) {
                     logout();
@@ -82,21 +77,12 @@ async function getDetailsMembers(data,owner,user){
         }else{
             userIsJoined = true;
         }
-        
-    }
-    if(user==owner){
-        contaDono =true;
-    }
-    if(contaDono == false){
-        $('#buttonToJoin').append(`<div id="container-btn_follower" class="p-1 mb-2">
-        <button id="btn-follower" class="btn btn-outline-light btn-block m-0"></button>
-    </div>`)
     }
 
     if(userIsJoined ==true){
-        $('#btn-follower').html('Leave Group')
+        $('#btn-join').html('Leave Group')
     }else{
-        $('#btn-follower').html('Join Group')
+        $('#btn-join').html('Join Group')
     }
     $(".userProfile").css( 'cursor', 'pointer' );
     $('.userProfile').click(function(){

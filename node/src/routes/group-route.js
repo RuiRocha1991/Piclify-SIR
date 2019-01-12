@@ -7,7 +7,7 @@ const authService = require('../services/auth-service');
 
 router.get("/getListGroupById", authService.authorize, controller.getListGroupById);
 router.get("/getGroupByTitleOrDescription", controller.getGroupByTitleOrDescription);
-
+router.get("/verifyIsOwner",authService.authorize, controller.verifyIsOwner);
 router.post('/createGroup',  authService.authorize, controller.createGroup);
 
 module.exports = router;

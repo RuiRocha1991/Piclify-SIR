@@ -32,5 +32,13 @@
 		$service = new GroupService($connection, $group);
         $groups=$service->getGroupByTitleOrDescription();
         echo json_encode($groups);
+    }elseif($action=='verifyIsOwner'){
+        $group= new Group_photo();
+        $group->__set('id_group',$_POST['id_group']);
+        $group->__set('owner',$_POST['owner']);
+		$connection = new Connection();
+		$service = new GroupService($connection, $group);
+        $group=$service-> verifyIsOwner();
+        echo json_encode($group);
     }
 ?>

@@ -5,7 +5,6 @@ function getComments(photo){
         data: {token:token, id_photo:photo} ,
         dataType:'json',
         success: function (res) {
-            console.log(res)
             printComments(res)
         },
         error: function(errorMessage){
@@ -14,8 +13,11 @@ function getComments(photo){
     });
 }
 function printComments(data){
+    $('#comments .comments').remove();
+    console.log(data.length);
     for(var i=0;i<data.length; i++){
-        fillComments(data[i])
+        console.log(data[i]);
+        fillComments(data[i]);
     }
 }
     
