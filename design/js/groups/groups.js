@@ -61,7 +61,7 @@ function getMembersGroup(group){
 }
 
 async function getDetailsMembers(data){
-    $('#listMembers li').remove();
+    $('#listMembers a').remove();
     for(var i=0; i<data.length;i++){
         if(data[i].idUser!=user){ //se for diferente do utilizador
             await $.ajax({
