@@ -20,25 +20,25 @@ body, html{
 }
 
 .box1{
-	background-image: url(../img/backgroundAbout.jpg);
+	background-image: url(../../img/backgroundAbout.jpg);
 }
 
 .box2{
-	background-image: url(../img/backgroundHtml.jpg);
+	background-image: url(../../img/backgroundHtml.jpg);
 }
 
 .box3{
-	background-image: url(../img/backgroundBootstrap.png);
+	background-image: url(../../img/backgroundBootstrap.png);
 }
 
 .box4{
-	background-image: url(../img/backgroundJquery.png);
+	background-image: url(../../img/backgroundJquery.png);
 }
 .box5{
-	background-image:url(../img/backgroundIcons.jpg);
+	background-image:url(../../img/backgroundIcons.jpg);
 }
 .box6{
-	background-image:url(../img/backgroundAPI.jpg);	
+	background-image:url(../../img/backgroundAPI.jpg);	
 }
 /*******************/
 
@@ -56,7 +56,7 @@ p{
 .content-title{
 	position: absolute;
 	left: 0;
-	top: 10%;
+	top: 15%;
 	width: 100%;
 	text-align: center;
 }
